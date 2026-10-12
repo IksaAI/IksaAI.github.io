@@ -1,0 +1,48 @@
+# 以 IksaAI（GitHub App）的名義發布版本，release 頁會顯示 IksaAI 而不是個人帳號
+# 用法：先上傳草稿，再執行這個 workflow
+#   gh release create eqalert-v0.7.0 EQalert-0.7.0.dmg --draft --repo IksaAI/IksaAI.github.io --title "EQalert 0.7.0" --notes-file notes.md
+#   gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v0.7.0
+# App 發布後會觸發 release 事件，pages.yml 接著自動更新網站。
+name: 以 IksaAI 發布版本
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 要發布的 tag（例如 eqalert-v0.7.0）；請先用 gh release create --draft 上傳安裝檔
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.IKSAAI_APP_CLIENT_ID }}
+          private-key: ${{ secrets.IKSAAI_APP_PRIVATE_KEY }}
+      - name: 由 IksaAI 發布
+        run: node scripts/publish-release.mjs "$TAG"
+        env:
+          TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          BOT_LOGIN: ${{ steps.app-token.outputs.app-slug }}[bot]
+      - name: 失敗時保留安裝檔
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-assets
+          path: release-assets/
+          if-no-files-found: ignore

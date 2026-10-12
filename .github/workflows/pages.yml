@@ -1,12 +1,14 @@
-# 部署 GitHub Pages：push 到 main、或發布／修改／刪除 release 時，
+# 部署 GitHub Pages：push 到 main、或發布／修改 release 時，
 # 重新讀取 Releases 填入最新版本與版本紀錄
+# 不監聽 deleted：publish.yml 會先刪草稿再由 IksaAI 重建，那時建置一定失敗。
+# 手動刪掉 release 後，請執行 gh workflow run pages.yml 更新網站。
 name: 部署網站
 
 on:
   push:
     branches: [main]
   release:
-    types: [published, edited, deleted]
+    types: [published, edited]
   workflow_dispatch:
 
 permissions:

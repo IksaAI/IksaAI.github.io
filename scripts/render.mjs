@@ -143,3 +143,6 @@ export function newsFrom(entries, limit) {
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, limit)
 }
+
+/** release tag 的格式：「<App 代號>-v<版本>」，例如 eqalert-v0.6.0、eqalert-v1.0.0-beta.1 */
+export const isReleaseTag = (tag) => /^[a-z0-9]+(?:-[a-z0-9]+)*-v\d+(?:\.\d+)*(?:-[0-9A-Za-z.]+)?$/.test(tag)

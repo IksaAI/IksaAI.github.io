@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { escapeHtml, fillTemplate, formatDate, formatSize, latestDownload, newsFrom, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
+import { escapeHtml, fillTemplate, formatDate, formatSize, isReleaseTag, latestDownload, newsFrom, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
 
 const RELEASES_URL = 'https://github.com/IksaAI/IksaAI.github.io/releases'
 
@@ -121,4 +121,9 @@ test('news lists the newest releases across all apps', () => {
     newsFrom(entries, 2).map(({ name, version, date, summary, href }) => [name, version, date, summary, href]),
     [['EQalert', '0.7.0', '2026-11-01', '修正', 'eqalert/#releases'], ['Next', '1.0.0', '2026-10-20', '第一版', 'next/#releases']],
   )
+})
+
+test('release tags must be <slug>-v<version>', () => {
+  for (const tag of ['eqalert-v0.6.0', 'next-app-v1.2.0', 'eqalert-v1.0.0-beta.1']) assert.equal(isReleaseTag(tag), true, tag)
+  for (const tag of ['v0.6.0', 'EQalert-v1.0.0', 'eqalert-0.6.0', 'eqalert-v', 'eqalert-v1.0; rm -rf /', '']) assert.equal(isReleaseTag(tag), false, tag)
 })
