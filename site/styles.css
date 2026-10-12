@@ -777,7 +777,8 @@ code {
   display: grid;
   gap: 1rem;
   padding-block: 2.5rem 3.5rem;
-  border-top: 1px solid var(--line);
+  /* 分隔線畫在內容寬度內，和各區塊的線對齊 */
+  background: linear-gradient(var(--line), var(--line)) var(--gutter) 0 / calc(100% - 2 * var(--gutter)) 1px no-repeat;
   font-size: var(--text-small);
   color: var(--ink-3);
 }
