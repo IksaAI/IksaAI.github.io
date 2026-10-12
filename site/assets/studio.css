@@ -216,7 +216,8 @@ a {
 }
 
 .lede {
-  max-width: 30em;
+  max-width: 32em;
+  text-wrap: pretty;
   margin-top: 1.75rem;
   font-size: 1.125rem;
   color: var(--ink-2);

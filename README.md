@@ -9,7 +9,7 @@
 
 ---
 
-這個 repo 是 IksaAI 的工作室網站，也放所有作品的安裝檔（GitHub Releases）。各 App 的原始碼不公開。
+這個 repo 是 IksaAI 的工作室網站，也放所有作品的安裝檔（GitHub Releases）。IksaAI 製作小而專注的軟體：App、工具與服務；各作品的原始碼不公開。
 
 | 作品 | 介紹與下載 | 需求 |
 |---|---|---|
