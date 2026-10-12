@@ -22,7 +22,7 @@
   --focus: #1E3FB8;
   --tile: color-mix(in srgb, var(--paper) 55%, #fff);
 
-  /* 主打作品的深色舞台 */
+  /* 精選 App 的深色舞台 */
   --stage: #0B1530;
   --stage-glow: #2343B8;
   --stage-ink: #F4F1EA;
@@ -223,7 +223,12 @@ a {
   color: var(--ink-2);
 }
 
-/* ---------- 作品 ---------- */
+/* ---------- App 與線上服務 ---------- */
+
+.works + .works {
+  margin-top: clamp(3rem, 2rem + 3vw, 4.5rem);
+}
+
 
 .works-head {
   display: flex;
@@ -273,7 +278,7 @@ a {
   border-radius: var(--radius-icon);
 }
 
-/* 主打作品：深色舞台大格 */
+/* 精選 App：深色舞台大格 */
 .feature {
   grid-column: span 3;
   grid-row: span 2;
@@ -423,26 +428,26 @@ a {
   color: var(--ink-3);
 }
 
-/* 關於工作室 */
-.about {
+/* 下載與安裝 */
+.install {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.about p {
+.install p {
   font-size: 0.9375rem;
   color: var(--ink-2);
 }
 
-.about a {
+.install a {
   font-size: var(--text-small);
   font-weight: 700;
   text-decoration-color: var(--accent);
 }
 
-/* 其他作品 */
+/* 其他 App */
 .work {
   display: flex;
   flex-direction: column;

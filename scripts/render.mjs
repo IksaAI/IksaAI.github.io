@@ -124,7 +124,7 @@ export function summaryOf(markdown) {
     .replace(/\[(.+?)\]\([^)]*\)/g, '$1')
 }
 
-/** 「更多作品製作中」那格要橫跨幾欄，才能補滿最後一列 */
+/** 「更多 App 製作中」那格要橫跨幾欄，才能補滿最後一列 */
 export const soonSpan = (workCount, columns) => columns - (workCount % columns)
 
 /** 所有 App 最新的幾個版本，新的在前 */

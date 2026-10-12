@@ -1,5 +1,5 @@
 // 部署前建置：把 site/ 複製到 _site/，再依 apps.json 與 GitHub Releases
-// 填入各 App 頁的版本、下載連結與版本紀錄，並產生工作室首頁的作品方格
+// 填入各 App 頁的版本、下載連結與版本紀錄，並產生工作室首頁的 App 方格
 // 用法：node scripts/build.mjs（CI 會帶 GITHUB_TOKEN；本機不帶也行，公開 repo 有匿名額度）
 import { cp, readFile, rm, writeFile } from 'node:fs/promises'
 import {

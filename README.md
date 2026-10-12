@@ -9,9 +9,9 @@
 
 ---
 
-這個 repo 是 IksaAI 的工作室網站，也放所有作品的安裝檔（GitHub Releases）。IksaAI 製作小而專注的軟體：App、工具與服務；各作品的原始碼不公開。
+這個 repo 是艾可颯智慧工作室（IksaAI）的網站，也放所有 App 的安裝檔（GitHub Releases）。IksaAI 製作小而專注的軟體：App 與線上服務；原始碼不公開。
 
-| 作品 | 介紹與下載 | 需求 |
+| App | 介紹與下載 | 需求 |
 |---|---|---|
 | EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/) | macOS 14 以上 |
 
@@ -28,8 +28,8 @@
 
 | 路徑 | 內容 |
 |---|---|
-| `apps.json` | 所有作品的資料；`slug` 同時是網址（`/eqalert/`）和 release tag 前綴（`eqalert-v…`） |
-| `site/index.html`、`site/assets/` | 工作室首頁（藍晒配色）；作品方格與最新動態在部署時產生 |
+| `apps.json` | 所有 App 的資料；`slug` 同時是網址（`/eqalert/`）和 release tag 前綴（`eqalert-v…`） |
+| `site/index.html`、`site/assets/` | 工作室首頁（藍晒配色）；App 方格與最新動態在部署時產生 |
 | `site/<slug>/` | 各 App 的介紹頁，保留 App 自己的設計；`{{version}}` 等欄位在部署時填入 |
 | `templates/` | 首頁方格的 HTML 樣板（不會發布） |
 | `scripts/build.mjs` | 讀取 `apps.json` 與 GitHub Releases，產生 `_site/` |
@@ -55,12 +55,12 @@ gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版�
 
 `publish.yml` 需要 repo secrets `IKSAAI_APP_CLIENT_ID`、`IKSAAI_APP_PRIVATE_KEY`（IksaAI App 的設定：https://github.com/organizations/IksaAI/settings/apps/iksaai ，只授權本 repo）。
 
-## 新增一個作品
+## 新增一個 App
 
 1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的主打大格；截圖用 16:10）
 2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）
-3. **先發布第一個 release**（`<slug>-v1.0.0`，附上安裝檔），再 push 網站。還沒有 release 的作品會讓建置失敗，網站會維持上一版。
+3. **先發布第一個 release**（`<slug>-v1.0.0`，附上安裝檔），再 push 網站。還沒有 release 的 App 會讓建置失敗，網站會維持上一版。
 
 ---
 
-所有作品的資料僅供參考。EQalert 不是官方的地震速報系統，實際狀況請以各國官方機關發布為準。
+各 App 提供的資料僅供參考。EQalert 不是官方的地震速報系統，實際狀況請以各國官方機關發布為準。

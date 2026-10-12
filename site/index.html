@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>IksaAI 工作室</title>
-  <meta name="description" content="IksaAI 製作小而專注的軟體：App、工具與服務。這裡有每個作品的介紹、下載與版本紀錄。">
+  <title>艾可颯智慧工作室 IksaAI</title>
+  <meta name="description" content="艾可颯智慧工作室（IksaAI）製作小而專注的軟體：App 與線上服務。這裡有每一個的介紹、下載與版本紀錄。">
   <meta name="theme-color" content="#F1F3F6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0A0F1D" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IksaAI">
-  <meta property="og:title" content="IksaAI 工作室">
+  <meta property="og:title" content="艾可颯智慧工作室 IksaAI">
   <meta property="og:description" content="做在關鍵時刻，派得上用場的軟體。">
   <meta property="og:image" content="https://iksaai.github.io/assets/og.jpg">
   <meta property="og:url" content="https://iksaai.github.io/">
@@ -31,7 +31,8 @@
       <a class="wordmark" href="./">IksaAI</a>
       <nav aria-label="主要導覽">
         <ul>
-          <li><a href="#works">作品</a></li>
+          <li><a href="#apps">App</a></li>
+          <li><a href="#services">線上服務</a></li>
           <li><a href="{{releasesUrl}}">所有版本</a></li>
         </ul>
       </nav>
@@ -40,17 +41,17 @@
 
   <main id="main" class="wrap">
     <section class="manifesto" aria-labelledby="manifesto-title">
-      <p class="issue">工作室<br>2026</p>
+      <p class="issue">艾可颯智慧工作室<br>2026</p>
       <div>
         <h1 id="manifesto-title">做在關鍵時刻，<br><em>派得上用場</em>的軟體。</h1>
-        <p class="lede">IksaAI 製作小而專注的軟體：App、工具與服務。<br>每個作品只解決一件事，並把那件事做到讓人放心。</p>
+        <p class="lede">IksaAI 製作小而專注的軟體：App 與線上服務。<br>每一個都只解決一件事，並把那件事做到讓人放心。</p>
       </div>
     </section>
 
-    <section id="works" class="works" aria-labelledby="works-title">
+    <section id="apps" class="works" aria-labelledby="apps-title">
       <header class="works-head">
-        <h2 id="works-title">作品</h2>
-        <p>{{workCount}} 個已推出・更多製作中</p>
+        <h2 id="apps-title">App</h2>
+        <p>裝在電腦上執行・已推出 {{workCount}} 個</p>
       </header>
       <div class="bento">
 {{featured}}
@@ -60,20 +61,33 @@
 {{news}}
           </ul>
         </aside>
-        <aside class="tile about" aria-labelledby="about-title">
-          <h3 id="about-title" class="label">關於工作室</h3>
-          <p>每個作品都有自己的介紹頁、下載和版本紀錄。安裝檔都放在 GitHub Releases，可以看到每一版改了什麼。</p>
+        <aside class="tile install" aria-labelledby="install-title">
+          <h3 id="install-title" class="label">下載與安裝</h3>
+          <p>安裝檔都放在 GitHub Releases，每一版都附上更新內容。Mac App 還沒經過 Apple 公證，第一次打開要手動允許一次，步驟寫在各 App 的介紹頁。</p>
           <a href="{{releasesUrl}}">在 GitHub 上看所有版本 →</a>
         </aside>
 {{works}}
+      </div>
+    </section>
+
+    <section id="services" class="works" aria-labelledby="services-title">
+      <header class="works-head">
+        <h2 id="services-title">線上服務</h2>
+        <p>不用安裝，連上網路就能用</p>
+      </header>
+      <div class="bento">
+        <div class="tile soon span-4">
+          <span class="placeholder" aria-hidden="true"></span>
+          <div><p class="label">製作中</p><h3>第一個線上服務</h3></div>
+        </div>
       </div>
     </section>
   </main>
 
   <div class="wrap">
     <footer class="site-footer">
-      <p>© 2026 IksaAI</p>
-      <p>安裝檔都放在 GitHub Releases</p>
+      <p>© 2026 艾可颯智慧工作室 IksaAI</p>
+      <p><a href="https://github.com/IksaAI">GitHub</a></p>
     </footer>
   </div>
 </body>
