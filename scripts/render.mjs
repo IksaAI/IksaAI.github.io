@@ -11,8 +11,12 @@ export const formatSize = (bytes) => `${(bytes / 1_000_000).toFixed(1)} MB`
 /** 台灣時間的 YYYY-MM-DD */
 export const formatDate = (iso) => DATE_FORMAT.format(new Date(iso))
 
-const versionOf = (release) => release.tag_name.replace(/^v/, '')
+/** tag 格式是「<App 代號>-v<版本>」，例如 eqalert-v0.6.0 */
+const versionOf = (release) => release.tag_name.replace(/^(?:.*-)?v(?=\d)/, '')
 const dmgOf = (release) => release.assets.find((asset) => asset.name.endsWith('.dmg'))
+
+/** 只留下某個 App 的版本（所有 App 共用同一個 repo 的 Releases） */
+export const releasesFor = (releases, slug) => releases.filter((release) => release.tag_name.startsWith(`${slug}-v`))
 
 /** 行內語法：**粗體**、`程式碼`、[文字](https://網址)；先跳脫再轉換 */
 function renderInline(text) {
@@ -87,4 +91,55 @@ export function fillTemplate(template, values) {
     if (!(key in values)) throw new Error(`網頁樣板有未知的欄位：${placeholder}`)
     return values[key]
   })
+}
+
+const REQUIRED_APP_FIELDS = ['slug', 'name', 'subtitle', 'tagline', 'requirements', 'icon', 'screenshot', 'screenshotAlt']
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+
+/** 檢查 apps.json：slug 會變成網址與 tag 前綴，所以只能用小寫英文、數字和 - */
+export function validateApps(apps) {
+  if (!Array.isArray(apps) || apps.length === 0) throw new Error('apps.json 至少要有一個 App')
+  const seen = new Set()
+  for (const app of apps) {
+    if (!SLUG_PATTERN.test(app.slug ?? '')) throw new Error(`apps.json 的 slug 只能用小寫英文、數字和 -：${app.slug}`)
+    if (seen.has(app.slug)) throw new Error(`apps.json 有重複的 slug：${app.slug}`)
+    seen.add(app.slug)
+    const missing = REQUIRED_APP_FIELDS.filter((field) => typeof app[field] !== 'string' || app[field] === '')
+    if (missing.length) throw new Error(`apps.json 的 ${app.slug} 缺少欄位：${missing.join('、')}`)
+  }
+  return apps
+}
+
+/** release 說明的第一行純文字（跳過標題），給首頁「最新動態」用 */
+export function summaryOf(markdown) {
+  const line = markdown
+    .split(/\r?\n/)
+    .map((text) => text.trim())
+    .find((text) => text && !/^#{1,6}\s/.test(text))
+  if (!line) return ''
+  return line
+    .replace(/^[-*]\s+/, '')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/`(.+?)`/g, '$1')
+    .replace(/\[(.+?)\]\([^)]*\)/g, '$1')
+}
+
+/** 「更多作品製作中」那格要橫跨幾欄，才能補滿最後一列 */
+export const soonSpan = (workCount, columns) => columns - (workCount % columns)
+
+/** 所有 App 最新的幾個版本，新的在前 */
+export function newsFrom(entries, limit) {
+  return entries
+    .flatMap(({ app, releases }) =>
+      releases.map((release) => ({
+        name: app.name,
+        version: versionOf(release),
+        date: formatDate(release.published_at),
+        publishedAt: release.published_at,
+        summary: summaryOf(release.body ?? ''),
+        href: `${app.slug}/#releases`,
+      })),
+    )
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+    .slice(0, limit)
 }

@@ -1,0 +1,582 @@
+/* ============================================================
+ * IksaAI 工作室首頁
+ * 方向：工作室（紙張、襯線大標題、宣言）× 展示櫃（bento 方格）
+ * 配色：藍晒（2026-10 由五組提案選定）。舞台在淺色、深色模式都是深色。
+ * 字體：Noto Serif TC（標題）+ Noto Sans TC（內文）
+ * 各 App 的介紹頁保留 App 自己的設計，不套用這份樣式。
+ * ============================================================ */
+
+:root {
+  color-scheme: light dark;
+
+  --font-serif: 'Noto Serif TC', 'Songti TC', serif;
+  --font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+
+  /* 藍晒（淺色） */
+  --paper: #F1F3F6;
+  --ink: #0E1A33;
+  --ink-2: #45506A;
+  --ink-3: #5E6883;
+  --line: #D5DAE3;
+  --accent: #1E3FB8;
+  --focus: #1E3FB8;
+  --tile: color-mix(in srgb, var(--paper) 55%, #fff);
+
+  /* 主打作品的深色舞台 */
+  --stage: #0B1530;
+  --stage-glow: #2343B8;
+  --stage-ink: #F4F1EA;
+  --stage-ink-2: rgb(244 241 234 / 0.74);
+  --stage-accent: #9FB4FF;
+
+  /* 層次 */
+  --shadow-tile: 0 1px 0 rgb(0 0 0 / 0.03), 0 18px 40px -26px rgb(14 26 51 / 0.45);
+  --shadow-shot: 0 30px 70px -30px rgb(0 0 0 / 0.9);
+
+  /* 字級 */
+  --text-small: 0.875rem;
+  --text-tiny: 0.8125rem;
+  --text-hero: clamp(2.25rem, 1.2rem + 4.4vw, 4.75rem);
+  --text-feature: clamp(2.25rem, 1.4rem + 2.6vw, 3.5rem);
+
+  /* 節奏 */
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --page-max: 74rem;
+  --radius-tile: 1.5rem;
+  --radius-icon: 22.5%;
+  --gap-tile: 1rem;
+
+  --duration-fast: 150ms;
+  --duration-normal: 240ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0A0F1D;
+    --ink: #E8ECF5;
+    --ink-2: #AEB6CA;
+    --ink-3: #8790A8;
+    --line: #1F2740;
+    --accent: #8FA6FF;
+    --focus: #9FB4FF;
+    --tile: color-mix(in srgb, var(--paper) 90%, #fff);
+    --stage: #0F1B3D;
+    --shadow-tile: 0 1px 0 rgb(0 0 0 / 0.3), 0 18px 40px -26px rgb(0 0 0 / 0.9);
+  }
+}
+
+/* ---------- 基礎 ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.3em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.wrap {
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- 頁首 ---------- */
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.site-header nav {
+  margin-left: auto;
+}
+
+.site-header ul {
+  display: flex;
+  gap: 1.5rem;
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.site-header nav a {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* ---------- 宣言 ---------- */
+
+.manifesto {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 2rem;
+  padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) clamp(2.5rem, 2rem + 3vw, 4rem);
+}
+
+.issue {
+  font-size: var(--text-tiny);
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.manifesto h1 {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: var(--text-hero);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.manifesto h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.lede {
+  max-width: 30em;
+  margin-top: 1.75rem;
+  font-size: 1.125rem;
+  color: var(--ink-2);
+}
+
+/* ---------- 作品 ---------- */
+
+.works-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--ink);
+}
+
+.works-head h2 {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+}
+
+.works-head p {
+  font-size: var(--text-tiny);
+  color: var(--ink-3);
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(12.5rem, auto);
+  gap: var(--gap-tile);
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  border-radius: var(--radius-tile);
+  background: var(--tile);
+  box-shadow: var(--shadow-tile), inset 0 0 0 1px var(--line);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.icon {
+  border-radius: var(--radius-icon);
+}
+
+/* 主打作品：深色舞台大格 */
+.feature {
+  grid-column: span 3;
+  grid-row: span 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(1.75rem, 1rem + 2.4vw, 3rem);
+  color: var(--stage-ink);
+  background:
+    radial-gradient(90% 100% at 85% 0%, var(--stage-glow) 0%, transparent 62%),
+    var(--stage);
+  box-shadow: var(--shadow-tile);
+}
+
+.feature .label {
+  color: var(--stage-accent);
+}
+
+.feature .icon {
+  width: 4.25rem;
+  height: 4.25rem;
+  margin-top: 1rem;
+  box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.8);
+}
+
+.feature h3 {
+  margin-top: 0.9rem;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: var(--text-feature);
+  line-height: 1.1;
+}
+
+.feature h3 small {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.42em;
+  font-weight: 600;
+  color: var(--stage-ink-2);
+}
+
+.tagline {
+  margin-top: 1rem;
+  color: var(--stage-ink-2);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-top: 0.9rem;
+  font-size: var(--text-tiny);
+  color: var(--stage-ink-2);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  background: var(--stage-ink);
+  color: #0E1A33;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.feature :focus-visible {
+  outline-color: var(--stage-accent);
+}
+
+.more {
+  font-weight: 700;
+  text-decoration-color: var(--stage-accent);
+}
+
+.shots {
+  position: relative;
+  margin: 0 -14% 10% 0;
+}
+
+.shots img {
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-shot);
+}
+
+.shots .overlay {
+  position: absolute;
+  left: -3%;
+  bottom: -16%;
+  width: 50%;
+  outline: 5px solid var(--stage);
+}
+
+/* 最新動態 */
+.news {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.news ul {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.news li {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.news a {
+  display: block;
+  text-decoration: none;
+}
+
+.news a:hover b {
+  text-decoration: underline;
+}
+
+.news b {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+}
+
+.news small {
+  display: block;
+  font-size: var(--text-tiny);
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* 關於工作室 */
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.about p {
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+.about a {
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-decoration-color: var(--accent);
+}
+
+/* 其他作品 */
+.work {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-decoration: none;
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.work:hover {
+  transform: translateY(-3px);
+}
+
+.work .icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: auto;
+  box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.55);
+}
+
+.work h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+}
+
+.work p {
+  font-size: var(--text-tiny);
+  color: var(--ink-3);
+}
+
+/* 製作中 */
+.soon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.soon .placeholder {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-icon);
+}
+
+.soon .label {
+  color: var(--ink-3);
+}
+
+.soon h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--ink-3);
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+/* ---------- 頁尾 ---------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+  padding-block: 2.5rem 3rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+/* ---------- 響應式 ---------- */
+
+@media (max-width: 960px) {
+  .manifesto {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature,
+  .span-3,
+  .span-4 {
+    grid-column: span 2;
+  }
+
+  .feature {
+    grid-row: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shots {
+    margin: 0 0 12% 10%;
+  }
+}
+
+@media (max-width: 560px) {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature,
+  .span-2,
+  .span-3,
+  .span-4 {
+    grid-column: auto;
+  }
+
+  .site-header ul {
+    gap: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

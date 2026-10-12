@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "eqalert",
+    "name": "EQalert",
+    "subtitle": "地震速報・macOS",
+    "tagline": "平時安心，有事大聲。台灣發布地震速報時，倒數搖晃抵達你的秒數，並預估你這裡的震度。",
+    "requirements": "macOS 14 以上",
+    "icon": "eqalert/images/icon-256.png",
+    "screenshot": "eqalert/images/mac-main-dark-1280.webp",
+    "screenshotAlt": "EQalert 主畫面：地震清單、震度地圖與地震詳細資料",
+    "overlay": "eqalert/images/mac-eew-1280.webp",
+    "overlayAlt": "EQalert 地震速報畫面：30 秒後搖晃抵達你的位置",
+    "featured": true
+  }
+]
