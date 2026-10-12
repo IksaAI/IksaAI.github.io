@@ -3,7 +3,8 @@
 // 需要環境變數：GH_TOKEN（IksaAI App 的 token）、BOT_LOGIN（例如 iksaai[bot]）、GITHUB_REPOSITORY
 //
 // 流程：找到同 tag 的 release（通常是你上傳的草稿）→ 把安裝檔下載到 release-assets/
-//      → 刪掉原本的 → 由 App 重新建立並上傳安裝檔。
+//      → 刪掉原本的 → 由 App 建成草稿、上傳安裝檔 → 最後才正式發布。
+// 最後才發布，網站部署（pages.yml 監聽 published）才一定拿得到安裝檔。
 // 失敗時 workflow 會把 release-assets/ 存成 artifact，安裝檔不會遺失。
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { isReleaseTag } from './render.mjs'
@@ -67,7 +68,7 @@ async function republish(original) {
       target_commitish: original.target_commitish || 'main',
       name: original.name || tag,
       body: original.body ?? '',
-      draft: false,
+      draft: true,
       prerelease: original.prerelease,
     }),
   })
@@ -78,7 +79,10 @@ async function republish(original) {
       body: await readFile(`${ASSET_DIR}/${asset.name}`),
     })
   }
-  return created
+  return github(`/repos/${REPO}/releases/${created.id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ draft: false }),
+  })
 }
 
 if (!isReleaseTag(tag)) throw new Error(`tag 格式應為 <App 代號>-v<版本>（例如 eqalert-v0.7.0）：${tag}`)
