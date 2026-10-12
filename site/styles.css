@@ -1,0 +1,859 @@
+/* ============================================================
+ * EQalert 下載頁 — 沿用 App 的設計語言
+ * 方向：公共資訊標示 × 石墨黑白灰。平常安靜，只把顏色留給
+ *       「平時（藍）・留意（橘）・警報（紅）」三種語意。
+ * 字體：Noto Sans TC（內文、標題）+ Space Grotesk（數字）
+ * ============================================================ */
+
+:root {
+  color-scheme: light dark;
+
+  --font-sans: 'Noto Sans TC', 'PingFang TC', 'Hiragino Sans', 'Microsoft JhengHei', system-ui, sans-serif;
+  --font-num: 'Space Grotesk', 'Noto Sans TC', ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* 表面（石墨） */
+  --paper: #F4F4F3;
+  --surface: #FFFFFF;
+  --sunken: #E7E7E5;
+  --ink: #111111;
+  --ink-2: #4A4A48;
+  --ink-3: #636360;
+  --line: #DADAD7;
+  --on-ink: #FFFFFF;
+
+  /* 語意狀態 */
+  --calm: #1D4ED8;
+  --calm-soft: #DCE6FB;
+  --heads-up: #C2410C;
+  --heads-up-soft: #FCE5D6;
+  --alarm: #D0021B;
+  --alarm-deep: #8F0012;
+  --alarm-band: #9E1420;
+  --focus: #1D4ED8;
+
+  /* 層次 */
+  --shadow-raise: 0 1px 0 rgb(0 0 0 / 0.04), 0 12px 30px -18px rgb(0 0 0 / 0.22);
+  --shadow-float: 0 2px 6px rgb(0 0 0 / 0.08), 0 24px 60px -24px rgb(0 0 0 / 0.38);
+
+  /* 字級 */
+  --text-small: 0.875rem;
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lede: clamp(1.0625rem, 0.98rem + 0.45vw, 1.25rem);
+  --text-say: clamp(1.375rem, 1.05rem + 1.5vw, 2.25rem);
+  --text-h2: clamp(1.75rem, 1.3rem + 2vw, 3rem);
+  --text-hero: clamp(2.75rem, 1.2rem + 5.2vw, 5.5rem);
+  --text-count: clamp(4rem, 2.4rem + 7vw, 8.5rem);
+
+  /* 節奏 */
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --page-max: 72rem;
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --radius-shot: 14px;
+  --radius-pill: 999px;
+  --radius-panel: 18px;
+
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0D0D0D;
+    --surface: #171717;
+    --sunken: #222222;
+    --ink: #F5F5F5;
+    --ink-2: #B5B5B5;
+    --ink-3: #8A8A8A;
+    --line: #2E2E2E;
+    --on-ink: #0D0D0D;
+
+    --calm: #6B9BFF;
+    --calm-soft: #17233D;
+    --heads-up: #FB923C;
+    --heads-up-soft: #331F12;
+    --alarm: #FF4D5E;
+    --alarm-band: #7A0F19;
+    --focus: #93B4FF;
+
+    --shadow-raise: 0 1px 0 rgb(0 0 0 / 0.3), 0 12px 32px -18px rgb(0 0 0 / 0.75);
+    --shadow-float: 0 2px 6px rgb(0 0 0 / 0.35), 0 24px 60px -24px rgb(0 0 0 / 0.9);
+  }
+}
+
+/* ---------- 基礎 ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: anywhere;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+figure {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3,
+.moment-say {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  background: var(--sunken);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- 按鈕 ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--on-ink);
+  box-shadow: var(--shadow-raise);
+}
+
+.btn-ink:hover {
+  box-shadow: var(--shadow-float);
+}
+
+.btn-small {
+  padding: 0.4rem 1.1rem;
+  font-size: var(--text-small);
+}
+
+.btn-large {
+  padding: 1rem 1.75rem;
+  font-size: 1.125rem;
+}
+
+.btn-quiet {
+  padding: 0.35rem 0.9rem;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-small);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- 頁首 ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0.75rem var(--gutter);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 900;
+  font-size: 1.125rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand img {
+  border-radius: 9px;
+}
+
+.brand-sub {
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.site-header nav {
+  margin-left: auto;
+}
+
+.site-header nav ul {
+  display: flex;
+  gap: 1.5rem;
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.site-header nav a:hover {
+  color: var(--ink);
+}
+
+/* ---------- 主視覺 ---------- */
+
+.hero,
+.moments,
+.features,
+.install,
+.releases,
+.site-footer {
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  padding-block: clamp(2.5rem, 1.5rem + 5vw, 6rem) var(--space-section);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--calm-soft);
+  color: var(--calm);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.hero h1 {
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--alarm);
+}
+
+.lede {
+  max-width: 34em;
+  margin-top: 1.5rem;
+  font-size: var(--text-lede);
+  color: var(--ink-2);
+}
+
+.cta {
+  margin-top: 2.25rem;
+}
+
+.cta-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  margin-top: 1rem;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.cta-meta span:not(:last-child)::after {
+  content: '・';
+  margin-inline: 0.15rem;
+}
+
+.cta-note {
+  margin-top: 0.35rem;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.cta-note a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.hero-visual {
+  position: relative;
+  padding-bottom: 18%;
+}
+
+.shot {
+  border-radius: var(--radius-shot);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+}
+
+.shot-main {
+  width: 100%;
+  animation: rise 900ms var(--ease-out-expo) both;
+}
+
+.shot-alert {
+  position: absolute;
+  left: -9%;
+  bottom: 0;
+  width: 56%;
+  outline: 6px solid var(--paper);
+  animation: rise 900ms 220ms var(--ease-out-expo) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* ---------- 區塊標題 ---------- */
+
+.section-head {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  column-gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 3px solid var(--ink);
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.kicker {
+  grid-row: span 2;
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+.section-head h2 {
+  font-size: var(--text-h2);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.section-head p:not(.kicker) {
+  max-width: 36em;
+  margin-top: 0.75rem;
+  color: var(--ink-2);
+}
+
+/* ---------- 三種時刻 ---------- */
+
+.moments,
+.features,
+.install {
+  padding-bottom: var(--space-section);
+}
+
+.moment-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.moment {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding: clamp(1.5rem, 1.1rem + 1.5vw, 2.5rem);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  box-shadow: var(--shadow-raise);
+}
+
+.moment-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.moment-tag::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.moment-say {
+  font-size: var(--text-say);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.moment-body {
+  color: var(--ink-2);
+}
+
+.moment-calm .moment-tag {
+  background: var(--calm-soft);
+  color: var(--calm);
+}
+
+.moment-heads-up .moment-tag {
+  background: var(--heads-up-soft);
+  color: var(--heads-up);
+}
+
+/* 速報：和 App 警報畫面一樣的斜紋紅底 */
+.moment-alarm {
+  color: #FFFFFF;
+  background:
+    repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.06) 0 14px, transparent 14px 28px),
+    var(--alarm-band);
+}
+
+.moment-alarm .moment-tag {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.moment-alarm .moment-body {
+  color: rgb(255 255 255 / 0.82);
+}
+
+.moment-alarm .count {
+  display: block;
+  font-family: var(--font-num);
+  font-size: var(--text-count);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- 特色 ---------- */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 1.5rem + 2vw, 3rem) clamp(1.5rem, 1rem + 2vw, 3rem);
+  counter-reset: feature;
+}
+
+.feature-grid li {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  counter-increment: feature;
+}
+
+.feature-grid h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.feature-grid h3::before {
+  content: counter(feature, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-num);
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--ink-3);
+}
+
+.feature-grid p {
+  color: var(--ink-2);
+}
+
+.privacy-note {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--calm);
+  border-radius: 0 12px 12px 0;
+  background: var(--calm-soft);
+}
+
+/* ---------- 安裝 ---------- */
+
+.steps {
+  display: grid;
+  gap: 2.5rem;
+  counter-reset: step;
+}
+
+.steps > li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  column-gap: 1rem;
+  counter-increment: step;
+}
+
+.steps > li::before {
+  content: counter(step);
+  grid-row: span 3;
+  font-family: var(--font-num);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.steps h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+}
+
+.steps p {
+  max-width: 40em;
+  color: var(--ink-2);
+}
+
+.steps p a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.os-guides {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 44rem;
+  margin-top: 1.25rem;
+}
+
+.os-guides details {
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.os-guides summary {
+  padding: 0.85rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.os-guides summary:hover {
+  background: var(--sunken);
+}
+
+.os-guides ol {
+  padding: 0 1.25rem 1.1rem 2.75rem;
+  list-style: decimal;
+  color: var(--ink-2);
+}
+
+.os-guides ol li + li {
+  margin-top: 0.35rem;
+}
+
+.os-guides b {
+  color: var(--ink);
+}
+
+.command {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.1rem;
+}
+
+.command code {
+  flex: 1 1 18rem;
+  padding: 0.6rem 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 版本紀錄 ---------- */
+
+.releases {
+  padding-bottom: var(--space-section);
+}
+
+.release-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 0.5rem 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.release-meta h3 {
+  font-family: var(--font-num);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.release-meta time {
+  font-family: var(--font-num);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.release-latest {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--calm-soft);
+  color: var(--calm);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.release-notes {
+  color: var(--ink-2);
+}
+
+.release-notes h4 {
+  margin: 1rem 0 0.25rem;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.release-notes h4:first-child {
+  margin-top: 0;
+}
+
+.release-notes ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.release-notes strong {
+  color: var(--ink);
+}
+
+.release-download {
+  margin-top: 0.75rem;
+  font-size: var(--text-small);
+}
+
+.release-download a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.all-releases {
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+/* ---------- 頁尾 ---------- */
+
+.site-footer {
+  display: grid;
+  gap: 1rem;
+  padding-block: 2.5rem 3.5rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.site-footer h2 {
+  display: inline;
+  margin-right: 0.5rem;
+  font-size: inherit;
+  color: var(--ink-2);
+}
+
+.site-footer h2 + p {
+  display: inline;
+}
+
+/* ---------- 響應式 ---------- */
+
+@media (max-width: 1023px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-visual {
+    max-width: 44rem;
+    margin-left: 9%;
+  }
+
+  .moment {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header nav {
+    display: none;
+  }
+
+  .site-header .btn {
+    margin-left: auto;
+  }
+
+  .btn-large {
+    width: 100%;
+  }
+
+  .feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-head,
+  .steps > li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .steps > li::before {
+    font-size: 2rem;
+  }
+
+  .release {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
