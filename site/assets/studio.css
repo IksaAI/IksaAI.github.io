@@ -166,6 +166,17 @@ a {
   text-decoration: none;
 }
 
+.wordmark-zh {
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--ink-2);
+  vertical-align: 0.2em;
+}
+
 .site-header nav {
   margin-left: auto;
 }
@@ -190,16 +201,7 @@ a {
 /* ---------- 宣言 ---------- */
 
 .manifesto {
-  display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr);
-  gap: 2rem;
   padding-block: clamp(3rem, 2rem + 6vw, 6.5rem) clamp(2.5rem, 2rem + 3vw, 4rem);
-}
-
-.issue {
-  font-size: var(--text-tiny);
-  line-height: 1.6;
-  color: var(--ink-3);
 }
 
 .manifesto h1 {
@@ -218,9 +220,33 @@ a {
 .lede {
   max-width: 32em;
   text-wrap: pretty;
+  /* 窄螢幕只在標點與空白處換行，「線上服務」不會被拆開 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   margin-top: 1.75rem;
   font-size: 1.125rem;
   color: var(--ink-2);
+}
+
+/* 宣言署名 */
+.signature {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 2rem;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--ink);
+}
+
+.signature b {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.signature span {
+  font-size: var(--text-tiny);
+  color: var(--ink-3);
 }
 
 /* ---------- App 與線上服務 ---------- */
@@ -533,11 +559,6 @@ a {
 /* ---------- 響應式 ---------- */
 
 @media (max-width: 960px) {
-  .manifesto {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-  }
-
   .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -572,6 +593,14 @@ a {
 
   .site-header ul {
     gap: 1rem;
+  }
+
+  .wordmark-zh {
+    display: block;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    border: 0;
+    vertical-align: 0;
   }
 }
 
