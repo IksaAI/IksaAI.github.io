@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>艾可颯智慧工作室 IksaAI</title>
   <meta name="description" content="艾可颯智慧工作室（IksaAI）製作小而專注的軟體：App 與線上服務。這裡有每一個的介紹、下載與版本紀錄。">
@@ -22,6 +22,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;700&display=swap">
   <link rel="stylesheet" href="assets/studio.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="assets/analytics.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -87,7 +89,7 @@
   <div class="wrap">
     <footer class="site-footer">
       <p>© 2026 艾可颯智慧工作室 IksaAI</p>
-      <p><a href="https://github.com/IksaAI">GitHub</a></p>
+      <p>本站使用 Google Analytics 統計瀏覽量（會使用 Cookie）・<a href="https://github.com/IksaAI">GitHub</a></p>
     </footer>
   </div>
 </body>

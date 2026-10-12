@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>EQalert 地震速報｜Mac 版下載</title>
   <meta name="description" content="給 Mac 的地震速報 App。平時安心，有事大聲：台灣地震速報倒數、預估你這裡的震度，以及台灣、日本、印尼的地震報告。">
@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../assets/analytics.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -209,6 +211,7 @@
       <p>中央氣象署、ExpTech、日本氣象廳、P2P地震情報、印尼氣象氣候及地球物理局（BMKG）。</p>
     </div>
     <p class="disclaimer">EQalert 不是官方的地震速報系統。資料僅供參考，實際狀況請以各國官方機關發布為準。</p>
+    <p class="disclaimer">本站使用 Google Analytics 統計瀏覽量（會使用 Cookie）。</p>
     <p class="copyright">© 2026 <a href="../">艾可颯智慧工作室 IksaAI</a>・<a href="../#apps">更多 App</a></p>
   </footer>
 </body>

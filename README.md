@@ -32,6 +32,7 @@
 | `site/index.html`、`site/assets/` | 工作室首頁（藍晒配色）；App 方格與最新動態在部署時產生 |
 | `site/<slug>/` | 各 App 的介紹頁，保留 App 自己的設計；`{{version}}` 等欄位在部署時填入 |
 | `templates/` | 首頁方格的 HTML 樣板（不會發布） |
+| `site/assets/analytics.js` | Google Analytics 4（評估 ID `G-Y5PN5P55LH`）的初始化；CSP 不允許 inline script，所以不能照 GA 給的片段直接貼 |
 | `scripts/build.mjs` | 讀取 `apps.json` 與 GitHub Releases，產生 `_site/` |
 | `.github/workflows/pages.yml` | push 到 main 或發布 release 時自動部署 |
 
@@ -57,8 +58,8 @@ gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版�
 
 ## 新增一個 App
 
-1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的主打大格；截圖用 16:10）
-2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）
+1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的精選大格；截圖用 16:10）
+2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）。`<head>` 要照抄 EQalert 頁的 CSP 和兩行 GA 載入（`gtag/js` 與 `../assets/analytics.js`），頁尾也要寫明使用 Google Analytics
 3. **先發布第一個 release**（`<slug>-v1.0.0`，附上安裝檔），再 push 網站。還沒有 release 的 App 會讓建置失敗，網站會維持上一版。
 
 ---
