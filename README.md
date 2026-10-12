@@ -44,13 +44,16 @@ node scripts/build.mjs && python3 -m http.server -d _site 8000
 
 ## 發布新版本
 
-release tag 一律是 `<slug>-v<版本>`，例如 `eqalert-v0.7.0`。發布後網站會自動更新下載按鈕、版本紀錄和首頁的最新動態。
+release tag 一律是 `<slug>-v<版本>`，例如 `eqalert-v0.7.0`。版本由 **IksaAI GitHub App**（`iksaai[bot]`）發布，release 頁不會顯示個人帳號：先上傳草稿，再執行 `publish.yml`，它會保留說明和安裝檔，改由 IksaAI 重新發布。發布後網站會自動更新下載按鈕、版本紀錄和首頁的最新動態。
 
 ```bash
 # 在 EQalert 原始碼 repo，先改好 Support/Info.plist 的版本號
 ./scripts/make-dmg.sh
-gh release create eqalert-v<版本> build/EQalert-<版本>.dmg --repo IksaAI/IksaAI.github.io --title "EQalert <版本>"
+gh release create eqalert-v<版本> build/EQalert-<版本>.dmg --draft --repo IksaAI/IksaAI.github.io --title "EQalert <版本>" --notes-file notes.md
+gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版本>
 ```
+
+`publish.yml` 需要 repo secrets `IKSAAI_APP_CLIENT_ID`、`IKSAAI_APP_PRIVATE_KEY`（IksaAI App 的設定：https://github.com/organizations/IksaAI/settings/apps/iksaai ，只授權本 repo）。
 
 ## 新增一個作品
 
