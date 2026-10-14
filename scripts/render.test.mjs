@@ -16,6 +16,13 @@ const release = (overrides = {}) => ({
   ...overrides,
 })
 
+const EXE = {
+  name: 'EQalert-Setup-0.6.0-x64.exe',
+  size: 63903815,
+  browser_download_url: `${RELEASES_URL}/download/eqalert-v0.6.0/EQalert-Setup-0.6.0-x64.exe`,
+}
+const withWindows = (overrides = {}) => release({ assets: [...release().assets, EXE], ...overrides })
+
 test('escapes HTML special characters', () => {
   assert.equal(escapeHtml(`<a href="x">'&'</a>`), '&lt;a href=&quot;x&quot;&gt;&#39;&amp;&#39;&lt;/a&gt;')
 })
@@ -50,6 +57,27 @@ test('picks the DMG from the newest release', () => {
 test('fails when the newest release has no DMG, so the old site stays up', () => {
   assert.throws(() => latestDownload([]), /DMG/)
   assert.throws(() => latestDownload([release({ assets: [] })]), /DMG/)
+})
+
+test('also picks the Windows installer for apps that ship on Windows', () => {
+  assert.deepEqual(latestDownload([withWindows()], { windows: true }), {
+    version: '0.6.0',
+    dmgUrl: `${RELEASES_URL}/download/eqalert-v0.6.0/EQalert-0.6.0.dmg`,
+    dmgSize: '2.8 MB',
+    exeUrl: EXE.browser_download_url,
+    exeSize: '63.9 MB',
+    exeName: 'EQalert-Setup-0.6.0-x64.exe',
+  })
+})
+
+test('fails when a Windows app has no installer in its newest release, so the old site stays up', () => {
+  assert.throws(() => latestDownload([release()], { windows: true }), /Windows/)
+})
+
+test('links each platform in the changelog', () => {
+  const html = renderChangelog([withWindows(), release({ tag_name: 'eqalert-v0.5.0' })])
+  assert.match(html, /下載 0\.6\.0：<a href="[^"]+\.dmg">Mac 版（2\.8 MB）<\/a>・<a href="[^"]+\.exe">Windows 版（63\.9 MB）<\/a>/)
+  assert.match(html, /下載 0\.5\.0：<a href="[^"]+\.dmg">Mac 版（2\.8 MB）<\/a><\/p>/)
 })
 
 test('marks only the first release as latest in the changelog', () => {
@@ -110,6 +138,8 @@ test('accepts valid apps and rejects broken apps.json entries', () => {
   assert.throws(() => validateApps([app({ slug: 'EQ alert' })]), /slug/)
   assert.throws(() => validateApps([app(), app()]), /重複/)
   assert.throws(() => validateApps([]), /apps\.json/)
+  assert.deepEqual(validateApps([app({ windows: true })]), [app({ windows: true })])
+  assert.throws(() => validateApps([app({ windows: 'yes' })]), /windows/)
 })
 
 test('news lists the newest releases across all apps', () => {

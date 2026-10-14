@@ -14,6 +14,7 @@ export const formatDate = (iso) => DATE_FORMAT.format(new Date(iso))
 /** tag 格式是「<App 代號>-v<版本>」，例如 eqalert-v0.6.0 */
 const versionOf = (release) => release.tag_name.replace(/^(?:.*-)?v(?=\d)/, '')
 const dmgOf = (release) => release.assets.find((asset) => asset.name.endsWith('.dmg'))
+const exeOf = (release) => release.assets.find((asset) => asset.name.endsWith('.exe'))
 
 /** 只留下某個 App 的版本（所有 App 共用同一個 repo 的 Releases） */
 export const releasesFor = (releases, slug) => releases.filter((release) => release.tag_name.startsWith(`${slug}-v`))
@@ -54,22 +55,40 @@ export function renderNotes(markdown) {
   return html.join('\n')
 }
 
-/** 首頁下載按鈕用的最新版本；最新版沒有 DMG 就讓建置失敗，網站維持上一版 */
-export function latestDownload(releases) {
+/**
+ * 下載按鈕用的最新版本；最新版沒有 DMG 就讓建置失敗，網站維持上一版。
+ * 有 Windows 版的 App（apps.json 的 windows: true），最新版也一定要有 Windows 安裝檔（.exe）
+ */
+export function latestDownload(releases, { windows = false } = {}) {
   const [latest] = releases
   if (!latest) throw new Error('GitHub Releases 裡還沒有版本，請先發布含 DMG 的 release')
   const dmg = dmgOf(latest)
   if (!dmg) throw new Error(`最新的 release ${latest.tag_name} 沒有 DMG 檔`)
-  return { version: versionOf(latest), dmgUrl: dmg.browser_download_url, dmgSize: formatSize(dmg.size) }
+  const download = { version: versionOf(latest), dmgUrl: dmg.browser_download_url, dmgSize: formatSize(dmg.size) }
+  if (!windows) return download
+  const exe = exeOf(latest)
+  if (!exe) throw new Error(`最新的 release ${latest.tag_name} 沒有 Windows 安裝檔（.exe）`)
+  return { ...download, exeUrl: exe.browser_download_url, exeSize: formatSize(exe.size), exeName: exe.name }
+}
+
+const PLATFORM_ASSETS = [
+  { label: 'Mac 版', find: dmgOf },
+  { label: 'Windows 版', find: exeOf },
+]
+
+/** 版本紀錄每一版的下載連結：「下載 0.6.0：Mac 版（2.8 MB）・Windows 版（63.9 MB）」 */
+function renderDownloads(release, version) {
+  const links = PLATFORM_ASSETS.flatMap(({ label, find }) => {
+    const asset = find(release)
+    return asset ? [`<a href="${escapeHtml(asset.browser_download_url)}">${label}（${formatSize(asset.size)}）</a>`] : []
+  })
+  return links.length ? `<p class="release-download">下載 ${version}：${links.join('・')}</p>` : ''
 }
 
 function renderRelease(release, isLatest) {
   const version = escapeHtml(versionOf(release))
   const date = formatDate(release.published_at)
-  const dmg = dmgOf(release)
-  const download = dmg
-    ? `<p class="release-download"><a href="${escapeHtml(dmg.browser_download_url)}">下載 ${version}（${formatSize(dmg.size)}）</a></p>`
-    : ''
+  const download = renderDownloads(release, version)
   return `<article class="release">
   <div class="release-meta">
     <h3>${version}</h3>
@@ -106,6 +125,7 @@ export function validateApps(apps) {
     seen.add(app.slug)
     const missing = REQUIRED_APP_FIELDS.filter((field) => typeof app[field] !== 'string' || app[field] === '')
     if (missing.length) throw new Error(`apps.json 的 ${app.slug} 缺少欄位：${missing.join('、')}`)
+    if ('windows' in app && typeof app.windows !== 'boolean') throw new Error(`apps.json 的 ${app.slug}：windows 只能是 true 或 false`)
   }
   return apps
 }

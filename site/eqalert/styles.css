@@ -450,6 +450,65 @@ code {
   }
 }
 
+/* ---------- 平台切換（macOS／Windows） ---------- */
+/* 顯示哪個平台由 <html data-platform> 決定（platform.js）；沒有 JavaScript 時顯示 macOS、不顯示切換 */
+
+:root:not([data-platform='win']) [data-os='win'],
+:root[data-platform='win'] [data-os='mac'],
+:root:not([data-platform]) .os-switch {
+  display: none;
+}
+
+.os-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--sunken);
+}
+
+.cta .os-switch {
+  margin-bottom: 1.25rem;
+}
+
+.section-head .os-switch {
+  justify-self: start;
+  margin-top: 1rem;
+}
+
+.os-switch button {
+  padding: 0.45rem 1.15rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font: inherit;
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out-expo),
+    color var(--duration-fast) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+.os-switch button:hover {
+  color: var(--ink);
+}
+
+/* 依 data-platform 標示目前的平台，不用等 main.js 更新 aria-pressed，載入時不會閃 */
+:root:not([data-platform='win']) .os-switch [data-set-os='mac'],
+:root[data-platform='win'] .os-switch [data-set-os='win'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-raise);
+}
+
+.os-switch button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
 /* ---------- 區塊標題 ---------- */
 
 .section-head {

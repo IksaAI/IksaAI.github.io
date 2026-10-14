@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>EQalert 地震速報｜Mac 版下載</title>
-  <meta name="description" content="給 Mac 的地震速報 App。平時安心，有事大聲：台灣地震速報倒數、預估你這裡的震度，以及台灣、日本、印尼的地震報告。">
+  <title>EQalert 地震速報｜Mac・Windows 版下載</title>
+  <meta name="description" content="給 Mac 與 Windows 的地震速報 App。平時安心，有事大聲：台灣地震速報倒數、預估你這裡的震度，以及台灣、日本、印尼的地震報告。">
   <meta name="theme-color" content="#F4F4F3" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0D0D0D" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IksaAI">
-  <meta property="og:title" content="EQalert 地震速報｜Mac 版下載">
-  <meta property="og:description" content="平時安心，有事大聲。給 Mac 的地震速報 App。">
+  <meta property="og:title" content="EQalert 地震速報｜Mac・Windows 版下載">
+  <meta property="og:description" content="平時安心，有事大聲。給 Mac 與 Windows 的地震速報 App。">
   <meta property="og:image" content="https://iksaai.github.io/eqalert/images/og.jpg">
   <meta property="og:url" content="https://iksaai.github.io/eqalert/">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <script src="platform.js"></script>
   <script src="main.js" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
   <script src="../assets/analytics.js" defer></script>
@@ -43,28 +44,45 @@
         <li><a href="#releases">版本紀錄</a></li>
       </ul>
     </nav>
-    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">下載</a>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">下載</a>
+    <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">下載</a>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>macOS 版・最新版本 {{version}}</p>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>macOS・Windows・最新版本 {{version}}</p>
         <h1 id="hero-title">平時安心，<br><em>有事大聲。</em></h1>
         <p class="lede">EQalert 把地震資料翻成人話：現在安全嗎？跟我有沒有關係？我該做什麼？台灣發布地震速報時，它會倒數搖晃還有幾秒抵達你的位置。</p>
-        <div class="cta">
-          <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
-            下載 EQalert {{version}}
-          </a>
-          <p class="cta-meta">
-            <span>macOS 14 以上</span><span>Apple Silicon 與 Intel</span><span>{{dmgSize}}</span><span>免費</span>
-          </p>
-          <p class="cta-note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
+        <div class="cta" id="download">
+          <div class="os-switch" role="group" aria-label="選擇你的電腦">
+            <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+            <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+          </div>
+          <div data-os="mac">
+            <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              下載 EQalert {{version}}
+            </a>
+            <p class="cta-meta">
+              <span>macOS 14 以上</span><span>Apple Silicon 與 Intel</span><span>{{dmgSize}}</span><span>免費</span>
+            </p>
+            <p class="cta-note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
+          </div>
+          <div data-os="win">
+            <a class="btn btn-ink btn-large" href="{{exeUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              下載 EQalert {{version}}
+            </a>
+            <p class="cta-meta">
+              <span>Windows 10（2004 版）以上</span><span>64 位元</span><span>{{exeSize}}</span><span>免費</span>
+            </p>
+            <p class="cta-note">出現「Windows 已保護您的電腦」？<a href="#install">看安裝說明</a></p>
+          </div>
         </div>
       </div>
 
-      <figure class="hero-visual">
+      <figure class="hero-visual" data-os="mac">
         <picture class="shot shot-main">
           <source media="(prefers-color-scheme: dark)" type="image/webp"
             srcset="images/mac-main-dark-1280.webp 1280w, images/mac-main-dark-2400.webp 2400w"
@@ -72,7 +90,7 @@
           <img src="images/mac-main-1280.webp"
             srcset="images/mac-main-1280.webp 1280w, images/mac-main-2400.webp 2400w"
             sizes="(min-width: 1120px) 720px, 92vw"
-            width="1280" height="800" fetchpriority="high"
+            width="1280" height="800" loading="lazy"
             alt="EQalert 主畫面：左邊是最近的地震清單，中間地圖標出各地震度，右邊是地震的詳細資料">
         </picture>
         <img class="shot shot-alert" src="images/mac-eew-1280.webp"
@@ -81,6 +99,23 @@
           width="1280" height="800" loading="lazy"
           alt="地震速報畫面：大大的 30 秒倒數，告訴你搖晃還有多久抵達">
         <figcaption class="visually-hidden">EQalert 的主畫面與地震速報畫面</figcaption>
+      </figure>
+      <figure class="hero-visual" data-os="win">
+        <picture class="shot shot-main">
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="images/win-main-dark-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw">
+          <img src="images/win-main-1280.webp"
+            srcset="images/win-main-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw"
+            width="1280" height="760" loading="lazy"
+            alt="EQalert Windows 版主畫面：左邊是狀態與地震清單，中間地圖標出各地震度，右邊是地震的詳細資料">
+        </picture>
+        <img class="shot shot-alert" src="images/win-eew-1280.webp"
+          sizes="(min-width: 1120px) 400px, 52vw"
+          width="1280" height="760" loading="lazy"
+          alt="Windows 版地震速報畫面：26 秒倒數，地圖上 P 波、S 波正朝你的位置擴散">
+        <figcaption class="visually-hidden">EQalert Windows 版的主畫面與地震速報畫面</figcaption>
       </figure>
     </section>
 
@@ -112,7 +147,7 @@
     <section class="features" aria-labelledby="features-title">
       <header class="section-head">
         <p class="kicker">02</p>
-        <h2 id="features-title">為 Mac 而做</h2>
+        <h2 id="features-title">為 Mac 與 Windows 而做</h2>
       </header>
       <ul class="feature-grid">
         <li>
@@ -132,64 +167,90 @@
           <p>三個國家的地震報告。台灣速報是全螢幕警報加浮動視窗，日本速報是頂部橫幅提醒。</p>
         </li>
         <li>
-          <h3>常駐選單列</h3>
-          <p>關掉主視窗也會繼續待在選單列監看，速報來時照樣提醒。</p>
+          <h3>常駐選單列・系統匣</h3>
+          <p>關掉主視窗也會繼續待在 Mac 的選單列、Windows 的系統匣監看，速報來時照樣提醒。</p>
         </li>
         <li>
           <h3>五種語言</h3>
           <p>繁體中文、简体中文、English、日本語、Bahasa Indonesia，介面和語音播報都會切換。</p>
         </li>
       </ul>
-      <p class="privacy-note"><strong>你的位置不會離開這台 Mac。</strong>定位只用來計算你與震央的距離和倒數秒數；不想開定位，也可以手動選城市。</p>
+      <p class="privacy-note"><strong>你的位置不會離開這台電腦。</strong>定位只用來計算你與震央的距離和倒數秒數；不想開定位，也可以手動選城市。</p>
     </section>
 
     <section id="install" class="install" aria-labelledby="install-title">
       <header class="section-head">
         <p class="kicker">03</p>
         <h2 id="install-title">安裝</h2>
+        <div class="os-switch" role="group" aria-label="安裝步驟的平台">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
       </header>
-      <ol class="steps">
-        <li>
-          <h3>下載並打開 DMG</h3>
-          <p><a href="{{dmgUrl}}">下載 EQalert {{version}}</a>，打開下載好的 <code>EQalert-{{version}}.dmg</code>。</p>
-        </li>
-        <li>
-          <h3>把 EQalert 拖到「應用程式」</h3>
-          <p>在打開的視窗裡，把 EQalert 圖示拖到右邊的「Applications」資料夾。</p>
-        </li>
-        <li>
-          <h3>第一次打開：允許執行</h3>
-          <p>EQalert 目前還沒有經過 Apple 公證，所以第一次打開時 macOS 會擋下來。這是正常的，照下面做一次，之後就能直接打開。</p>
-          <div class="os-guides">
-            <details open>
-              <summary>macOS 15 以上（Sequoia、Tahoe）</summary>
-              <ol>
-                <li>在「應用程式」裡打開 EQalert，出現「Apple 無法驗證⋯」的視窗時按<b>「完成」</b>。</li>
-                <li>打開<b>「系統設定」→「隱私權與安全性」</b>，捲到最下面的「安全性」。</li>
-                <li>在「已阻擋 EQalert⋯」旁邊按<b>「強制打開」</b>，輸入密碼，再按一次<b>「強制打開」</b>。</li>
-              </ol>
-            </details>
-            <details>
-              <summary>macOS 14 Sonoma</summary>
-              <ol>
-                <li>在「應用程式」裡對 EQalert 按右鍵（或 Control＋點按），選<b>「打開」</b>。</li>
-                <li>在跳出的視窗裡再按一次<b>「打開」</b>。</li>
-              </ol>
-            </details>
-            <details>
-              <summary>會用終端機的話：一行解決</summary>
-              <div class="command">
-                <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/EQalert.app</code>
-                <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">複製</button>
-              </div>
-            </details>
-          </div>
-        </li>
-        <li>
-          <h3>允許通知與定位</h3>
-          <p>通知用來在速報時提醒你，定位用來估算搖晃抵達的秒數和你這裡的震度。之後可以在「設定」（⌘,）調整提醒門檻、聲音和語言。</p>
-        </li>
-      </ol>
+      <div data-os="mac">
+        <ol class="steps">
+          <li>
+            <h3>下載並打開 DMG</h3>
+            <p><a href="{{dmgUrl}}">下載 EQalert {{version}}</a>，打開下載好的 <code>EQalert-{{version}}.dmg</code>。</p>
+          </li>
+          <li>
+            <h3>把 EQalert 拖到「應用程式」</h3>
+            <p>在打開的視窗裡，把 EQalert 圖示拖到右邊的「Applications」資料夾。</p>
+          </li>
+          <li>
+            <h3>第一次打開：允許執行</h3>
+            <p>EQalert 目前還沒有經過 Apple 公證，所以第一次打開時 macOS 會擋下來。這是正常的，照下面做一次，之後就能直接打開。</p>
+            <div class="os-guides">
+              <details open>
+                <summary>macOS 15 以上（Sequoia、Tahoe）</summary>
+                <ol>
+                  <li>在「應用程式」裡打開 EQalert，出現「Apple 無法驗證⋯」的視窗時按<b>「完成」</b>。</li>
+                  <li>打開<b>「系統設定」→「隱私權與安全性」</b>，捲到最下面的「安全性」。</li>
+                  <li>在「已阻擋 EQalert⋯」旁邊按<b>「強制打開」</b>，輸入密碼，再按一次<b>「強制打開」</b>。</li>
+                </ol>
+              </details>
+              <details>
+                <summary>macOS 14 Sonoma</summary>
+                <ol>
+                  <li>在「應用程式」裡對 EQalert 按右鍵（或 Control＋點按），選<b>「打開」</b>。</li>
+                  <li>在跳出的視窗裡再按一次<b>「打開」</b>。</li>
+                </ol>
+              </details>
+              <details>
+                <summary>會用終端機的話：一行解決</summary>
+                <div class="command">
+                  <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/EQalert.app</code>
+                  <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">複製</button>
+                </div>
+              </details>
+            </div>
+          </li>
+          <li>
+            <h3>允許通知與定位</h3>
+            <p>通知用來在速報時提醒你，定位用來估算搖晃抵達的秒數和你這裡的震度。之後可以在「設定」（⌘,）調整提醒門檻、聲音和語言。</p>
+          </li>
+        </ol>
+      </div>
+      <div data-os="win">
+        <ol class="steps">
+          <li>
+            <h3>下載並執行安裝程式</h3>
+            <p><a href="{{exeUrl}}">下載 EQalert {{version}}</a>，執行下載好的 <code>{{exeName}}</code>。</p>
+          </li>
+          <li>
+            <h3>出現「Windows 已保護您的電腦」：仍要執行</h3>
+            <p>EQalert 目前還沒有程式碼簽章，所以第一次執行時 Windows 會擋下來。這是正常的：點<b>「其他資訊」</b>，再按<b>「仍要執行」</b>。</p>
+          </li>
+          <li>
+            <h3>照安裝精靈完成安裝</h3>
+            <p>預設只裝給你自己的帳號，不需要系統管理員權限。裝好後 EQalert 會常駐在系統匣，登入 Windows 時自動啟動（可以在設定裡關掉）。</p>
+          </li>
+          <li>
+            <h3>允許通知與定位</h3>
+            <p>通知用來在速報時提醒你。定位用來估算搖晃抵達的秒數和你這裡的震度，要在 Windows 的<b>「設定」→「隱私權與安全性」→「位置」</b>打開「讓桌面應用程式存取您的位置」；不想開定位，也可以手動選城市。之後可以在「設定」（Ctrl+,）調整提醒門檻、聲音和語言。</p>
+          </li>
+        </ol>
+      </div>
     </section>
 
     <section id="releases" class="releases" aria-labelledby="releases-title">

@@ -38,12 +38,12 @@ const escapeAll = (values) => Object.fromEntries(Object.entries(values).map(([ke
 const loadTemplate = (name) => readFile(`${TEMPLATE_DIR}/${name}.html`, 'utf8')
 const numbered = (index) => String(index + 1).padStart(2, '0')
 
-/** 每個 App 的版本與最新下載；某個 App 還沒有含 DMG 的 release 就讓建置失敗，網站維持上一版 */
+/** 每個 App 的版本與最新下載；某個 App 的最新 release 缺安裝檔就讓建置失敗，網站維持上一版 */
 function collectEntries(apps, releases) {
   return apps.map((app) => {
     const appReleases = releasesFor(releases, app.slug)
     try {
-      return { app, releases: appReleases, download: latestDownload(appReleases) }
+      return { app, releases: appReleases, download: latestDownload(appReleases, { windows: app.windows === true }) }
     } catch (error) {
       throw new Error(`${app.name}（tag 前綴 ${app.slug}-v）：${error.message}`, { cause: error })
     }
@@ -54,9 +54,7 @@ async function buildAppPage({ app, releases, download }) {
   const path = `${OUTPUT_DIR}/${app.slug}/index.html`
   const html = fillTemplate(await readFile(path, 'utf8'), {
     ...escapeAll({
-      version: download.version,
-      dmgUrl: download.dmgUrl,
-      dmgSize: download.dmgSize,
+      ...download,
       releasesUrl: `${REPO_URL}/releases?q=${app.slug}-v&expanded=true`,
     }),
     changelog: renderChangelog(releases),
@@ -75,8 +73,6 @@ const appValues = ({ app, download }) =>
     screenshot: app.screenshot,
     screenshotAlt: app.screenshotAlt,
     version: download.version,
-    dmgUrl: download.dmgUrl,
-    dmgSize: download.dmgSize,
   })
 
 async function buildHome(entries) {
