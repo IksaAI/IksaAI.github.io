@@ -20,6 +20,7 @@
     "tagline": "一個視窗，接住所有留言。YouTube、Twitch 的留言合成一條，在一個視窗看完，也送上 OBS 畫面。",
     "requirements": "macOS 14・Windows 10 以上",
     "windows": true,
+    "portable": true,
     "icon": "polycomme/images/icon-256.png",
     "screenshot": "polycomme/images/mac-main-dark-1280.webp",
     "screenshotAlt": "PolyComme 主畫面：左邊是直播狀態與 YouTube、Twitch 兩個頻道的觀看人數，右邊是兩邊合在一起的留言"

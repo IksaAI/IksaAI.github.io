@@ -15,6 +15,7 @@ export const formatDate = (iso) => DATE_FORMAT.format(new Date(iso))
 const versionOf = (release) => release.tag_name.replace(/^(?:.*-)?v(?=\d)/, '')
 const dmgOf = (release) => release.assets.find((asset) => asset.name.endsWith('.dmg'))
 const exeOf = (release) => release.assets.find((asset) => asset.name.endsWith('.exe'))
+const zipOf = (release) => release.assets.find((asset) => asset.name.endsWith('.zip'))
 
 /** 只留下某個 App 的版本（所有 App 共用同一個 repo 的 Releases） */
 export const releasesFor = (releases, slug) => releases.filter((release) => release.tag_name.startsWith(`${slug}-v`))
@@ -57,9 +58,10 @@ export function renderNotes(markdown) {
 
 /**
  * 下載按鈕用的最新版本；最新版沒有 DMG 就讓建置失敗，網站維持上一版。
- * 有 Windows 版的 App（apps.json 的 windows: true），最新版也一定要有 Windows 安裝檔（.exe）
+ * 有 Windows 版的 App（apps.json 的 windows: true），最新版也一定要有 Windows 安裝檔（.exe）；
+ * 有免安裝版的（portable: true）還一定要有 .zip
  */
-export function latestDownload(releases, { windows = false } = {}) {
+export function latestDownload(releases, { windows = false, portable = false } = {}) {
   const [latest] = releases
   if (!latest) throw new Error('GitHub Releases 裡還沒有版本，請先發布含 DMG 的 release')
   const dmg = dmgOf(latest)
@@ -68,7 +70,11 @@ export function latestDownload(releases, { windows = false } = {}) {
   if (!windows) return download
   const exe = exeOf(latest)
   if (!exe) throw new Error(`最新的 release ${latest.tag_name} 沒有 Windows 安裝檔（.exe）`)
-  return { ...download, exeUrl: exe.browser_download_url, exeSize: formatSize(exe.size), exeName: exe.name }
+  const withExe = { ...download, exeUrl: exe.browser_download_url, exeSize: formatSize(exe.size), exeName: exe.name }
+  if (!portable) return withExe
+  const zip = zipOf(latest)
+  if (!zip) throw new Error(`最新的 release ${latest.tag_name} 沒有 Windows 免安裝版（.zip）`)
+  return { ...withExe, zipUrl: zip.browser_download_url, zipSize: formatSize(zip.size), zipName: zip.name }
 }
 
 /**
@@ -77,9 +83,9 @@ export function latestDownload(releases, { windows = false } = {}) {
  */
 export const PAGE_LANGS = ['en', 'ja']
 const CHANGELOG_TEXT = {
-  zh: { latest: '最新版本', download: '下載', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', size: (s) => `（${s}）` },
-  en: { latest: 'Latest', download: 'Download', colon: ': ', sep: ' · ', mac: 'Mac', windows: 'Windows', size: (s) => ` (${s})` },
-  ja: { latest: '最新版', download: 'ダウンロード', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', size: (s) => `（${s}）` },
+  zh: { latest: '最新版本', download: '下載', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', portable: 'Windows 免安裝版', size: (s) => `（${s}）` },
+  en: { latest: 'Latest', download: 'Download', colon: ': ', sep: ' · ', mac: 'Mac', windows: 'Windows', portable: 'Windows portable', size: (s) => ` (${s})` },
+  ja: { latest: '最新版', download: 'ダウンロード', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', portable: 'Windows ポータブル版', size: (s) => `（${s}）` },
 }
 
 /**
@@ -99,6 +105,7 @@ export function notesFor(markdown, lang = 'zh') {
 const PLATFORM_ASSETS = [
   { key: 'mac', find: dmgOf },
   { key: 'windows', find: exeOf },
+  { key: 'portable', find: zipOf },
 ]
 
 /** 版本紀錄每一版的下載連結：「下載 0.6.0：Mac 版（2.8 MB）・Windows 版（63.9 MB）」 */
@@ -152,6 +159,8 @@ export function validateApps(apps) {
     const missing = REQUIRED_APP_FIELDS.filter((field) => typeof app[field] !== 'string' || app[field] === '')
     if (missing.length) throw new Error(`apps.json 的 ${app.slug} 缺少欄位：${missing.join('、')}`)
     if ('windows' in app && typeof app.windows !== 'boolean') throw new Error(`apps.json 的 ${app.slug}：windows 只能是 true 或 false`)
+    if ('portable' in app && typeof app.portable !== 'boolean') throw new Error(`apps.json 的 ${app.slug}：portable 只能是 true 或 false`)
+    if (app.portable && !app.windows) throw new Error(`apps.json 的 ${app.slug}：portable（Windows 免安裝版）要搭配 windows: true`)
   }
   return apps
 }

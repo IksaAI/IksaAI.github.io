@@ -183,6 +183,7 @@ section + section, .hero + section { margin-top: 72px; }
 }
 .steps h3 { font-size: 1.05rem; margin-bottom: 4px; }
 .steps p { color: var(--muted); font-size: 0.95rem; }
+.steps p + p { margin-top: 8px; }
 /* OBS 直播畫面：不管亮暗色都是深色的「節目畫面」，浮動視窗疊在右下角 */
 .monitor { position: relative; display: grid; gap: 12px; }
 .ov-pick { position: absolute; opacity: 0; pointer-events: none; }

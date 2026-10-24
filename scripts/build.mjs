@@ -44,7 +44,7 @@ function collectEntries(apps, releases) {
   return apps.map((app) => {
     const appReleases = releasesFor(releases, app.slug)
     try {
-      return { app, releases: appReleases, download: latestDownload(appReleases, { windows: app.windows === true }) }
+      return { app, releases: appReleases, download: latestDownload(appReleases, { windows: app.windows === true, portable: app.portable === true }) }
     } catch (error) {
       throw new Error(`${app.name}（tag 前綴 ${app.slug}-v）：${error.message}`, { cause: error })
     }

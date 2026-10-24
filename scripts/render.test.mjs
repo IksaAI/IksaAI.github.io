@@ -22,6 +22,12 @@ const EXE = {
   browser_download_url: `${RELEASES_URL}/download/eqalert-v0.6.0/EQalert-Setup-0.6.0-x64.exe`,
 }
 const withWindows = (overrides = {}) => release({ assets: [...release().assets, EXE], ...overrides })
+const ZIP = {
+  name: 'EQalert-Portable-0.6.0-x64.zip',
+  size: 70254080,
+  browser_download_url: `${RELEASES_URL}/download/eqalert-v0.6.0/EQalert-Portable-0.6.0-x64.zip`,
+}
+const withPortable = () => release({ assets: [...release().assets, EXE, ZIP] })
 
 test('escapes HTML special characters', () => {
   assert.equal(escapeHtml(`<a href="x">'&'</a>`), '&lt;a href=&quot;x&quot;&gt;&#39;&amp;&#39;&lt;/a&gt;')
@@ -72,6 +78,23 @@ test('also picks the Windows installer for apps that ship on Windows', () => {
 
 test('fails when a Windows app has no installer in its newest release, so the old site stays up', () => {
   assert.throws(() => latestDownload([release()], { windows: true }), /Windows/)
+})
+
+test('also picks the portable zip for apps that offer one', () => {
+  assert.deepEqual(latestDownload([withPortable()], { windows: true, portable: true }), {
+    ...latestDownload([withWindows()], { windows: true }),
+    zipUrl: ZIP.browser_download_url,
+    zipSize: '70.3 MB',
+    zipName: 'EQalert-Portable-0.6.0-x64.zip',
+  })
+})
+
+test('fails when a portable app has no zip in its newest release, so the old site stays up', () => {
+  assert.throws(() => latestDownload([withWindows()], { windows: true, portable: true }), /\.zip/)
+})
+
+test('links the portable zip in the changelog', () => {
+  assert.match(renderChangelog([withPortable()]), /Windows 版（63\.9 MB）<\/a>・<a href="[^"]+\.zip">Windows 免安裝版（70\.3 MB）<\/a>/)
 })
 
 test('links each platform in the changelog', () => {
@@ -173,6 +196,9 @@ test('accepts valid apps and rejects broken apps.json entries', () => {
   assert.throws(() => validateApps([]), /apps\.json/)
   assert.deepEqual(validateApps([app({ windows: true })]), [app({ windows: true })])
   assert.throws(() => validateApps([app({ windows: 'yes' })]), /windows/)
+  assert.deepEqual(validateApps([app({ windows: true, portable: true })]), [app({ windows: true, portable: true })])
+  assert.throws(() => validateApps([app({ windows: true, portable: 'yes' })]), /portable/)
+  assert.throws(() => validateApps([app({ portable: true })]), /windows: true/)
 })
 
 test('news lists the newest releases across all apps', () => {
