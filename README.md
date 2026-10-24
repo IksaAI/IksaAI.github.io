@@ -14,7 +14,7 @@
 | App | 介紹與下載 | 需求 |
 |---|---|---|
 | EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/) | macOS 14 以上、Windows 10（2004 版）以上 |
-| PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/polycomme/en/)・[日本語](https://iksaai.github.io/polycomme/ja/)） | macOS 14 以上 |
+| PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/polycomme/en/)・[日本語](https://iksaai.github.io/polycomme/ja/)） | macOS 14 以上、Windows 10（2004 版）以上 |
 
 ## 安裝 EQalert
 
@@ -44,7 +44,12 @@
    - **macOS 14**：對 PolyComme 按右鍵 →「打開」→ 再按「打開」
    - 或在終端機執行：`xattr -dr com.apple.quarantine /Applications/PolyComme.app`
 
-Windows 版製作中。
+**Windows**
+
+1. 從 [PolyComme 頁面](https://iksaai.github.io/polycomme/)下載 `PolyComme-Setup-<版本>-x64.exe` 並執行
+2. 出現「Windows 已保護您的電腦」（還沒有程式碼簽章）：點「其他資訊」→「仍要執行」
+3. 照安裝精靈完成安裝；只裝給目前的使用者，不需要系統管理員
+4. 第一次打開時 Windows 防火牆會詢問：OBS 在同一台電腦不用允許，在另一台電腦才要允許
 
 ## 網站結構
 

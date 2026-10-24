@@ -134,6 +134,24 @@ main { padding: 8px max(16px, calc((100vw - 1120px) / 2)) 48px; }
 
 /* 區塊標題 */
 section + section, .hero + section { margin-top: 72px; }
+/* 平台切換（macOS／Windows）：顯示哪個平台由 <html data-platform> 決定（platform.js）；沒有 JavaScript 時顯示 macOS、不顯示切換 */
+:root:not([data-platform='win']) [data-os='win'],
+:root[data-platform='win'] [data-os='mac'],
+:root:not([data-platform]) .os-switch { display: none; }
+.os-pane { display: grid; gap: 10px; justify-items: start; }
+.os-switch { display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--bubble); }
+.section-head .os-switch { display: flex; width: max-content; margin-top: 14px; }
+.os-switch button {
+  padding: 5px 14px; border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  font: 700 0.85rem var(--font); color: var(--muted);
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.os-switch button:hover { color: var(--ink); }
+/* 依 data-platform 標示目前的平台，不用等 main.js 更新 aria-pressed，載入時不會閃 */
+:root:not([data-platform='win']) .os-switch [data-set-os='mac'],
+:root[data-platform='win'] .os-switch [data-set-os='win'] { background: var(--tile); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / 0.14); }
+.os-switch button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
 .section-head { margin-bottom: 20px; max-width: 720px; }
 .kicker { display: inline-block; font: 700 0.8rem var(--font-display); letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
 .section-head h2 { font: 900 clamp(1.6rem, 1.1rem + 1.6vw, 2.3rem)/1.25 var(--font); }

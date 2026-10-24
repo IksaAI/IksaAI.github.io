@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>PolyComme マルチプラットフォーム・コメント統合｜Mac 版ダウンロード</title>
-  <meta name="description" content="配信者のための Mac アプリ。YouTube と Twitch のコメントをひとつにまとめて、ひとつのウィンドウで読み、OBS の画面にも表示します。API キーもログインも不要です。">
+  <title>PolyComme マルチプラットフォーム・コメント統合｜Mac・Windows 版ダウンロード</title>
+  <meta name="description" content="配信者のための Mac・Windows アプリ。YouTube と Twitch のコメントをひとつにまとめて、ひとつのウィンドウで読み、OBS の画面にも表示します。API キーもログインも不要です。">
   <meta name="theme-color" content="#E6EBF0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F1317" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IksaAI">
-  <meta property="og:title" content="PolyComme マルチプラットフォーム・コメント統合｜Mac 版ダウンロード">
+  <meta property="og:title" content="PolyComme マルチプラットフォーム・コメント統合｜Mac・Windows 版ダウンロード">
   <meta property="og:description" content="すべてのコメントを、ひとつの窓で。YouTube と Twitch のコメントをひとつにまとめて、OBS の画面にも。">
   <meta property="og:image" content="https://iksaai.github.io/polycomme/images/og.jpg">
   <meta property="og:url" content="https://iksaai.github.io/polycomme/ja/">
@@ -26,6 +26,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="../styles.css">
+  <script src="../platform.js"></script>
+  <script src="../main.js" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
   <script src="../../assets/analytics.js" defer></script>
 </head>
@@ -48,7 +50,8 @@
       </ul>
     </nav>
     <nav class="lang-switch" aria-label="Language"><a href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="../en/" hreflang="en" lang="en">EN</a><a href="./" hreflang="ja" lang="ja" aria-current="page">日本語</a></nav>
-    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">ダウンロード</a>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">ダウンロード</a>
+    <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">ダウンロード</a>
   </header>
 
   <main id="main">
@@ -56,18 +59,33 @@
       <div class="tile tile-live">
         <p class="eyebrow">いま</p>
         <h1 id="hero-title">すべてのコメントを、<br>ひとつの窓で。</h1>
-        <p class="lede">YouTube と Twitch で同時に配信していますか？PolyComme は両方のコメントをひとつの流れにまとめます。あなたは Mac のひとつのウィンドウで全部読めて、視聴者は OBS の画面で同じコメントを見られます。API キーもログインも不要、開けばすぐ使えます。</p>
+        <p class="lede">YouTube と Twitch で同時に配信していますか？PolyComme は両方のコメントをひとつの流れにまとめます。あなたはパソコンのひとつのウィンドウで全部読めて、視聴者は OBS の画面で同じコメントを見られます。API キーもログインも不要、開けばすぐ使えます。</p>
       </div>
       <div class="tile tile-download" id="download">
-        <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
-          ダウンロード {{version}}
-        </a>
-        <ul class="meta">
-          <li>macOS 14 以降</li><li>Apple シリコン・Intel</li><li>{{dmgSize}}</li><li>無料</li>
-        </ul>
-        <p class="note">初回起動で macOS にブロックされたら<a href="#install">インストール方法</a>をご覧ください</p>
-        <p class="note note-soft">Windows 版は開発中です</p>
+        <div class="os-switch" role="group" aria-label="お使いのパソコン">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
+        <div class="os-pane" data-os="mac">
+          <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            ダウンロード {{version}}
+          </a>
+          <ul class="meta">
+            <li>macOS 14 以降</li><li>Apple シリコン・Intel</li><li>{{dmgSize}}</li><li>無料</li>
+          </ul>
+          <p class="note">初回起動で macOS にブロックされたら<a href="#install">インストール方法</a>をご覧ください</p>
+        </div>
+        <div class="os-pane" data-os="win">
+          <a class="btn btn-ink btn-large" href="{{exeUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            ダウンロード {{version}}
+          </a>
+          <ul class="meta">
+            <li>Windows 10（バージョン 2004）以降</li><li>64 ビット</li><li>{{exeSize}}</li><li>無料</li>
+          </ul>
+          <p class="note">「Windows によって PC が保護されました」と表示されたら<a href="#install">インストール方法</a>をご覧ください</p>
+        </div>
       </div>
       <div class="tile tile-stat tile-yt">
         <p class="stat-label"><span class="pill pill-yt">YouTube</span></p>
@@ -125,10 +143,10 @@
         </li>
         <li class="tile">
           <h3>3 つの言語</h3>
-          <p>繁体字中国語・英語・日本語。メニューバーの「表示 → 言語」でいつでも切り替えられます。</p>
+          <p>繁体字中国語・英語・日本語。いつでも切り替えられます（Mac はメニューバーの「表示 → 言語」、Windows はタイトルバーの「⋯ → 言語」）。</p>
         </li>
       </ul>
-      <p class="privacy-note"><strong>プラットフォームへのログインも API キーも不要です。</strong>PolyComme は公開されているチャットを読み取ります。チャンネル一覧と設定はあなたの Mac に保存されます。</p>
+      <p class="privacy-note"><strong>プラットフォームへのログインも API キーも不要です。</strong>PolyComme は公開されているチャットを読み取ります。チャンネル一覧と設定はあなたのパソコンに保存されます。</p>
     </section>
 
     <section id="obs" class="obs" aria-labelledby="obs-title">
@@ -177,8 +195,12 @@
       <header class="section-head">
         <p class="kicker">インストール</p>
         <h2 id="install-title">3 ステップで準備完了</h2>
+        <div class="os-switch" role="group" aria-label="インストール手順の種類">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
       </header>
-      <ol class="steps steps-wide">
+      <ol class="steps steps-wide" data-os="mac">
         <li class="tile">
           <h3>DMG をダウンロードして開く</h3>
           <p><a href="{{dmgUrl}}">PolyComme {{version}} をダウンロード</a>し、<code>PolyComme-{{version}}.dmg</code> を開いて PolyComme を「アプリケーション」にドラッグします。</p>
@@ -213,12 +235,25 @@
           <p>起動したら画面の案内に従ってチャンネルを追加します。通知を使う場合は、初回に許可を求められます。</p>
         </li>
       </ol>
+      <ol class="steps steps-wide" data-os="win">
+        <li class="tile">
+          <h3>インストーラーをダウンロードして実行</h3>
+          <p><a href="{{exeUrl}}">PolyComme {{version}} をダウンロード</a>し、<code>{{exeName}}</code> を実行します。</p>
+        </li>
+        <li class="tile">
+          <h3>「Windows によって PC が保護されました」：実行する</h3>
+          <p>PolyComme はまだコード署名をしていないため、初回は Windows にブロックされます。これは正常な動作です。<b>「詳細情報」</b>をクリックして<b>「実行」</b>を押してください。あとはセットアップウィザードに従うだけ。自分のアカウントだけにインストールされ、管理者権限は不要です。</p>
+        </li>
+        <li class="tile">
+          <h3>チャンネルを追加してコメントを受信</h3>
+          <p>初回起動時に Windows ファイアウォールがネットワークへのアクセスを許可するか尋ねます。OBS が同じパソコンなら許可は不要で、OBS が別のパソコンにあるときだけ許可してください。続いて画面の案内に従ってチャンネルを追加します。</p>
+        </li>
+      </ol>
       <div class="faq">
         <h3>現在の制限</h3>
         <ul>
           <li>メンバー限定の配信や、ログインが必要な配信のチャットはまだ読み取れません。</li>
           <li>「休憩」とマイクのボタンには、WebSocket サーバーを有効にした OBS 28 以降が必要です（OBS の「ツール → WebSocket サーバー設定」）。オーバーレイ自体は OBS のブラウザソースならそのまま使えます。</li>
-          <li>Windows 版は開発中です。</li>
         </ul>
       </div>
     </section>

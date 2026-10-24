@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>PolyComme 多平台留言整合｜Mac 版下載</title>
-  <meta name="description" content="給直播主的 Mac App：YouTube、Twitch 的留言合成一條，在一個視窗看完，也送上 OBS 畫面。免金鑰、免登入。">
+  <title>PolyComme 多平台留言整合｜Mac・Windows 版下載</title>
+  <meta name="description" content="給直播主的 Mac・Windows App：YouTube、Twitch 的留言合成一條，在一個視窗看完，也送上 OBS 畫面。免金鑰、免登入。">
   <meta name="theme-color" content="#E6EBF0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F1317" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IksaAI">
-  <meta property="og:title" content="PolyComme 多平台留言整合｜Mac 版下載">
+  <meta property="og:title" content="PolyComme 多平台留言整合｜Mac・Windows 版下載">
   <meta property="og:description" content="一個視窗，接住所有留言。YouTube、Twitch 的留言合成一條，送上 OBS 畫面。">
   <meta property="og:image" content="https://iksaai.github.io/polycomme/images/og.jpg">
   <meta property="og:url" content="https://iksaai.github.io/polycomme/">
@@ -26,6 +26,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <script src="platform.js"></script>
+  <script src="main.js" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
   <script src="../assets/analytics.js" defer></script>
 </head>
@@ -48,7 +50,8 @@
       </ul>
     </nav>
     <nav class="lang-switch" aria-label="Language"><a href="./" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">中文</a><a href="en/" hreflang="en" lang="en">EN</a><a href="ja/" hreflang="ja" lang="ja">日本語</a></nav>
-    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">下載</a>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">下載</a>
+    <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">下載</a>
   </header>
 
   <main id="main">
@@ -56,18 +59,33 @@
       <div class="tile tile-live">
         <p class="eyebrow">現在</p>
         <h1 id="hero-title">一個視窗，<br>接住所有留言。</h1>
-        <p class="lede">同時在 YouTube 和 Twitch 開台？PolyComme 把兩邊的留言合成一條：你在 Mac 上一個視窗看完，觀眾在 OBS 畫面上看到同一條留言串。免金鑰、免登入，打開就能用。</p>
+        <p class="lede">同時在 YouTube 和 Twitch 開台？PolyComme 把兩邊的留言合成一條：你在電腦上一個視窗看完，觀眾在 OBS 畫面上看到同一條留言串。免金鑰、免登入，打開就能用。</p>
       </div>
       <div class="tile tile-download" id="download">
-        <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
-          下載 PolyComme {{version}}
-        </a>
-        <ul class="meta">
-          <li>macOS 14 以上</li><li>Apple Silicon 與 Intel</li><li>{{dmgSize}}</li><li>免費</li>
-        </ul>
-        <p class="note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
-        <p class="note note-soft">Windows 版製作中</p>
+        <div class="os-switch" role="group" aria-label="選擇你的電腦">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
+        <div class="os-pane" data-os="mac">
+          <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            下載 PolyComme {{version}}
+          </a>
+          <ul class="meta">
+            <li>macOS 14 以上</li><li>Apple Silicon 與 Intel</li><li>{{dmgSize}}</li><li>免費</li>
+          </ul>
+          <p class="note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
+        </div>
+        <div class="os-pane" data-os="win">
+          <a class="btn btn-ink btn-large" href="{{exeUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            下載 PolyComme {{version}}
+          </a>
+          <ul class="meta">
+            <li>Windows 10（2004 版）以上</li><li>64 位元</li><li>{{exeSize}}</li><li>免費</li>
+          </ul>
+          <p class="note">出現「Windows 已保護您的電腦」？<a href="#install">看安裝說明</a></p>
+        </div>
       </div>
       <div class="tile tile-stat tile-yt">
         <p class="stat-label"><span class="pill pill-yt">YouTube</span></p>
@@ -125,10 +143,10 @@
         </li>
         <li class="tile">
           <h3>三種語言</h3>
-          <p>繁體中文、English、日本語，在選單列「顯示方式 → 語言」一鍵切換。</p>
+          <p>繁體中文、English、日本語，隨時切換：Mac 在選單列「顯示方式 → 語言」，Windows 在標題列的「⋯ → 語言」。</p>
         </li>
       </ul>
-      <p class="privacy-note"><strong>不需要登入任何平台帳號，也不需要 API 金鑰。</strong>PolyComme 讀的是公開的聊天室；頻道清單和設定都存在你的 Mac 上。</p>
+      <p class="privacy-note"><strong>不需要登入任何平台帳號，也不需要 API 金鑰。</strong>PolyComme 讀的是公開的聊天室；頻道清單和設定都存在你自己的電腦上。</p>
     </section>
 
     <section id="obs" class="obs" aria-labelledby="obs-title">
@@ -177,8 +195,12 @@
       <header class="section-head">
         <p class="kicker">安裝</p>
         <h2 id="install-title">三步驟裝好</h2>
+        <div class="os-switch" role="group" aria-label="安裝步驟的平台">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
       </header>
-      <ol class="steps steps-wide">
+      <ol class="steps steps-wide" data-os="mac">
         <li class="tile">
           <h3>下載並打開 DMG</h3>
           <p><a href="{{dmgUrl}}">下載 PolyComme {{version}}</a>，打開下載好的 <code>PolyComme-{{version}}.dmg</code>，把 PolyComme 拖到「Applications」。</p>
@@ -213,12 +235,25 @@
           <p>打開後照畫面提示加入頻道。要用系統通知的話，第一次會詢問是否允許。</p>
         </li>
       </ol>
+      <ol class="steps steps-wide" data-os="win">
+        <li class="tile">
+          <h3>下載並執行安裝程式</h3>
+          <p><a href="{{exeUrl}}">下載 PolyComme {{version}}</a>，執行下載好的 <code>{{exeName}}</code>。</p>
+        </li>
+        <li class="tile">
+          <h3>出現「Windows 已保護您的電腦」：仍要執行</h3>
+          <p>PolyComme 還沒有程式碼簽章，第一次執行時 Windows 會擋下來。這是正常的：點<b>「其他資訊」</b>，再按<b>「仍要執行」</b>。之後照安裝精靈完成，只裝給你自己的帳號，不需要系統管理員權限。</p>
+        </li>
+        <li class="tile">
+          <h3>加頻道，開始收留言</h3>
+          <p>第一次打開時 Windows 防火牆會問要不要讓 PolyComme 連網路：OBS 在同一台電腦就不需要允許，OBS 在另一台電腦才要允許。接著照畫面提示加入頻道。</p>
+        </li>
+      </ol>
       <div class="faq">
         <h3>目前的限制</h3>
         <ul>
           <li>會員限定、需要登入才能看的直播，目前讀不到聊天室。</li>
           <li>「休息」與麥克風鈕要連上 OBS 28 以上的 WebSocket 伺服器（OBS「工具 → WebSocket 伺服器設定」）。浮動視窗本身只要是 OBS 的瀏覽器來源就能用。</li>
-          <li>Windows 版製作中。</li>
         </ul>
       </div>
     </section>
