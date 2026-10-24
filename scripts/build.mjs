@@ -7,6 +7,7 @@ import {
   fillTemplate,
   latestDownload,
   newsFrom,
+  PAGE_LANGS,
   releasesFor,
   renderChangelog,
   soonSpan,
@@ -50,16 +51,24 @@ function collectEntries(apps, releases) {
   })
 }
 
+/** 沒有這個檔案就回 null（App 不一定有英文、日文頁） */
+const readIfExists = (path) => readFile(path, 'utf8').catch((error) => (error.code === 'ENOENT' ? null : Promise.reject(error)))
+
+/** App 頁：繁中的 <slug>/index.html，加上有做的 <slug>/<語言>/index.html，版本紀錄各用自己的語言 */
 async function buildAppPage({ app, releases, download }) {
-  const path = `${OUTPUT_DIR}/${app.slug}/index.html`
-  const html = fillTemplate(await readFile(path, 'utf8'), {
-    ...escapeAll({
-      ...download,
-      releasesUrl: `${REPO_URL}/releases?q=${app.slug}-v&expanded=true`,
-    }),
-    changelog: renderChangelog(releases),
+  const values = escapeAll({
+    ...download,
+    releasesUrl: `${REPO_URL}/releases?q=${app.slug}-v&expanded=true`,
   })
-  await writeFile(path, html)
+  const pages = [
+    { lang: 'zh', path: `${OUTPUT_DIR}/${app.slug}/index.html` },
+    ...PAGE_LANGS.map((lang) => ({ lang, path: `${OUTPUT_DIR}/${app.slug}/${lang}/index.html` })),
+  ]
+  for (const { lang, path } of pages) {
+    const template = lang === 'zh' ? await readFile(path, 'utf8') : await readIfExists(path)
+    if (template === null) continue
+    await writeFile(path, fillTemplate(template, { ...values, changelog: renderChangelog(releases, lang) }))
+  }
 }
 
 const appValues = ({ app, download }) =>

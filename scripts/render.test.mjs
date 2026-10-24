@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { escapeHtml, fillTemplate, formatDate, formatSize, isReleaseTag, latestDownload, newsFrom, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
+import { escapeHtml, fillTemplate, formatDate, formatSize, isReleaseTag, latestDownload, newsFrom, notesFor, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
 
 const RELEASES_URL = 'https://github.com/IksaAI/IksaAI.github.io/releases'
 
@@ -85,6 +85,39 @@ test('marks only the first release as latest in the changelog', () => {
   assert.equal(html.match(/release-latest/g).length, 1)
   assert.match(html, /<h3>0\.5\.0<\/h3>/)
   assert.match(html, /<time datetime="2026-10-12">2026-10-12<\/time>/)
+})
+
+const TRILINGUAL = [
+  '第一個 Mac 版。', '- 中文條列',
+  '<!-- lang:en -->', 'The first Mac release.', '- English item',
+  '<!-- lang:ja -->', '最初の Mac 版。', '- 日本語の項目',
+  '<!-- lang:all -->', '## SHA-256', '- `a.dmg`：`abc`',
+].join('\n')
+
+test('picks one language of the release notes, plus the part shared by every language', () => {
+  assert.equal(notesFor(TRILINGUAL, 'en'), 'The first Mac release.\n- English item\n\n## SHA-256\n- `a.dmg`：`abc`')
+  assert.equal(notesFor(TRILINGUAL, 'ja'), '最初の Mac 版。\n- 日本語の項目\n\n## SHA-256\n- `a.dmg`：`abc`')
+  assert.equal(notesFor(TRILINGUAL), '第一個 Mac 版。\n- 中文條列\n\n## SHA-256\n- `a.dmg`：`abc`')
+})
+
+test('falls back to the Chinese notes when a language is missing, and leaves single-language notes alone', () => {
+  assert.equal(notesFor('只有中文\r\n<!-- lang:en -->\r\nEnglish', 'ja'), '只有中文')
+  assert.equal(notesFor('- 第一版', 'en'), '- 第一版')
+  assert.equal(notesFor(''), '')
+})
+
+test('renders the changelog in the page language', () => {
+  const releases = [withWindows({ body: TRILINGUAL }), release({ tag_name: 'eqalert-v0.5.0' })]
+  const en = renderChangelog(releases, 'en')
+  assert.match(en, /<span class="release-latest">Latest<\/span>/)
+  assert.match(en, /Download 0\.6\.0: <a href="[^"]+\.dmg">Mac \(2\.8 MB\)<\/a> · <a href="[^"]+\.exe">Windows \(63\.9 MB\)<\/a>/)
+  assert.match(en, /<p>The first Mac release\.<\/p>/)
+  assert.doesNotMatch(en, /中文條列|日本語/)
+  const ja = renderChangelog(releases, 'ja')
+  assert.match(ja, /<span class="release-latest">最新版<\/span>/)
+  assert.match(ja, /ダウンロード 0\.6\.0：<a href="[^"]+\.dmg">Mac 版（2\.8 MB）<\/a>・/)
+  assert.match(ja, /<li>日本語の項目<\/li>/)
+  assert.doesNotMatch(renderChangelog(releases), /English item|日本語の項目/)
 })
 
 test('fills every placeholder and rejects unknown ones', () => {

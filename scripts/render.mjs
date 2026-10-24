@@ -71,38 +71,64 @@ export function latestDownload(releases, { windows = false } = {}) {
   return { ...download, exeUrl: exe.browser_download_url, exeSize: formatSize(exe.size), exeName: exe.name }
 }
 
+/**
+ * App 頁的語言：繁中是 site/<slug>/index.html，其他語言放在 site/<slug>/<語言>/index.html（有才建置）。
+ * 版本紀錄的固定文字跟著頁面語言。
+ */
+export const PAGE_LANGS = ['en', 'ja']
+const CHANGELOG_TEXT = {
+  zh: { latest: '最新版本', download: '下載', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', size: (s) => `（${s}）` },
+  en: { latest: 'Latest', download: 'Download', colon: ': ', sep: ' · ', mac: 'Mac', windows: 'Windows', size: (s) => ` (${s})` },
+  ja: { latest: '最新版', download: 'ダウンロード', colon: '：', sep: '・', mac: 'Mac 版', windows: 'Windows 版', size: (s) => `（${s}）` },
+}
+
+/**
+ * release 說明可以分語言：`<!-- lang:en -->`、`<!-- lang:ja -->` 之後是那個語言，最前面是繁中（預設）；
+ * `<!-- lang:all -->` 之後每個語言都會接上（例如發版流程自動加的 SHA-256）。沒有那個語言就用繁中。
+ * 這幾行是 HTML 註解，GitHub 的 release 頁上看不到。
+ */
+export function notesFor(markdown, lang = 'zh') {
+  const parts = markdown.split(/^<!--\s*lang:([a-z]+)\s*-->[ \t]*\r?$/m)
+  const sections = { zh: parts[0] }
+  for (let i = 1; i < parts.length; i += 2) sections[parts[i]] = parts[i + 1]
+  const own = (sections[lang] ?? sections.zh).trim()
+  const shared = (sections.all ?? '').trim()
+  return [own, shared].filter(Boolean).join('\n\n')
+}
+
 const PLATFORM_ASSETS = [
-  { label: 'Mac 版', find: dmgOf },
-  { label: 'Windows 版', find: exeOf },
+  { key: 'mac', find: dmgOf },
+  { key: 'windows', find: exeOf },
 ]
 
 /** 版本紀錄每一版的下載連結：「下載 0.6.0：Mac 版（2.8 MB）・Windows 版（63.9 MB）」 */
-function renderDownloads(release, version) {
-  const links = PLATFORM_ASSETS.flatMap(({ label, find }) => {
+function renderDownloads(release, version, text) {
+  const links = PLATFORM_ASSETS.flatMap(({ key, find }) => {
     const asset = find(release)
-    return asset ? [`<a href="${escapeHtml(asset.browser_download_url)}">${label}（${formatSize(asset.size)}）</a>`] : []
+    return asset ? [`<a href="${escapeHtml(asset.browser_download_url)}">${text[key]}${text.size(formatSize(asset.size))}</a>`] : []
   })
-  return links.length ? `<p class="release-download">下載 ${version}：${links.join('・')}</p>` : ''
+  return links.length ? `<p class="release-download">${text.download} ${version}${text.colon}${links.join(text.sep)}</p>` : ''
 }
 
-function renderRelease(release, isLatest) {
+function renderRelease(release, isLatest, lang) {
+  const text = CHANGELOG_TEXT[lang] ?? CHANGELOG_TEXT.zh
   const version = escapeHtml(versionOf(release))
   const date = formatDate(release.published_at)
-  const download = renderDownloads(release, version)
+  const download = renderDownloads(release, version, text)
   return `<article class="release">
   <div class="release-meta">
     <h3>${version}</h3>
-    <time datetime="${date}">${date}</time>${isLatest ? '\n    <span class="release-latest">最新版本</span>' : ''}
+    <time datetime="${date}">${date}</time>${isLatest ? `\n    <span class="release-latest">${text.latest}</span>` : ''}
   </div>
   <div class="release-notes">
-${renderNotes(release.body ?? '')}
+${renderNotes(notesFor(release.body ?? '', lang))}
 ${download}
   </div>
 </article>`
 }
 
-export const renderChangelog = (releases) =>
-  releases.map((release, index) => renderRelease(release, index === 0)).join('\n')
+export const renderChangelog = (releases, lang = 'zh') =>
+  releases.map((release, index) => renderRelease(release, index === 0, lang)).join('\n')
 
 /** 填入 {{欄位}}；樣板裡有沒提供的欄位就報錯，避免把 {{...}} 發布出去 */
 export function fillTemplate(template, values) {
@@ -156,7 +182,7 @@ export function newsFrom(entries, limit) {
         version: versionOf(release),
         date: formatDate(release.published_at),
         publishedAt: release.published_at,
-        summary: summaryOf(release.body ?? ''),
+        summary: summaryOf(notesFor(release.body ?? '')),
         href: `${app.slug}/#releases`,
       })),
     )

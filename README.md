@@ -14,6 +14,7 @@
 | App | 介紹與下載 | 需求 |
 |---|---|---|
 | EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/) | macOS 14 以上、Windows 10（2004 版）以上 |
+| PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/polycomme/en/)・[日本語](https://iksaai.github.io/polycomme/ja/)） | macOS 14 以上 |
 
 ## 安裝 EQalert
 
@@ -32,13 +33,26 @@
 2. 出現「Windows 已保護您的電腦」（還沒有程式碼簽章）：點「其他資訊」→「仍要執行」
 3. 照安裝精靈完成安裝；預設只裝給目前的使用者，不需要系統管理員
 
+## 安裝 PolyComme
+
+**macOS**
+
+1. 從 [PolyComme 頁面](https://iksaai.github.io/polycomme/)下載 `PolyComme-<版本>.dmg`
+2. 打開 DMG，把 PolyComme 拖到「Applications」
+3. 第一次打開會被 macOS 擋下（還沒經過 Apple 公證）：
+   - **macOS 15 以上**：打開一次 → 按「完成」→「系統設定」→「隱私權與安全性」→ 在「已阻擋 PolyComme」旁按「強制打開」
+   - **macOS 14**：對 PolyComme 按右鍵 →「打開」→ 再按「打開」
+   - 或在終端機執行：`xattr -dr com.apple.quarantine /Applications/PolyComme.app`
+
+Windows 版製作中。
+
 ## 網站結構
 
 | 路徑 | 內容 |
 |---|---|
 | `apps.json` | 所有 App 的資料；`slug` 同時是網址（`/eqalert/`）和 release tag 前綴（`eqalert-v…`） |
 | `site/index.html`、`site/assets/` | 工作室首頁（藍晒配色）；App 方格與最新動態在部署時產生 |
-| `site/<slug>/` | 各 App 的介紹頁，保留 App 自己的設計；`{{version}}` 等欄位在部署時填入 |
+| `site/<slug>/` | 各 App 的介紹頁，保留 App 自己的設計；`{{version}}` 等欄位在部署時填入。有英文、日文頁的話放在 `site/<slug>/en/`、`site/<slug>/ja/`（PolyComme），版本紀錄會用那一頁的語言 |
 | `site/eqalert/platform.js` | 判斷訪客用 macOS 還是 Windows（寫在 `<html data-platform>`），切換下載按鈕、截圖和安裝步驟；網址加 `?os=win` 或 `?os=mac` 可以指定 |
 | `templates/` | 首頁方格的 HTML 樣板（不會發布） |
 | `site/assets/analytics.js` | Google Analytics 4（評估 ID `G-Y5PN5P55LH`）的初始化；CSP 不允許 inline script，所以不能照 GA 給的片段直接貼 |
@@ -61,6 +75,8 @@ release tag 一律是 `<slug>-v<版本>`，例如 `eqalert-v0.7.0`。版本由 *
 gh release create eqalert-v<版本> EQalert-<版本>.dmg EQalert-Setup-<版本>-x64.exe --draft --repo IksaAI/IksaAI.github.io --title "EQalert <版本>" --notes-file notes.md
 gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版本>
 ```
+
+release 說明可以寫三種語言：最前面是繁中，`<!-- lang:en -->`、`<!-- lang:ja -->` 下面各是英文、日文，`<!-- lang:all -->` 下面的內容（例如 SHA-256）每個語言頁都會顯示。這幾行在 GitHub 的 release 頁上看不到；英文、日文頁只顯示自己那段，沒寫就退回繁中。首頁「最新動態」用繁中那段的第一行。
 
 每個 App 的最新 release 一定要有 DMG；`apps.json` 標了 `"windows": true` 的 App（EQalert），最新 release 也一定要有 Windows 安裝檔（`.exe`）。缺檔時建置會失敗，網站維持上一版。
 EQalert 的完整步驟（改版號、兩台電腦分別打包、雜湊）寫在 EQalert 原始碼 repo 的 `docs/發版流程.md`。

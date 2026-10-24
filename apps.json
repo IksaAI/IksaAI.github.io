@@ -12,5 +12,16 @@
     "overlay": "eqalert/images/mac-eew-1280.webp",
     "overlayAlt": "EQalert 地震速報畫面：30 秒後搖晃抵達你的位置",
     "featured": true
+  },
+  {
+    "slug": "polycomme",
+    "name": "PolyComme",
+    "subtitle": "多平台留言整合",
+    "tagline": "一個視窗，接住所有留言。YouTube、Twitch 的留言合成一條，在 Mac 上一次看完，也送上 OBS 畫面。",
+    "requirements": "macOS 14 以上",
+    "windows": false,
+    "icon": "polycomme/images/icon-256.png",
+    "screenshot": "polycomme/images/mac-main-dark-1280.webp",
+    "screenshotAlt": "PolyComme 主畫面：左邊是直播狀態與 YouTube、Twitch 兩個頻道的觀看人數，右邊是兩邊合在一起的留言"
   }
 ]

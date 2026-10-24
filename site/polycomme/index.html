@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>PolyComme 多平台留言整合｜Mac 版下載</title>
+  <meta name="description" content="給直播主的 Mac App：YouTube、Twitch 的留言合成一條，在一個視窗看完，也送上 OBS 畫面。免金鑰、免登入。">
+  <meta name="theme-color" content="#E6EBF0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1317" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="PolyComme 多平台留言整合｜Mac 版下載">
+  <meta property="og:description" content="一個視窗，接住所有留言。YouTube、Twitch 的留言合成一條，送上 OBS 畫面。">
+  <meta property="og:image" content="https://iksaai.github.io/polycomme/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/polycomme/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/polycomme/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/polycomme/en/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/polycomme/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/polycomme/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="images/icon-256.png" width="32" height="32" alt="">
+      <span>PolyComme <span class="brand-sub">多平台留言整合</span></span>
+    </a>
+    <nav aria-label="主要導覽">
+      <ul>
+        <li><a href="#features">功能</a></li>
+        <li><a href="#obs">接上 OBS</a></li>
+        <li><a href="#install">安裝</a></li>
+        <li><a href="#releases">版本紀錄</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="./" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">中文</a><a href="en/" hreflang="en" lang="en">EN</a><a href="ja/" hreflang="ja" lang="ja">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">下載</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="tile tile-live">
+        <p class="eyebrow">現在</p>
+        <h1 id="hero-title">一個視窗，<br>接住所有留言。</h1>
+        <p class="lede">同時在 YouTube 和 Twitch 開台？PolyComme 把兩邊的留言合成一條：你在 Mac 上一個視窗看完，觀眾在 OBS 畫面上看到同一條留言串。免金鑰、免登入，打開就能用。</p>
+      </div>
+      <div class="tile tile-download" id="download">
+        <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+          下載 PolyComme {{version}}
+        </a>
+        <ul class="meta">
+          <li>macOS 14 以上</li><li>Apple Silicon 與 Intel</li><li>{{dmgSize}}</li><li>免費</li>
+        </ul>
+        <p class="note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
+        <p class="note note-soft">Windows 版製作中</p>
+      </div>
+      <div class="tile tile-stat tile-yt">
+        <p class="stat-label"><span class="pill pill-yt">YouTube</span></p>
+        <p class="stat-value">留言・Super Chat</p>
+        <p class="stat-sub">超級貼圖、會員加入</p>
+      </div>
+      <div class="tile tile-stat tile-tw">
+        <p class="stat-label"><span class="pill pill-tw">Twitch</span></p>
+        <p class="stat-value">留言・小奇點</p>
+        <p class="stat-sub">訂閱、續訂、贈送訂閱</p>
+      </div>
+      <figure class="tile tile-shot">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="images/mac-main-dark-1280.webp 1280w, images/mac-main-dark-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw">
+          <img src="images/mac-main-light-1280.webp"
+            srcset="images/mac-main-light-1280.webp 1280w, images/mac-main-light-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw"
+            width="1280" height="800"
+            alt="PolyComme 主畫面：左邊是直播狀態與 YouTube、Twitch 兩個頻道的觀看人數，右邊是兩邊合在一起的留言，含 Super Chat 與小奇點">
+        </picture>
+      </figure>
+    </section>
+
+    <section id="features" class="features" aria-labelledby="features-title">
+      <header class="section-head">
+        <p class="kicker">功能</p>
+        <h2 id="features-title">直播時要看的，都在一個畫面</h2>
+      </header>
+      <ul class="bento">
+        <li class="tile span-2">
+          <h3>兩個平台，一條留言串</h3>
+          <p>YouTube 與 Twitch 的留言照時間排在一起，每一則都標出平台和頻道，同名的帳號也分得出來。只想看某個頻道時，上方點一下就篩出來。</p>
+        </li>
+        <li class="tile tile-accent">
+          <h3>付費一眼看到</h3>
+          <p>Super Chat、超級貼圖、小奇點用醒目的顏色；會員加入、訂閱、續訂也會出現在留言串裡。</p>
+        </li>
+        <li class="tile">
+          <h3>誰在看、聊得多熱</h3>
+          <p>每個頻道的 ON AIR 狀態、觀看人數、訂閱或追蹤數、按讚數，還有每分鐘幾則留言。</p>
+        </li>
+        <li class="tile">
+          <h3>不想上畫面，一鍵隱藏</h3>
+          <p>滑過留言按一下，就從 OBS 畫面拿掉；管理員在平台上刪除的留言也會跟著消失。</p>
+        </li>
+        <li class="tile">
+          <h3>休息、靜音不用切回 OBS</h3>
+          <p>連上 OBS 之後，按「休息」就切到休息場景，按麥克風就把 OBS 的麥克風靜音。</p>
+        </li>
+        <li class="tile">
+          <h3>切到遊戲也不漏看</h3>
+          <p>有新留言時跳出系統通知；有人洗版時自動暫停，不會被通知淹沒。</p>
+        </li>
+        <li class="tile">
+          <h3>三種語言</h3>
+          <p>繁體中文、English、日本語，在選單列「顯示方式 → 語言」一鍵切換。</p>
+        </li>
+      </ul>
+      <p class="privacy-note"><strong>不需要登入任何平台帳號，也不需要 API 金鑰。</strong>PolyComme 讀的是公開的聊天室；頻道清單和設定都存在你的 Mac 上。</p>
+    </section>
+
+    <section id="obs" class="obs" aria-labelledby="obs-title">
+      <header class="section-head">
+        <p class="kicker">OBS</p>
+        <h2 id="obs-title">貼一次網址，之後都不用再改</h2>
+        <p>浮動視窗的網址固定不變：在 App 裡換樣式、調留言底色，OBS 畫面會自己跟著換。</p>
+      </header>
+      <div class="obs-grid">
+        <ol class="steps">
+          <li>
+            <h3>加入你的頻道</h3>
+            <p>在「設定 → 頻道」貼上網址：<code>twitch.tv/頻道名稱</code>、<code>youtube.com/@帳號</code> 或單一直播的 <code>youtube.com/watch?v=…</code>。</p>
+          </li>
+          <li>
+            <h3>複製浮動視窗網址</h3>
+            <p>「設定 → OBS 輸出」裡的網址：<code>http://localhost:8123/overlay/</code>。</p>
+          </li>
+          <li>
+            <h3>在 OBS 新增「瀏覽器」來源</h3>
+            <p>貼上網址，建議大小 600 × 800。開台前可以按「模擬聊天」送假留言，先把位置和樣式調好。</p>
+          </li>
+        </ol>
+        <div class="monitor">
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-default" checked>
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-neon">
+          <figure class="program">
+            <span class="program-label">PROGRAM</span>
+            <span class="program-rec" aria-hidden="true">● LIVE 01:23:08</span>
+            <img class="program-overlay ov-default" src="images/overlay-default.webp" width="520" height="470" loading="lazy"
+              alt="OBS 直播畫面右下角的 PolyComme 浮動視窗（預設樣式）：YouTube 與 Twitch 的留言混在一起，Super Chat 與小奇點是黃色">
+            <img class="program-overlay ov-neon" src="images/overlay-neon.webp" width="520" height="470" loading="lazy"
+              alt="OBS 直播畫面右下角的 PolyComme 浮動視窗（霓虹樣式）：深色留言條加上發光的青色與粉紅色邊框">
+            <figcaption class="visually-hidden">OBS 直播畫面上的 PolyComme 浮動視窗</figcaption>
+          </figure>
+          <div class="ov-switch" role="group" aria-label="浮動視窗樣式">
+            <label for="ov-default">預設</label>
+            <label for="ov-neon">霓虹</label>
+          </div>
+          <p class="monitor-note">觀眾在直播畫面上看到的樣子。樣式、留言底色都在 App 裡切換，OBS 不用動。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">安裝</p>
+        <h2 id="install-title">三步驟裝好</h2>
+      </header>
+      <ol class="steps steps-wide">
+        <li class="tile">
+          <h3>下載並打開 DMG</h3>
+          <p><a href="{{dmgUrl}}">下載 PolyComme {{version}}</a>，打開下載好的 <code>PolyComme-{{version}}.dmg</code>，把 PolyComme 拖到「Applications」。</p>
+        </li>
+        <li class="tile">
+          <h3>第一次打開：允許執行</h3>
+          <p>PolyComme 還沒有經過 Apple 公證，第一次打開時 macOS 會擋下來。這是正常的，照下面做一次，之後就能直接打開；每次下載新版本都要再做一次。</p>
+          <div class="os-guides">
+            <details open>
+              <summary>macOS 15 以上（Sequoia、Tahoe）</summary>
+              <ol>
+                <li>打開 PolyComme，出現「Apple 無法驗證⋯」時按<b>「完成」</b>。</li>
+                <li>打開<b>「系統設定」→「隱私權與安全性」</b>，捲到最下面的「安全性」。</li>
+                <li>在「已阻擋 PolyComme⋯」旁邊按<b>「強制打開」</b>，輸入密碼，再按一次<b>「強制打開」</b>。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>macOS 14 Sonoma</summary>
+              <ol>
+                <li>對 PolyComme 按右鍵（或 Control＋點按），選<b>「打開」</b>。</li>
+                <li>在跳出的視窗裡再按一次<b>「打開」</b>。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>會用終端機的話：一行解決</summary>
+              <p class="command"><code>xattr -dr com.apple.quarantine /Applications/PolyComme.app</code></p>
+            </details>
+          </div>
+        </li>
+        <li class="tile">
+          <h3>加頻道，開始收留言</h3>
+          <p>打開後照畫面提示加入頻道。要用系統通知的話，第一次會詢問是否允許。</p>
+        </li>
+      </ol>
+      <div class="faq">
+        <h3>目前的限制</h3>
+        <ul>
+          <li>會員限定、需要登入才能看的直播，目前讀不到聊天室。</li>
+          <li>「休息」與麥克風鈕要連上 OBS 28 以上的 WebSocket 伺服器（OBS「工具 → WebSocket 伺服器設定」）。浮動視窗本身只要是 OBS 的瀏覽器來源就能用。</li>
+          <li>Windows 版製作中。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">版本紀錄</p>
+        <h2 id="releases-title">更新了什麼</h2>
+      </header>
+      <div class="changelog">{{changelog}}</div>
+      <p><a href="{{releasesUrl}}">在 GitHub 看所有版本</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">YouTube 與 Twitch 是各自公司的商標，PolyComme 與它們沒有關聯。</p>
+    <p class="disclaimer">本站使用 Google Analytics 統計瀏覽量（會使用 Cookie）。</p>
+    <p class="copyright">© 2026 <a href="../">艾可颯智慧工作室 IksaAI</a>・<a href="../#apps">更多 App</a></p>
+  </footer>
+</body>
+</html>

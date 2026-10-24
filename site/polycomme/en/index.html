@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>PolyComme — Every chat, one window | Download for Mac</title>
+  <meta name="description" content="A Mac app for streamers: YouTube and Twitch chat merged into one feed you read in one window — and show on stream through OBS. No API key, no sign-in.">
+  <meta name="theme-color" content="#E6EBF0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1317" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="PolyComme — Every chat, one window | Download for Mac">
+  <meta property="og:description" content="Every chat, one window. YouTube and Twitch chat merged into one feed, on your screen and on stream.">
+  <meta property="og:image" content="https://iksaai.github.io/polycomme/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/polycomme/en/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/polycomme/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/polycomme/en/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/polycomme/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/polycomme/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="../images/icon-256.png" width="32" height="32" alt="">
+      <span>PolyComme <span class="brand-sub">Multi-platform chat</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#obs">OBS setup</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#releases">Releases</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="./" hreflang="en" lang="en" aria-current="page">EN</a><a href="../ja/" hreflang="ja" lang="ja">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">Download</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="tile tile-live">
+        <p class="eyebrow">Now</p>
+        <h1 id="hero-title">Every chat,<br>one window.</h1>
+        <p class="lede">Streaming on YouTube and Twitch at the same time? PolyComme merges both chats into one feed: you read everything in one window on your Mac, and your viewers see the same feed on stream through OBS. No API key, no sign-in — just open it.</p>
+      </div>
+      <div class="tile tile-download" id="download">
+        <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+          Download PolyComme {{version}}
+        </a>
+        <ul class="meta">
+          <li>macOS 14 or later</li><li>Apple silicon &amp; Intel</li><li>{{dmgSize}}</li><li>Free</li>
+        </ul>
+        <p class="note">Blocked by macOS the first time? <a href="#install">See how to open it</a></p>
+        <p class="note note-soft">Windows version in the works</p>
+      </div>
+      <div class="tile tile-stat tile-yt">
+        <p class="stat-label"><span class="pill pill-yt">YouTube</span></p>
+        <p class="stat-value">Chat · Super Chat</p>
+        <p class="stat-sub">Super Stickers, new members</p>
+      </div>
+      <div class="tile tile-stat tile-tw">
+        <p class="stat-label"><span class="pill pill-tw">Twitch</span></p>
+        <p class="stat-value">Chat · Bits</p>
+        <p class="stat-sub">Subs, resubs, gift subs</p>
+      </div>
+      <figure class="tile tile-shot">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../images/mac-main-dark-en-1280.webp 1280w, ../images/mac-main-dark-en-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw">
+          <img src="../images/mac-main-light-en-1280.webp"
+            srcset="../images/mac-main-light-en-1280.webp 1280w, ../images/mac-main-light-en-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw"
+            width="1280" height="800"
+            alt="PolyComme main window: stream status and viewer counts for a YouTube and a Twitch channel on the left, both chats merged on the right, including a Super Chat and Bits">
+        </picture>
+      </figure>
+    </section>
+
+    <section id="features" class="features" aria-labelledby="features-title">
+      <header class="section-head">
+        <p class="kicker">Features</p>
+        <h2 id="features-title">Everything you watch while live, on one screen</h2>
+      </header>
+      <ul class="bento">
+        <li class="tile span-2">
+          <h3>Two platforms, one chat</h3>
+          <p>YouTube and Twitch comments in time order, each tagged with its platform and channel — so two viewers with the same name never get mixed up. Want just one channel? Pick it at the top.</p>
+        </li>
+        <li class="tile tile-accent">
+          <h3>Paid messages stand out</h3>
+          <p>Super Chats, Super Stickers and Bits are highlighted; new members, subs and resubs show up in the feed too.</p>
+        </li>
+        <li class="tile">
+          <h3>Who is watching, how busy chat is</h3>
+          <p>ON AIR status, viewer count, subscribers or followers and likes for every channel, plus comments per minute.</p>
+        </li>
+        <li class="tile">
+          <h3>Keep a comment off stream</h3>
+          <p>Hover a comment and click once to take it off the OBS overlay. Messages deleted by moderators on the platform disappear too.</p>
+        </li>
+        <li class="tile">
+          <h3>Break and mute without switching to OBS</h3>
+          <p>Once connected to OBS, “Break” switches to your break scene and the mic button mutes your microphone in OBS.</p>
+        </li>
+        <li class="tile">
+          <h3>Never miss a comment mid-game</h3>
+          <p>New comments show up as system notifications, which pause automatically when chat is being spammed.</p>
+        </li>
+        <li class="tile">
+          <h3>Three languages</h3>
+          <p>Traditional Chinese, English and Japanese — switch anytime from View → Language in the menu bar.</p>
+        </li>
+      </ul>
+      <p class="privacy-note"><strong>No platform sign-in and no API key needed.</strong> PolyComme reads public chat; your channel list and settings stay on your Mac.</p>
+    </section>
+
+    <section id="obs" class="obs" aria-labelledby="obs-title">
+      <header class="section-head">
+        <p class="kicker">OBS</p>
+        <h2 id="obs-title">Paste one URL once, and never touch it again</h2>
+        <p>The overlay URL never changes: switch styles or comment backgrounds in the app and OBS follows along on its own.</p>
+      </header>
+      <div class="obs-grid">
+        <ol class="steps">
+          <li>
+            <h3>Add your channels</h3>
+            <p>Paste a URL in Settings → Channels: <code>twitch.tv/channel</code>, <code>youtube.com/@handle</code>, or a single stream’s <code>youtube.com/watch?v=…</code>.</p>
+          </li>
+          <li>
+            <h3>Copy the overlay URL</h3>
+            <p>It’s in Settings → OBS output: <code>http://localhost:8123/overlay/</code>.</p>
+          </li>
+          <li>
+            <h3>Add a Browser source in OBS</h3>
+            <p>Paste the URL; 600 × 800 works well. Before going live, “Start simulated chat” sends test comments so you can set the position and style.</p>
+          </li>
+        </ol>
+        <div class="monitor">
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-default" checked>
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-neon">
+          <figure class="program">
+            <span class="program-label">PROGRAM</span>
+            <span class="program-rec" aria-hidden="true">● LIVE 01:23:08</span>
+            <img class="program-overlay ov-default" src="../images/overlay-default-en.webp" width="520" height="470" loading="lazy"
+              alt="PolyComme overlay in the lower right of an OBS program view (Default style): YouTube and Twitch comments mixed, with Super Chats and Bits in yellow">
+            <img class="program-overlay ov-neon" src="../images/overlay-neon-en.webp" width="520" height="470" loading="lazy"
+              alt="PolyComme overlay in the lower right of an OBS program view (Neon style): dark comment bars with glowing cyan and pink borders">
+            <figcaption class="visually-hidden">The PolyComme overlay on an OBS program view</figcaption>
+          </figure>
+          <div class="ov-switch" role="group" aria-label="Overlay style">
+            <label for="ov-default">Default</label>
+            <label for="ov-neon">Neon</label>
+          </div>
+          <p class="monitor-note">What your viewers see on stream. Styles and comment backgrounds are switched in the app — no changes in OBS.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">Install</p>
+        <h2 id="install-title">Set up in three steps</h2>
+      </header>
+      <ol class="steps steps-wide">
+        <li class="tile">
+          <h3>Download and open the DMG</h3>
+          <p><a href="{{dmgUrl}}">Download PolyComme {{version}}</a>, open <code>PolyComme-{{version}}.dmg</code>, and drag PolyComme into Applications.</p>
+        </li>
+        <li class="tile">
+          <h3>First launch: allow it to open</h3>
+          <p>PolyComme isn’t notarized by Apple yet, so macOS blocks it the first time. That’s expected — do the steps below once and it opens normally afterwards. You’ll need to repeat them after downloading each new version.</p>
+          <div class="os-guides">
+            <details open>
+              <summary>macOS 15 or later (Sequoia, Tahoe)</summary>
+              <ol>
+                <li>Open PolyComme. When “Apple could not verify…” appears, click <b>Done</b>.</li>
+                <li>Open <b>System Settings → Privacy &amp; Security</b> and scroll down to Security.</li>
+                <li>Next to “PolyComme was blocked…”, click <b>Open Anyway</b>, enter your password, then click <b>Open Anyway</b> again.</li>
+              </ol>
+            </details>
+            <details>
+              <summary>macOS 14 Sonoma</summary>
+              <ol>
+                <li>Right-click (or Control-click) PolyComme and choose <b>Open</b>.</li>
+                <li>Click <b>Open</b> again in the dialog.</li>
+              </ol>
+            </details>
+            <details>
+              <summary>Comfortable with Terminal? One line does it</summary>
+              <p class="command"><code>xattr -dr com.apple.quarantine /Applications/PolyComme.app</code></p>
+            </details>
+          </div>
+        </li>
+        <li class="tile">
+          <h3>Add channels and start reading</h3>
+          <p>Follow the on-screen prompt to add your channels. If you turn on notifications, macOS asks for permission the first time.</p>
+        </li>
+      </ol>
+      <div class="faq">
+        <h3>Current limitations</h3>
+        <ul>
+          <li>Members-only streams and streams that require sign-in can’t be read yet.</li>
+          <li>The Break and mic buttons need OBS 28 or later with its WebSocket server enabled (OBS: Tools → WebSocket Server Settings). The overlay itself works with any OBS Browser source.</li>
+          <li>The Windows version is in the works.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">Releases</p>
+        <h2 id="releases-title">What’s new</h2>
+      </header>
+      <div class="changelog">{{changelog}}</div>
+      <p><a href="{{releasesUrl}}">See all releases on GitHub</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">YouTube and Twitch are trademarks of their respective owners. PolyComme is not affiliated with them.</p>
+    <p class="disclaimer">This site uses Google Analytics to count visits (with cookies).</p>
+    <p class="copyright">© 2026 <a href="../../">IksaAI Studio</a> · <a href="../../#apps">More apps</a></p>
+  </footer>
+</body>
+</html>

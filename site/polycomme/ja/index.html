@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>PolyComme マルチプラットフォーム・コメント統合｜Mac 版ダウンロード</title>
+  <meta name="description" content="配信者のための Mac アプリ。YouTube と Twitch のコメントをひとつにまとめて、ひとつのウィンドウで読み、OBS の画面にも表示します。API キーもログインも不要です。">
+  <meta name="theme-color" content="#E6EBF0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1317" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="PolyComme マルチプラットフォーム・コメント統合｜Mac 版ダウンロード">
+  <meta property="og:description" content="すべてのコメントを、ひとつの窓で。YouTube と Twitch のコメントをひとつにまとめて、OBS の画面にも。">
+  <meta property="og:image" content="https://iksaai.github.io/polycomme/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/polycomme/ja/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/polycomme/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/polycomme/en/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/polycomme/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/polycomme/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="../images/icon-256.png" width="32" height="32" alt="">
+      <span>PolyComme <span class="brand-sub">コメント統合</span></span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#features">機能</a></li>
+        <li><a href="#obs">OBS との接続</a></li>
+        <li><a href="#install">インストール</a></li>
+        <li><a href="#releases">更新履歴</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="../en/" hreflang="en" lang="en">EN</a><a href="./" hreflang="ja" lang="ja" aria-current="page">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">ダウンロード</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="tile tile-live">
+        <p class="eyebrow">いま</p>
+        <h1 id="hero-title">すべてのコメントを、<br>ひとつの窓で。</h1>
+        <p class="lede">YouTube と Twitch で同時に配信していますか？PolyComme は両方のコメントをひとつの流れにまとめます。あなたは Mac のひとつのウィンドウで全部読めて、視聴者は OBS の画面で同じコメントを見られます。API キーもログインも不要、開けばすぐ使えます。</p>
+      </div>
+      <div class="tile tile-download" id="download">
+        <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+          ダウンロード {{version}}
+        </a>
+        <ul class="meta">
+          <li>macOS 14 以降</li><li>Apple シリコン・Intel</li><li>{{dmgSize}}</li><li>無料</li>
+        </ul>
+        <p class="note">初回起動で macOS にブロックされたら<a href="#install">インストール方法</a>をご覧ください</p>
+        <p class="note note-soft">Windows 版は開発中です</p>
+      </div>
+      <div class="tile tile-stat tile-yt">
+        <p class="stat-label"><span class="pill pill-yt">YouTube</span></p>
+        <p class="stat-value">コメント・スーパーチャット</p>
+        <p class="stat-sub">スーパーステッカー・メンバー加入</p>
+      </div>
+      <div class="tile tile-stat tile-tw">
+        <p class="stat-label"><span class="pill pill-tw">Twitch</span></p>
+        <p class="stat-value">コメント・ビッツ</p>
+        <p class="stat-sub">サブスク・継続サブスク・ギフトサブスク</p>
+      </div>
+      <figure class="tile tile-shot">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../images/mac-main-dark-ja-1280.webp 1280w, ../images/mac-main-dark-ja-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw">
+          <img src="../images/mac-main-light-ja-1280.webp"
+            srcset="../images/mac-main-light-ja-1280.webp 1280w, ../images/mac-main-light-ja-2400.webp 2400w"
+            sizes="(min-width: 1120px) 760px, 92vw"
+            width="1280" height="800"
+            alt="PolyComme のメイン画面：左に配信状況と YouTube・Twitch 両チャンネルの視聴者数、右に両方をまとめたコメント（スーパーチャットとビッツを含む）">
+        </picture>
+      </figure>
+    </section>
+
+    <section id="features" class="features" aria-labelledby="features-title">
+      <header class="section-head">
+        <p class="kicker">機能</p>
+        <h2 id="features-title">配信中に見たいものを、ひとつの画面に</h2>
+      </header>
+      <ul class="bento">
+        <li class="tile span-2">
+          <h3>ふたつのプラットフォーム、ひとつのコメント欄</h3>
+          <p>YouTube と Twitch のコメントを時間順に並べ、1件ずつプラットフォームとチャンネルを表示します。同じ名前のアカウントも見分けられます。特定のチャンネルだけ見たいときは上部でワンクリック。</p>
+        </li>
+        <li class="tile tile-accent">
+          <h3>投げ銭がひと目でわかる</h3>
+          <p>スーパーチャット、スーパーステッカー、ビッツは目立つ色で表示。メンバー加入、サブスク、継続サブスクもコメント欄に流れます。</p>
+        </li>
+        <li class="tile">
+          <h3>視聴者数と盛り上がり</h3>
+          <p>チャンネルごとの ON AIR 状態、視聴者数、登録者数またはフォロワー数、高評価数、さらに 1 分あたりのコメント数。</p>
+        </li>
+        <li class="tile">
+          <h3>配信に出したくないコメントは非表示に</h3>
+          <p>コメントにカーソルを合わせてクリックすれば OBS の画面から消せます。モデレーターがプラットフォーム上で削除したコメントも連動して消えます。</p>
+        </li>
+        <li class="tile">
+          <h3>休憩・ミュートは OBS に切り替えずに</h3>
+          <p>OBS と接続すると、「休憩」で休憩シーンに切り替え、マイクボタンで OBS のマイクをミュートできます。</p>
+        </li>
+        <li class="tile">
+          <h3>ゲーム中も見逃さない</h3>
+          <p>新しいコメントはシステム通知でお知らせ。荒らしでコメントが急増したときは自動で通知を止めます。</p>
+        </li>
+        <li class="tile">
+          <h3>3 つの言語</h3>
+          <p>繁体字中国語・英語・日本語。メニューバーの「表示 → 言語」でいつでも切り替えられます。</p>
+        </li>
+      </ul>
+      <p class="privacy-note"><strong>プラットフォームへのログインも API キーも不要です。</strong>PolyComme は公開されているチャットを読み取ります。チャンネル一覧と設定はあなたの Mac に保存されます。</p>
+    </section>
+
+    <section id="obs" class="obs" aria-labelledby="obs-title">
+      <header class="section-head">
+        <p class="kicker">OBS</p>
+        <h2 id="obs-title">URL を一度貼るだけ、あとはそのまま</h2>
+        <p>オーバーレイの URL はずっと同じです。アプリでスタイルやコメントの背景を変えると、OBS の画面も自動で切り替わります。</p>
+      </header>
+      <div class="obs-grid">
+        <ol class="steps">
+          <li>
+            <h3>チャンネルを追加</h3>
+            <p>「設定 → チャンネル」に URL を貼り付けます：<code>twitch.tv/チャンネル名</code>、<code>youtube.com/@アカウント</code>、または配信 1 本の <code>youtube.com/watch?v=…</code>。</p>
+          </li>
+          <li>
+            <h3>オーバーレイの URL をコピー</h3>
+            <p>「設定 → OBS 出力」にある URL です：<code>http://localhost:8123/overlay/</code>。</p>
+          </li>
+          <li>
+            <h3>OBS に「ブラウザ」ソースを追加</h3>
+            <p>URL を貼り付けます（推奨サイズ 600 × 800）。配信前に「チャットのシミュレーションを開始」でテストコメントを流して、位置とスタイルを調整できます。</p>
+          </li>
+        </ol>
+        <div class="monitor">
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-default" checked>
+          <input class="ov-pick" type="radio" name="overlay-style" id="ov-neon">
+          <figure class="program">
+            <span class="program-label">PROGRAM</span>
+            <span class="program-rec" aria-hidden="true">● LIVE 01:23:08</span>
+            <img class="program-overlay ov-default" src="../images/overlay-default-ja.webp" width="520" height="470" loading="lazy"
+              alt="OBS の配信画面の右下に表示された PolyComme のオーバーレイ（デフォルト）：YouTube と Twitch のコメントが混ざり、スーパーチャットとビッツは黄色">
+            <img class="program-overlay ov-neon" src="../images/overlay-neon-ja.webp" width="520" height="470" loading="lazy"
+              alt="OBS の配信画面の右下に表示された PolyComme のオーバーレイ（ネオン）：暗いコメントバーに光るシアンとピンクの枠">
+            <figcaption class="visually-hidden">OBS の配信画面に表示された PolyComme のオーバーレイ</figcaption>
+          </figure>
+          <div class="ov-switch" role="group" aria-label="オーバーレイのスタイル">
+            <label for="ov-default">デフォルト</label>
+            <label for="ov-neon">ネオン</label>
+          </div>
+          <p class="monitor-note">視聴者が配信画面で見る様子です。スタイルやコメントの背景はアプリで切り替えるので、OBS の設定は変えなくて大丈夫です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">インストール</p>
+        <h2 id="install-title">3 ステップで準備完了</h2>
+      </header>
+      <ol class="steps steps-wide">
+        <li class="tile">
+          <h3>DMG をダウンロードして開く</h3>
+          <p><a href="{{dmgUrl}}">PolyComme {{version}} をダウンロード</a>し、<code>PolyComme-{{version}}.dmg</code> を開いて PolyComme を「アプリケーション」にドラッグします。</p>
+        </li>
+        <li class="tile">
+          <h3>初回起動：開くことを許可</h3>
+          <p>PolyComme はまだ Apple の公証を受けていないため、初回起動時に macOS がブロックします。これは正常な動作です。下の手順を一度行えば、次からは普通に開けます。新しいバージョンをダウンロードするたびに、もう一度行ってください。</p>
+          <div class="os-guides">
+            <details open>
+              <summary>macOS 15 以降（Sequoia、Tahoe）</summary>
+              <ol>
+                <li>PolyComme を開き、「Apple は … を検証できませんでした」と表示されたら<b>「完了」</b>をクリックします。</li>
+                <li><b>「システム設定」→「プライバシーとセキュリティ」</b>を開き、下の「セキュリティ」までスクロールします。</li>
+                <li>「“PolyComme”はブロックされました」の横にある<b>「このまま開く」</b>をクリックし、パスワードを入力して、もう一度<b>「このまま開く」</b>をクリックします。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>macOS 14 Sonoma</summary>
+              <ol>
+                <li>PolyComme を右クリック（または Control＋クリック）して<b>「開く」</b>を選びます。</li>
+                <li>表示されたダイアログで、もう一度<b>「開く」</b>をクリックします。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>ターミナルを使えるなら：1 行で解決</summary>
+              <p class="command"><code>xattr -dr com.apple.quarantine /Applications/PolyComme.app</code></p>
+            </details>
+          </div>
+        </li>
+        <li class="tile">
+          <h3>チャンネルを追加してコメントを受信</h3>
+          <p>起動したら画面の案内に従ってチャンネルを追加します。通知を使う場合は、初回に許可を求められます。</p>
+        </li>
+      </ol>
+      <div class="faq">
+        <h3>現在の制限</h3>
+        <ul>
+          <li>メンバー限定の配信や、ログインが必要な配信のチャットはまだ読み取れません。</li>
+          <li>「休憩」とマイクのボタンには、WebSocket サーバーを有効にした OBS 28 以降が必要です（OBS の「ツール → WebSocket サーバー設定」）。オーバーレイ自体は OBS のブラウザソースならそのまま使えます。</li>
+          <li>Windows 版は開発中です。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">更新履歴</p>
+        <h2 id="releases-title">最近の更新</h2>
+      </header>
+      <div class="changelog">{{changelog}}</div>
+      <p><a href="{{releasesUrl}}">すべてのバージョンを GitHub で見る</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">YouTube と Twitch はそれぞれの所有者の商標です。PolyComme はこれらと提携していません。</p>
+    <p class="disclaimer">このサイトでは閲覧数の集計に Google Analytics（Cookie を使用）を利用しています。</p>
+    <p class="copyright">© 2026 <a href="../../">艾可颯智慧工作室 IksaAI</a>・<a href="../../#apps">ほかのアプリ</a></p>
+  </footer>
+</body>
+</html>
