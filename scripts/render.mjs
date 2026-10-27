@@ -17,6 +17,12 @@ const dmgOf = (release) => release.assets.find((asset) => asset.name.endsWith('.
 const exeOf = (release) => release.assets.find((asset) => asset.name.endsWith('.exe'))
 const zipOf = (release) => release.assets.find((asset) => asset.name.endsWith('.zip'))
 
+/**
+ * App 頁「所有版本與舊版下載」連到 GitHub Releases 的搜尋。只搜 slug：
+ * GitHub 搜尋把「-v」當成排除 v，寫成 <slug>-v 會什麼都找不到
+ */
+export const appReleasesUrl = (repoUrl, slug) => `${repoUrl}/releases?q=${encodeURIComponent(slug)}&expanded=true`
+
 /** 只留下某個 App 的版本（所有 App 共用同一個 repo 的 Releases） */
 export const releasesFor = (releases, slug) => releases.filter((release) => release.tag_name.startsWith(`${slug}-v`))
 

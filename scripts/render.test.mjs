@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { escapeHtml, fillTemplate, formatDate, formatSize, homeText, isReleaseTag, latestDownload, localizeApp, newsFrom, notesFor, redirectPage, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
+import { appReleasesUrl, escapeHtml, fillTemplate, formatDate, formatSize, homeText, isReleaseTag, latestDownload, localizeApp, newsFrom, notesFor, redirectPage, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
 
 const RELEASES_URL = 'https://github.com/IksaAI/IksaAI.github.io/releases'
 
@@ -244,6 +244,11 @@ test('news summaries use the page language when the release notes have one', () 
   const entries = [{ app: app(), releases: [release({ body: '修正\n<!-- lang:en -->\nFixes' })] }]
   assert.equal(newsFrom(entries, 1, 'en')[0].summary, 'Fixes')
   assert.equal(newsFrom(entries, 1, 'ja')[0].summary, '修正')
+})
+
+test('an app links to a GitHub release search that finds its releases', () => {
+  // GitHub 搜尋把「-v」當成排除 v，eqalert-v 會什麼都找不到
+  assert.equal(appReleasesUrl('https://github.com/IksaAI/IksaAI.github.io', 'polycomme'), 'https://github.com/IksaAI/IksaAI.github.io/releases?q=polycomme&expanded=true')
 })
 
 test('release tags must be <slug>-v<version>', () => {

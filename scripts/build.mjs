@@ -4,6 +4,7 @@
 import { existsSync } from 'node:fs'
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import {
+  appReleasesUrl,
   escapeHtml,
   fillTemplate,
   homeText,
@@ -74,7 +75,7 @@ async function writeOldLangRedirect(slug, lang) {
 async function buildAppPage({ app, releases, download }) {
   const values = escapeAll({
     ...download,
-    releasesUrl: `${REPO_URL}/releases?q=${app.slug}-v&expanded=true`,
+    releasesUrl: appReleasesUrl(REPO_URL, app.slug),
   })
   for (const lang of ALL_LANGS) {
     const path = `${langDir(lang)}/${app.slug}/index.html`
