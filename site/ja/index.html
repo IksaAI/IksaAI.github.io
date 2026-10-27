@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>艾可颯智慧工作室 IksaAI</title>
+  <meta name="description" content="艾可颯智慧工作室（IksaAI）は、ひとつのことをちゃんとやるアプリとオンラインサービスをつくっています。紹介、ダウンロード、リリース履歴はこちら。">
+  <meta name="theme-color" content="#F1F3F6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0A0F1D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="艾可颯智慧工作室 IksaAI">
+  <meta property="og:description" content="ひとつのことを、ちゃんとやるソフトウェア。">
+  <meta property="og:image" content="https://iksaai.github.io/assets/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/ja/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;900&family=Noto+Sans+JP:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../assets/studio.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツへ移動</a>
+
+  <div class="wrap">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="IksaAI 艾可颯智慧工作室">IksaAI<span class="wordmark-zh">艾可颯智慧工作室</span></a>
+      <nav aria-label="メインナビゲーション">
+        <ul>
+          <li><a href="#apps">アプリ</a></li>
+          <li><a href="#services">オンラインサービス</a></li>
+          <li><a href="{{releasesUrl}}">すべてのバージョン</a></li>
+        </ul>
+      </nav>
+      <nav class="lang-switch" aria-label="Language"><a href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="../en/" hreflang="en" lang="en">EN</a><a href="./" hreflang="ja" lang="ja" aria-current="page">日本語</a></nav>
+    </header>
+  </div>
+
+  <main id="main" class="wrap">
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <h1 id="manifesto-title">ひとつのことを、<br><em>ちゃんとやる</em>ソフトウェア。</h1>
+      <p class="lede">IksaAI はアプリとオンラインサービスをつくっています。</p>
+      <p class="signature"><b>艾可颯智慧工作室</b><span>IksaAI・2026</span></p>
+    </section>
+
+    <section id="apps" class="works" aria-labelledby="apps-title">
+      <header class="works-head">
+        <h2 id="apps-title">アプリ</h2>
+        <p>パソコンで動くアプリ・{{workCount}} 本公開中</p>
+      </header>
+      <div class="bento">
+{{featured}}
+        <aside class="tile news" aria-labelledby="news-title">
+          <h3 id="news-title" class="label">最新情報</h3>
+          <ul>
+{{news}}
+          </ul>
+        </aside>
+        <aside class="tile install" aria-labelledby="install-title">
+          <h3 id="install-title" class="label">ダウンロードとインストール</h3>
+          <p>インストーラーは GitHub Releases に置いてあり、どのバージョンにも更新内容を載せています。Mac アプリはまだ Apple の公証を受けていないため、初めて開くときに一度だけ手動で許可が必要です。手順は各アプリのページにあります。</p>
+          <a href="{{releasesUrl}}">GitHub ですべてのバージョンを見る →</a>
+        </aside>
+{{works}}
+      </div>
+    </section>
+
+    <section id="services" class="works" aria-labelledby="services-title">
+      <header class="works-head">
+        <h2 id="services-title">オンラインサービス</h2>
+        <p>インストール不要、ネットにつなぐだけ</p>
+      </header>
+      <div class="bento">
+        <div class="tile soon span-4">
+          <span class="placeholder" aria-hidden="true"></span>
+          <div><p class="label">制作中</p><h3>最初のオンラインサービス</h3></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="wrap">
+    <footer class="site-footer">
+      <p>© 2026 艾可颯智慧工作室 IksaAI</p>
+      <p>このサイトでは閲覧数の集計に Google Analytics を使用しています（Cookie を使用します）・<a href="https://github.com/IksaAI">GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>

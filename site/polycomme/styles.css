@@ -56,6 +56,8 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-underline-offset: 3px; }
+/* 可以按的地方一律顯示手指游標（新加的按鈕、展開選單也不會漏掉） */
+a[href], button:not(:disabled), summary, label[for], select { cursor: pointer; }
 code { font: 0.9em ui-monospace, "SF Mono", Menlo, monospace; background: var(--bubble); padding: 0.1em 0.4em; border-radius: 6px; overflow-wrap: anywhere; }
 h1, h2, h3 { margin: 0; line-height: 1.2; }
 p { margin: 0; }

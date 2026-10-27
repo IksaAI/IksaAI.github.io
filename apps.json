@@ -3,7 +3,7 @@
     "slug": "eqalert",
     "name": "EQalert",
     "subtitle": "地震速報",
-    "tagline": "平時安心，有事大聲。台灣發布地震速報時，倒數搖晃抵達你的秒數，並預估你這裡的震度。",
+    "tagline": "地震資訊，一眼看懂。即時顯示台灣、日本發生的地震。",
     "requirements": "macOS 14・Windows 10 以上",
     "windows": true,
     "icon": "eqalert/images/icon-256.png",
@@ -11,7 +11,21 @@
     "screenshotAlt": "EQalert 主畫面：地震清單、震度地圖與地震詳細資料",
     "overlay": "eqalert/images/mac-eew-1280.webp",
     "overlayAlt": "EQalert 地震速報畫面：30 秒後搖晃抵達你的位置",
-    "featured": true
+    "featured": true,
+    "en": {
+      "subtitle": "Earthquake alerts",
+      "tagline": "Earthquakes at a glance. See earthquakes in Taiwan and Japan as they're reported.",
+      "requirements": "macOS 14 · Windows 10 or later",
+      "screenshotAlt": "EQalert main window: earthquake list, intensity map, and earthquake details",
+      "overlayAlt": "EQalert early warning screen: shaking reaches your location in 30 seconds"
+    },
+    "ja": {
+      "subtitle": "地震速報",
+      "tagline": "地震情報を、ひと目で。台湾と日本の地震をリアルタイムで表示します。",
+      "requirements": "macOS 14・Windows 10 以降",
+      "screenshotAlt": "EQalert のメイン画面：地震の一覧、震度の地図、地震の詳細",
+      "overlayAlt": "EQalert の地震速報の画面：30 秒後にあなたの位置に揺れが到達"
+    }
   },
   {
     "slug": "polycomme",
@@ -23,6 +37,18 @@
     "portable": true,
     "icon": "polycomme/images/icon-256.png",
     "screenshot": "polycomme/images/mac-main-dark-1280.webp",
-    "screenshotAlt": "PolyComme 主畫面：左邊是直播狀態與 YouTube、Twitch 兩個頻道的觀看人數，右邊是兩邊合在一起的留言"
+    "screenshotAlt": "PolyComme 主畫面：左邊是直播狀態與 YouTube、Twitch 兩個頻道的觀看人數，右邊是兩邊合在一起的留言",
+    "en": {
+      "subtitle": "Multi-platform chat",
+      "tagline": "Every chat, one window. YouTube and Twitch chat merged into one feed you read in one window — and show on stream through OBS.",
+      "requirements": "macOS 14 · Windows 10 or later",
+      "screenshotAlt": "PolyComme main window: stream status and viewer counts for a YouTube and a Twitch channel on the left, both chats merged on the right"
+    },
+    "ja": {
+      "subtitle": "コメント統合",
+      "tagline": "すべてのコメントを、ひとつの窓で。YouTube と Twitch のコメントをひとつにまとめて、OBS の画面にも。",
+      "requirements": "macOS 14・Windows 10 以降",
+      "screenshotAlt": "PolyComme のメイン画面：左に配信状況と YouTube・Twitch 両チャンネルの視聴者数、右に両方をまとめたコメント"
+    }
   }
 ]

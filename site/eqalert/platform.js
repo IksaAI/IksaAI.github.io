@@ -4,14 +4,16 @@
 // 換截圖檔名或尺寸時，MAIN_SHOTS 要跟 index.html 一起改。
 const PLATFORMS = ['mac', 'win']
 const MAIN_SHOT_SIZES = '(min-width: 1120px) 720px, 92vw'
+// 以這支 script 的位置找截圖，英文、日文頁（en/、ja/）才不會指到不存在的 en/images/
+const IMAGES = new URL('images/', document.currentScript.src).href
 const MAIN_SHOTS = {
   mac: {
-    light: 'images/mac-main-1280.webp 1280w, images/mac-main-2400.webp 2400w',
-    dark: 'images/mac-main-dark-1280.webp 1280w, images/mac-main-dark-2400.webp 2400w',
+    light: `${IMAGES}mac-main-1280.webp 1280w, ${IMAGES}mac-main-2400.webp 2400w`,
+    dark: `${IMAGES}mac-main-dark-1280.webp 1280w, ${IMAGES}mac-main-dark-2400.webp 2400w`,
   },
   win: {
-    light: 'images/win-main-1280.webp 1280w',
-    dark: 'images/win-main-dark-1280.webp 1280w',
+    light: `${IMAGES}win-main-1280.webp 1280w`,
+    dark: `${IMAGES}win-main-dark-1280.webp 1280w`,
   },
 }
 

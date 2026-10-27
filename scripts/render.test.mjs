@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { escapeHtml, fillTemplate, formatDate, formatSize, isReleaseTag, latestDownload, newsFrom, notesFor, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
+import { escapeHtml, fillTemplate, formatDate, formatSize, homeText, isReleaseTag, latestDownload, localizeApp, newsFrom, notesFor, redirectPage, releasesFor, renderChangelog, renderNotes, soonSpan, summaryOf, validateApps } from './render.mjs'
 
 const RELEASES_URL = 'https://github.com/IksaAI/IksaAI.github.io/releases'
 
@@ -199,6 +199,34 @@ test('accepts valid apps and rejects broken apps.json entries', () => {
   assert.deepEqual(validateApps([app({ windows: true, portable: true })]), [app({ windows: true, portable: true })])
   assert.throws(() => validateApps([app({ windows: true, portable: 'yes' })]), /portable/)
   assert.throws(() => validateApps([app({ portable: true })]), /windows: true/)
+  assert.deepEqual(validateApps([app({ en: { tagline: 'Quiet.' } })]), [app({ en: { tagline: 'Quiet.' } })])
+  assert.throws(() => validateApps([app({ en: 'Quiet.' })]), /en/)
+})
+
+test('an app in another language overrides only the fields it translates', () => {
+  const zh = app({ subtitle: '地震速報', tagline: '平時安心', en: { subtitle: 'Earthquake alerts' } })
+  const en = localizeApp(zh, 'en')
+  assert.equal(en.subtitle, 'Earthquake alerts')
+  assert.equal(en.tagline, '平時安心')
+  assert.equal(localizeApp(zh, 'ja').subtitle, '地震速報')
+  assert.equal(localizeApp(zh, 'zh').subtitle, '地震速報')
+})
+
+test('home page text follows the page language, with the download label in each word order', () => {
+  assert.equal(homeText('zh').downloadApp('EQalert'), '下載 EQalert')
+  assert.equal(homeText('en').downloadApp('EQalert'), 'Download EQalert')
+  assert.equal(homeText('ja').downloadApp('EQalert'), 'EQalert をダウンロード')
+  assert.equal(homeText('ja').root, '../')
+  assert.equal(homeText('zh').root, '')
+  assert.equal(homeText('xx'), homeText('zh'))
+})
+
+test('old language URLs send visitors to the new address', () => {
+  const html = redirectPage('../../en/polycomme/', 'https://iksaai.github.io/en/polycomme/')
+  assert.match(html, /<meta http-equiv="refresh" content="0; url=\.\.\/\.\.\/en\/polycomme\/">/)
+  assert.match(html, /<link rel="canonical" href="https:\/\/iksaai\.github\.io\/en\/polycomme\/">/)
+  assert.match(html, /<meta name="robots" content="noindex">/)
+  assert.match(html, /<a href="\.\.\/\.\.\/en\/polycomme\/">/)
 })
 
 test('news lists the newest releases across all apps', () => {
@@ -210,6 +238,12 @@ test('news lists the newest releases across all apps', () => {
     newsFrom(entries, 2).map(({ name, version, date, summary, href }) => [name, version, date, summary, href]),
     [['EQalert', '0.7.0', '2026-11-01', '修正', 'eqalert/#releases'], ['Next', '1.0.0', '2026-10-20', '第一版', 'next/#releases']],
   )
+})
+
+test('news summaries use the page language when the release notes have one', () => {
+  const entries = [{ app: app(), releases: [release({ body: '修正\n<!-- lang:en -->\nFixes' })] }]
+  assert.equal(newsFrom(entries, 1, 'en')[0].summary, 'Fixes')
+  assert.equal(newsFrom(entries, 1, 'ja')[0].summary, '修正')
 })
 
 test('release tags must be <slug>-v<version>', () => {

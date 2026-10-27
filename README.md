@@ -1,6 +1,6 @@
 <h1 align="center">IksaAI</h1>
 
-<p align="center"><b>做在關鍵時刻，派得上用場的軟體。</b></p>
+<p align="center"><b>每個軟體，只做好一件事。</b></p>
 
 <p align="center">
   <a href="https://iksaai.github.io"><b>iksaai.github.io</b></a> ・
@@ -13,8 +13,8 @@
 
 | App | 介紹與下載 | 需求 |
 |---|---|---|
-| EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/) | macOS 14 以上、Windows 10（2004 版）以上 |
-| PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/polycomme/en/)・[日本語](https://iksaai.github.io/polycomme/ja/)） | macOS 14 以上、Windows 10（2004 版）以上 |
+| EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/)（[English](https://iksaai.github.io/en/eqalert/)・[日本語](https://iksaai.github.io/ja/eqalert/)） | macOS 14 以上、Windows 10（2004 版）以上 |
+| PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/en/polycomme/)・[日本語](https://iksaai.github.io/ja/polycomme/)） | macOS 14 以上、Windows 10（2004 版）以上 |
 
 ## 安裝 EQalert
 
@@ -57,9 +57,10 @@
 
 | 路徑 | 內容 |
 |---|---|
-| `apps.json` | 所有 App 的資料；`slug` 同時是網址（`/eqalert/`）和 release tag 前綴（`eqalert-v…`） |
+| `apps.json` | 所有 App 的資料；`slug` 同時是網址（`/eqalert/`）和 release tag 前綴（`eqalert-v…`）。`en`、`ja` 放首頁方格用的翻譯（`subtitle`、`tagline`、`requirements`、`screenshotAlt`、`overlayAlt`），沒翻的欄位沿用繁中 |
 | `site/index.html`、`site/assets/` | 工作室首頁（藍晒配色）；App 方格與最新動態在部署時產生 |
-| `site/<slug>/` | 各 App 的介紹頁，保留 App 自己的設計；`{{version}}` 等欄位在部署時填入。有英文、日文頁的話放在 `site/<slug>/en/`、`site/<slug>/ja/`（PolyComme），版本紀錄會用那一頁的語言 |
+| `site/<slug>/` | 各 App 的介紹頁（繁中），保留 App 自己的設計；`{{version}}` 等欄位在部署時填入。App 的圖片、CSS、JS 都放這裡，英文、日文頁也用這一份 |
+| `site/en/`、`site/ja/` | 英文、日文版：首頁是 `site/en/index.html`，App 頁是 `site/en/<slug>/index.html`，網址是 `/en/`、`/en/<slug>/`。沒做的語言就不建置，首頁方格改連繁中頁。版本紀錄會用那一頁的語言。舊網址 `/<slug>/en/`（PolyComme 1.0.0 的 release 說明有用到）在建置時自動產生轉址頁 |
 | `site/eqalert/platform.js` | 判斷訪客用 macOS 還是 Windows（寫在 `<html data-platform>`），切換下載按鈕、截圖和安裝步驟；網址加 `?os=win` 或 `?os=mac` 可以指定 |
 | `templates/` | 首頁方格的 HTML 樣板（不會發布） |
 | `site/assets/analytics.js` | Google Analytics 4（評估 ID `G-Y5PN5P55LH`）的初始化；CSP 不允許 inline script，所以不能照 GA 給的片段直接貼 |
@@ -83,7 +84,7 @@ gh release create eqalert-v<版本> EQalert-<版本>.dmg EQalert-Setup-<版本>-
 gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版本>
 ```
 
-release 說明可以寫三種語言：最前面是繁中，`<!-- lang:en -->`、`<!-- lang:ja -->` 下面各是英文、日文，`<!-- lang:all -->` 下面的內容（例如 SHA-256）每個語言頁都會顯示。這幾行在 GitHub 的 release 頁上看不到；英文、日文頁只顯示自己那段，沒寫就退回繁中。首頁「最新動態」用繁中那段的第一行。
+release 說明可以寫三種語言：最前面是繁中，`<!-- lang:en -->`、`<!-- lang:ja -->` 下面各是英文、日文，`<!-- lang:all -->` 下面的內容（例如 SHA-256）每個語言頁都會顯示。這幾行在 GitHub 的 release 頁上看不到；英文、日文頁只顯示自己那段，沒寫就退回繁中。首頁「最新動態」用那個語言那段的第一行。
 
 每個 App 的最新 release 一定要有 DMG；`apps.json` 標了 `"windows": true` 的 App（EQalert），最新 release 也一定要有 Windows 安裝檔（`.exe`）；再標了 `"portable": true` 的（PolyComme）還要有免安裝版（`.zip`）。缺檔時建置會失敗，網站維持上一版。
 EQalert 的完整步驟（改版號、兩台電腦分別打包、雜湊）寫在 EQalert 原始碼 repo 的 `docs/發版流程.md`。
@@ -93,7 +94,7 @@ EQalert 的完整步驟（改版號、兩台電腦分別打包、雜湊）寫在
 ## 新增一個 App
 
 1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的精選大格；截圖用 16:10；有 Windows 版就加 `"windows": true`，頁面可以用 `{{exeUrl}}`、`{{exeSize}}`、`{{exeName}}`；有 Windows 免安裝版再加 `"portable": true`，頁面可以用 `{{zipUrl}}`、`{{zipSize}}`、`{{zipName}}`）
-2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）。`<head>` 要照抄 EQalert 頁的 CSP 和兩行 GA 載入（`gtag/js` 與 `../assets/analytics.js`），頁尾也要寫明使用 Google Analytics
+2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）。`<head>` 要照抄 EQalert 頁的 CSP 和兩行 GA 載入（`gtag/js` 與 `../assets/analytics.js`），頁尾也要寫明使用 Google Analytics。要英文、日文頁的話放 `site/en/<slug>/`、`site/ja/<slug>/`（可參考 `site/en/eqalert/`：資源路徑是 `../../<slug>/…`，頁首、頁尾連回 `../` 同語言的首頁），並在 `apps.json` 加上 `en`、`ja` 的翻譯
 3. **先發布第一個 release**（`<slug>-v1.0.0`，附上安裝檔），再 push 網站。還沒有 release 的 App 會讓建置失敗，網站會維持上一版。
 
 ---

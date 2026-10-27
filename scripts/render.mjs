@@ -78,7 +78,7 @@ export function latestDownload(releases, { windows = false, portable = false } =
 }
 
 /**
- * App 頁的語言：繁中是 site/<slug>/index.html，其他語言放在 site/<slug>/<語言>/index.html（有才建置）。
+ * 網站的語言：繁中在根目錄（/、/<slug>/），其他語言整個放在 /<語言>/ 底下（/en/、/en/<slug>/），有做才建置。
  * 版本紀錄的固定文字跟著頁面語言。
  */
 export const PAGE_LANGS = ['en', 'ja']
@@ -137,6 +137,37 @@ ${download}
 export const renderChangelog = (releases, lang = 'zh') =>
   releases.map((release, index) => renderRelease(release, index === 0, lang)).join('\n')
 
+/** 首頁方格的固定文字；root 是語言頁回到根目錄的路徑（apps.json 的圖片路徑以根目錄為準） */
+const HOME_TEXT = {
+  zh: { root: '', sep: '・', featured: '精選', readMore: '閱讀介紹 →', moreSoon: '更多 App 製作中', version: (v) => `版本 ${v}`, downloadApp: (name) => `下載 ${name}` },
+  en: { root: '../', sep: ' · ', featured: 'Featured', readMore: 'Read more →', moreSoon: 'More apps on the way', version: (v) => `Version ${v}`, downloadApp: (name) => `Download ${name}` },
+  ja: { root: '../', sep: '・', featured: 'おすすめ', readMore: '詳しく見る →', moreSoon: 'ほかのアプリも制作中', version: (v) => `バージョン ${v}`, downloadApp: (name) => `${name} をダウンロード` },
+}
+
+export const homeText = (lang) => HOME_TEXT[lang] ?? HOME_TEXT.zh
+
+/** apps.json 的 App 換成某個語言：有翻譯的欄位（app.en、app.ja）蓋過繁中，沒翻的沿用繁中 */
+export const localizeApp = (app, lang) => ({ ...app, ...(app[lang] ?? {}) })
+
+/** 搬走的網址留一頁轉址（GitHub Pages 不能設伺服器轉址），例如舊的 /polycomme/en/ → /en/polycomme/ */
+export function redirectPage(relativeUrl, canonicalUrl) {
+  const href = escapeHtml(relativeUrl)
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url=${href}">
+  <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
+  <title>IksaAI</title>
+</head>
+<body>
+  <p><a href="${href}">${escapeHtml(canonicalUrl)}</a></p>
+</body>
+</html>
+`
+}
+
 /** 填入 {{欄位}}；樣板裡有沒提供的欄位就報錯，避免把 {{...}} 發布出去 */
 export function fillTemplate(template, values) {
   return template.replace(/\{\{(\w+)\}\}/g, (placeholder, key) => {
@@ -161,6 +192,11 @@ export function validateApps(apps) {
     if ('windows' in app && typeof app.windows !== 'boolean') throw new Error(`apps.json 的 ${app.slug}：windows 只能是 true 或 false`)
     if ('portable' in app && typeof app.portable !== 'boolean') throw new Error(`apps.json 的 ${app.slug}：portable 只能是 true 或 false`)
     if (app.portable && !app.windows) throw new Error(`apps.json 的 ${app.slug}：portable（Windows 免安裝版）要搭配 windows: true`)
+    for (const lang of PAGE_LANGS) {
+      if (lang in app && (typeof app[lang] !== 'object' || app[lang] === null || Array.isArray(app[lang]))) {
+        throw new Error(`apps.json 的 ${app.slug}：${lang} 要是翻譯欄位的物件，例如 { "tagline": "…" }`)
+      }
+    }
   }
   return apps
 }
@@ -182,16 +218,17 @@ export function summaryOf(markdown) {
 /** 「更多 App 製作中」那格要橫跨幾欄，才能補滿最後一列 */
 export const soonSpan = (workCount, columns) => columns - (workCount % columns)
 
-/** 所有 App 最新的幾個版本，新的在前 */
-export function newsFrom(entries, limit) {
+/** 所有 App 最新的幾個版本，新的在前；摘要用頁面語言的 release 說明 */
+export function newsFrom(entries, limit, lang = 'zh') {
   return entries
     .flatMap(({ app, releases }) =>
       releases.map((release) => ({
+        slug: app.slug,
         name: app.name,
         version: versionOf(release),
         date: formatDate(release.published_at),
         publishedAt: release.published_at,
-        summary: summaryOf(notesFor(release.body ?? '')),
+        summary: summaryOf(notesFor(release.body ?? '', lang)),
         href: `${app.slug}/#releases`,
       })),
     )

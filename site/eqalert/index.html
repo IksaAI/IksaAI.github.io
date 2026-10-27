@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>EQalert 地震速報｜Mac・Windows 版下載</title>
-  <meta name="description" content="給 Mac 與 Windows 的地震速報 App。平時安心，有事大聲：台灣地震速報倒數、預估你這裡的震度，以及台灣、日本、印尼的地震報告。">
+  <meta name="description" content="給 Mac 與 Windows 的地震 App。地震資訊，一眼看懂：即時顯示台灣、日本發生的地震。">
   <meta name="theme-color" content="#F4F4F3" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0D0D0D" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -14,10 +14,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="IksaAI">
   <meta property="og:title" content="EQalert 地震速報｜Mac・Windows 版下載">
-  <meta property="og:description" content="平時安心，有事大聲。給 Mac 與 Windows 的地震速報 App。">
+  <meta property="og:description" content="地震資訊，一眼看懂。給 Mac 與 Windows 的地震 App。">
   <meta property="og:image" content="https://iksaai.github.io/eqalert/images/og.jpg">
   <meta property="og:url" content="https://iksaai.github.io/eqalert/">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/eqalert/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/eqalert/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/eqalert/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/eqalert/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Space+Grotesk:wght@500;700&display=swap">
@@ -44,6 +48,7 @@
         <li><a href="#releases">版本紀錄</a></li>
       </ul>
     </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="./" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">中文</a><a href="../en/eqalert/" hreflang="en" lang="en">EN</a><a href="../ja/eqalert/" hreflang="ja" lang="ja">日本語</a></nav>
     <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">下載</a>
     <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">下載</a>
   </header>
@@ -52,8 +57,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>macOS・Windows・最新版本 {{version}}</p>
-        <h1 id="hero-title">平時安心，<br><em>有事大聲。</em></h1>
-        <p class="lede">EQalert 把地震資料翻成人話：現在安全嗎？跟我有沒有關係？我該做什麼？台灣發布地震速報時，它會倒數搖晃還有幾秒抵達你的位置。</p>
+        <h1 id="hero-title">地震資訊，<br><em>一眼看懂。</em></h1>
+        <p class="lede">EQalert 即時顯示台灣、日本發生的地震。</p>
         <div class="cta" id="download">
           <div class="os-switch" role="group" aria-label="選擇你的電腦">
             <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
@@ -122,24 +127,19 @@
     <section id="moments" class="moments" aria-labelledby="moments-title">
       <header class="section-head">
         <p class="kicker">01</p>
-        <h2 id="moments-title">三種時刻，三種樣子</h2>
-        <p>平常它很安靜，不會用紅色、閃爍嚇你；只有真的需要你注意的時候，它才會大聲。</p>
+        <h2 id="moments-title">打開就知道</h2>
+        <p>現在有沒有地震、剛剛那起在哪裡、有多強。</p>
       </header>
       <ol class="moment-list">
         <li class="moment moment-calm">
           <p class="moment-tag">平時</p>
           <p class="moment-say">目前沒有地震速報</p>
-          <p class="moment-body">打開就知道現在的狀態。下面是過去 24 小時的地震紙帶：每一根尖峰都是一起真實的地震，沒有地震時就是一條平平的線。</p>
+          <p class="moment-body">一眼看到現在的狀態。下面是過去 24 小時的地震紙帶：每一根尖峰都是一起真實的地震，沒有地震時就是一條平平的線。</p>
         </li>
         <li class="moment moment-heads-up">
           <p class="moment-tag">剛剛有感</p>
           <p class="moment-say">11 分鐘前，花蓮縣近海，最大震度 4</p>
           <p class="moment-body">不用自己查：發生在哪、多強、離你多遠、各地震度多少，再加上「房屋明顯搖晃，不穩物品可能掉落」這種一看就懂的說明。</p>
-        </li>
-        <li class="moment moment-alarm">
-          <p class="moment-tag">速報來了</p>
-          <p class="moment-say"><span class="count">30</span> 秒後，搖晃抵達你的位置</p>
-          <p class="moment-body">達到你設定的條件時，整個畫面切換成警報：倒數秒數、預估你這裡的震度、「趴下・掩護・穩住」三個步驟，加上警報音與語音播報。</p>
         </li>
       </ol>
     </section>
@@ -151,31 +151,31 @@
       </header>
       <ul class="feature-grid">
         <li>
-          <h3>只在需要時大聲</h3>
-          <p>你決定門檻：你這裡的預估震度達到幾級，或規模達到多少，才跳出全螢幕警報。遠方的小地震只會安靜地提示一行。</p>
+          <h3>只通知你在意的</h3>
+          <p>你決定門檻：你這裡的預估震度達到幾級，或規模達到多少，才送出系統通知。</p>
         </li>
         <li>
           <h3>看得見的地震波</h3>
-          <p>P 波與 S 波在地圖上從震央往外擴散。平時也能挑任何一起地震，重播震波怎麼傳到你那裡。</p>
+          <p>挑任何一起地震，在地圖上重播 P 波與 S 波從震央傳到你那裡的過程。</p>
         </li>
         <li>
           <h3>各地震度一目了然</h3>
           <p>點開一起地震，地圖畫出各地量到的震度。日本的震度直接採用日本氣象廳資料，並附上官方報告連結。</p>
         </li>
         <li>
-          <h3>台灣・日本・印尼</h3>
-          <p>三個國家的地震報告。台灣速報是全螢幕警報加浮動視窗，日本速報是頂部橫幅提醒。</p>
+          <h3>台灣・日本</h3>
+          <p>勾選要追蹤的地區；沒勾的完全不下載資料。</p>
         </li>
         <li>
           <h3>常駐選單列・系統匣</h3>
-          <p>關掉主視窗也會繼續待在 Mac 的選單列、Windows 的系統匣監看，速報來時照樣提醒。</p>
+          <p>關掉主視窗也會繼續待在 Mac 的選單列、Windows 的系統匣，有新地震照樣通知。</p>
         </li>
         <li>
           <h3>五種語言</h3>
-          <p>繁體中文、简体中文、English、日本語、Bahasa Indonesia，介面和語音播報都會切換。</p>
+          <p>繁體中文、简体中文、English、日本語、Bahasa Indonesia，整個介面跟著切換。</p>
         </li>
       </ul>
-      <p class="privacy-note"><strong>你的位置不會離開這台電腦。</strong>定位只用來計算你與震央的距離和倒數秒數；不想開定位，也可以手動選城市。</p>
+      <p class="privacy-note"><strong>你的位置不會離開這台電腦。</strong>定位只用來計算你與震央的距離和你這裡的預估震度；不想開定位，也可以手動選城市。</p>
     </section>
 
     <section id="install" class="install" aria-labelledby="install-title">
@@ -227,7 +227,7 @@
           </li>
           <li>
             <h3>允許通知與定位</h3>
-            <p>通知用來在速報時提醒你，定位用來估算搖晃抵達的秒數和你這裡的震度。之後可以在「設定」（⌘,）調整提醒門檻、聲音和語言。</p>
+            <p>通知用來提醒你新的地震，定位用來計算你與震央的距離和你這裡的預估震度。之後可以在「設定」（⌘,）調整提醒門檻、聲音和語言。</p>
           </li>
         </ol>
       </div>
@@ -247,7 +247,7 @@
           </li>
           <li>
             <h3>允許通知與定位</h3>
-            <p>通知用來在速報時提醒你。定位用來估算搖晃抵達的秒數和你這裡的震度，要在 Windows 的<b>「設定」→「隱私權與安全性」→「位置」</b>打開「讓桌面應用程式存取您的位置」；不想開定位，也可以手動選城市。之後可以在「設定」（Ctrl+,）調整提醒門檻、聲音和語言。</p>
+            <p>通知用來提醒你新的地震。定位用來計算你與震央的距離和你這裡的預估震度，要在 Windows 的<b>「設定」→「隱私權與安全性」→「位置」</b>打開「讓桌面應用程式存取您的位置」；不想開定位，也可以手動選城市。之後可以在「設定」（Ctrl+,）調整提醒門檻、聲音和語言。</p>
           </li>
         </ol>
       </div>
@@ -269,7 +269,7 @@
   <footer class="site-footer">
     <div class="footer-sources">
       <h2>資料來源</h2>
-      <p>中央氣象署、ExpTech、日本氣象廳、P2P地震情報、印尼氣象氣候及地球物理局（BMKG）。</p>
+      <p>中央氣象署、ExpTech、日本氣象廳、P2P地震情報。</p>
     </div>
     <p class="disclaimer">EQalert 不是官方的地震速報系統。資料僅供參考，實際狀況請以各國官方機關發布為準。</p>
     <p class="disclaimer">本站使用 Google Analytics 統計瀏覽量（會使用 Cookie）。</p>

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>EQalert — Earthquake alerts | Download for Mac &amp; Windows</title>
+  <meta name="description" content="An earthquake app for Mac and Windows. Earthquakes at a glance: see earthquakes in Taiwan and Japan as they're reported.">
+  <meta name="theme-color" content="#F4F4F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D0D0D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../eqalert/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../eqalert/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="EQalert — Earthquake alerts | Download for Mac &amp; Windows">
+  <meta property="og:description" content="Earthquakes, at a glance. An earthquake app for Mac and Windows.">
+  <meta property="og:image" content="https://iksaai.github.io/eqalert/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/en/eqalert/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/eqalert/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/eqalert/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/eqalert/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/eqalert/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../eqalert/styles.css">
+  <script src="../../eqalert/platform.js"></script>
+  <script src="../../eqalert/main.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="../../eqalert/images/icon-256.png" width="36" height="36" alt="">
+      <span>EQalert <span class="brand-sub">Earthquake alerts</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#moments">Features</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#releases">Releases</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../../eqalert/" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="./" hreflang="en" lang="en" aria-current="page">EN</a><a href="../../ja/eqalert/" hreflang="ja" lang="ja">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">Download</a>
+    <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">Download</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>macOS · Windows · Latest {{version}}</p>
+        <h1 id="hero-title">Earthquakes,<br><em>at a glance.</em></h1>
+        <p class="lede">EQalert shows earthquakes in Taiwan and Japan as they're reported.</p>
+        <div class="cta" id="download">
+          <div class="os-switch" role="group" aria-label="Choose your computer">
+            <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+            <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+          </div>
+          <div data-os="mac">
+            <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              Download EQalert {{version}}
+            </a>
+            <p class="cta-meta">
+              <span>macOS 14 or later</span><span>Apple silicon &amp; Intel</span><span>{{dmgSize}}</span><span>Free</span>
+            </p>
+            <p class="cta-note">Blocked by macOS the first time? <a href="#install">See how to install</a></p>
+          </div>
+          <div data-os="win">
+            <a class="btn btn-ink btn-large" href="{{exeUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              Download EQalert {{version}}
+            </a>
+            <p class="cta-meta">
+              <span>Windows 10 (version 2004) or later</span><span>64-bit</span><span>{{exeSize}}</span><span>Free</span>
+            </p>
+            <p class="cta-note">Seeing “Windows protected your PC”? <a href="#install">See how to install</a></p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="hero-visual" data-os="mac">
+        <picture class="shot shot-main">
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../../eqalert/images/mac-main-dark-1280.webp 1280w, ../../eqalert/images/mac-main-dark-2400.webp 2400w"
+            sizes="(min-width: 1120px) 720px, 92vw">
+          <img src="../../eqalert/images/mac-main-1280.webp"
+            srcset="../../eqalert/images/mac-main-1280.webp 1280w, ../../eqalert/images/mac-main-2400.webp 2400w"
+            sizes="(min-width: 1120px) 720px, 92vw"
+            width="1280" height="800" loading="lazy"
+            alt="EQalert main window: recent earthquakes on the left, a map of intensities in the middle, earthquake details on the right">
+        </picture>
+        <img class="shot shot-alert" src="../../eqalert/images/mac-eew-1280.webp"
+          srcset="../../eqalert/images/mac-eew-1280.webp 1280w, ../../eqalert/images/mac-eew-2400.webp 2400w"
+          sizes="(min-width: 1120px) 400px, 52vw"
+          width="1280" height="800" loading="lazy"
+          alt="Earthquake early warning screen: a large 30-second countdown to the shaking">
+        <figcaption class="visually-hidden">EQalert's main window and early warning screen</figcaption>
+      </figure>
+      <figure class="hero-visual" data-os="win">
+        <picture class="shot shot-main">
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../../eqalert/images/win-main-dark-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw">
+          <img src="../../eqalert/images/win-main-1280.webp"
+            srcset="../../eqalert/images/win-main-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw"
+            width="1280" height="760" loading="lazy"
+            alt="EQalert for Windows main window: status and recent earthquakes on the left, a map of intensities in the middle, earthquake details on the right">
+        </picture>
+        <img class="shot shot-alert" src="../../eqalert/images/win-eew-1280.webp"
+          sizes="(min-width: 1120px) 400px, 52vw"
+          width="1280" height="760" loading="lazy"
+          alt="Early warning screen on Windows: a 26-second countdown while P and S waves spread toward your location on the map">
+        <figcaption class="visually-hidden">EQalert for Windows: main window and early warning screen</figcaption>
+      </figure>
+    </section>
+
+    <section id="moments" class="moments" aria-labelledby="moments-title">
+      <header class="section-head">
+        <p class="kicker">01</p>
+        <h2 id="moments-title">Open it and know</h2>
+        <p>Whether there's been an earthquake, where it was, and how strong.</p>
+      </header>
+      <ol class="moment-list">
+        <li class="moment moment-calm">
+          <p class="moment-tag">Calm</p>
+          <p class="moment-say">No earthquake alerts right now</p>
+          <p class="moment-body">See where things stand at a glance. Below is a seismograph-style strip of the past 24 hours: every spike is a real earthquake, and a quiet day is a flat line.</p>
+        </li>
+        <li class="moment moment-heads-up">
+          <p class="moment-tag">Just felt</p>
+          <p class="moment-say">11 min ago, off the coast of Hualien County, max intensity 4</p>
+          <p class="moment-body">No need to look it up: where it happened, how strong it was, how far it is from you, and the intensity in each area, plus plain notes like “buildings shake noticeably; unstable objects may fall.”</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="features" aria-labelledby="features-title">
+      <header class="section-head">
+        <p class="kicker">02</p>
+        <h2 id="features-title">Made for Mac and Windows</h2>
+      </header>
+      <ul class="feature-grid">
+        <li>
+          <h3>Only what you care about</h3>
+          <p>You set the threshold: the estimated intensity where you are, or the magnitude, that sends a notification.</p>
+        </li>
+        <li>
+          <h3>See the waves</h3>
+          <p>Pick any earthquake and replay its P and S waves traveling from the epicenter to you on the map.</p>
+        </li>
+        <li>
+          <h3>Intensities at a glance</h3>
+          <p>Open an earthquake and the map shows the intensity measured in each area. Japanese intensities come straight from the Japan Meteorological Agency, with a link to the official report.</p>
+        </li>
+        <li>
+          <h3>Taiwan · Japan</h3>
+          <p>Choose the regions you follow; the ones you don't aren't downloaded at all.</p>
+        </li>
+        <li>
+          <h3>Menu bar &amp; system tray</h3>
+          <p>Close the main window and it keeps watching from the Mac menu bar or the Windows system tray, and still notifies you of new earthquakes.</p>
+        </li>
+        <li>
+          <h3>Five languages</h3>
+          <p>繁體中文, 简体中文, English, 日本語, and Bahasa Indonesia, across the whole interface.</p>
+        </li>
+      </ul>
+      <p class="privacy-note"><strong>Your location never leaves your computer.</strong> It's only used to work out your distance from the epicenter and the estimated intensity where you are. Prefer not to share your location? Pick a city instead.</p>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">03</p>
+        <h2 id="install-title">Install</h2>
+        <div class="os-switch" role="group" aria-label="Platform for the install steps">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
+      </header>
+      <div data-os="mac">
+        <ol class="steps">
+          <li>
+            <h3>Download and open the DMG</h3>
+            <p><a href="{{dmgUrl}}">Download EQalert {{version}}</a>, then open <code>EQalert-{{version}}.dmg</code>.</p>
+          </li>
+          <li>
+            <h3>Drag EQalert to Applications</h3>
+            <p>In the window that opens, drag the EQalert icon onto the “Applications” folder on the right.</p>
+          </li>
+          <li>
+            <h3>First launch: allow it to run</h3>
+            <p>EQalert isn't notarized by Apple yet, so macOS blocks it the first time you open it. That's expected. Do this once and it opens normally from then on.</p>
+            <div class="os-guides">
+              <details open>
+                <summary>macOS 15 or later (Sequoia, Tahoe)</summary>
+                <ol>
+                  <li>Open EQalert from Applications. When the “Apple could not verify…” dialog appears, click <b>Done</b>.</li>
+                  <li>Open <b>System Settings → Privacy &amp; Security</b> and scroll down to “Security.”</li>
+                  <li>Next to “EQalert was blocked…,” click <b>Open Anyway</b>, enter your password, then click <b>Open Anyway</b> again.</li>
+                </ol>
+              </details>
+              <details>
+                <summary>macOS 14 Sonoma</summary>
+                <ol>
+                  <li>In Applications, right-click (or Control-click) EQalert and choose <b>Open</b>.</li>
+                  <li>Click <b>Open</b> again in the dialog that appears.</li>
+                </ol>
+              </details>
+              <details>
+                <summary>Comfortable with Terminal? One line does it</summary>
+                <div class="command">
+                  <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/EQalert.app</code>
+                  <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">Copy</button>
+                </div>
+              </details>
+            </div>
+          </li>
+          <li>
+            <h3>Allow notifications and location</h3>
+            <p>Notifications tell you about new earthquakes; location is used to work out your distance from the epicenter and the estimated intensity where you are. You can adjust alert thresholds, sounds, and language later in Settings (⌘,).</p>
+          </li>
+        </ol>
+      </div>
+      <div data-os="win">
+        <ol class="steps">
+          <li>
+            <h3>Download and run the installer</h3>
+            <p><a href="{{exeUrl}}">Download EQalert {{version}}</a>, then run <code>{{exeName}}</code>.</p>
+          </li>
+          <li>
+            <h3>“Windows protected your PC”: run anyway</h3>
+            <p>EQalert isn't code-signed yet, so Windows blocks it the first time. That's expected: click <b>More info</b>, then <b>Run anyway</b>.</p>
+          </li>
+          <li>
+            <h3>Finish the setup wizard</h3>
+            <p>By default it installs for your account only, with no administrator rights needed. Once installed, EQalert stays in the system tray and starts when you sign in to Windows (you can turn this off in Settings).</p>
+          </li>
+          <li>
+            <h3>Allow notifications and location</h3>
+            <p>Notifications tell you about new earthquakes. Location is used to work out your distance from the epicenter and the estimated intensity where you are: turn on “Let desktop apps access your location” under <b>Settings → Privacy &amp; security → Location</b> in Windows. Prefer not to share your location? Pick a city instead. You can adjust alert thresholds, sounds, and language later in Settings (Ctrl+,).</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">04</p>
+        <h2 id="releases-title">Releases</h2>
+        <p>You can find the version you're using at the bottom of EQalert's Settings.</p>
+      </header>
+      <div class="release-list">
+{{changelog}}
+      </div>
+      <p class="all-releases"><a href="{{releasesUrl}}">All releases and older downloads →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-sources">
+      <h2>Data sources</h2>
+      <p>Central Weather Administration (Taiwan), ExpTech, Japan Meteorological Agency, and P2P地震情報.</p>
+    </div>
+    <p class="disclaimer">EQalert is not an official earthquake early warning system. Information is for reference only; always follow announcements from official agencies.</p>
+    <p class="disclaimer">This site uses Google Analytics to count visits (it uses cookies).</p>
+    <p class="copyright">© 2026 <a href="../">IksaAI</a> · <a href="../#apps">More apps</a></p>
+  </footer>
+</body>
+</html>

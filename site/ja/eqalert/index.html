@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>EQalert 地震速報｜Mac・Windows 版ダウンロード</title>
+  <meta name="description" content="Mac と Windows 向けの地震アプリ。地震情報を、ひと目で。台湾と日本の地震をリアルタイムで表示します。">
+  <meta name="theme-color" content="#F4F4F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D0D0D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../eqalert/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../eqalert/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="EQalert 地震速報｜Mac・Windows 版ダウンロード">
+  <meta property="og:description" content="地震情報を、ひと目で。Mac と Windows 向けの地震アプリ。">
+  <meta property="og:image" content="https://iksaai.github.io/eqalert/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/ja/eqalert/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/eqalert/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/eqalert/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/eqalert/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/eqalert/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../eqalert/styles.css">
+  <script src="../../eqalert/platform.js"></script>
+  <script src="../../eqalert/main.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツへ移動</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="../../eqalert/images/icon-256.png" width="36" height="36" alt="">
+      <span>EQalert <span class="brand-sub">地震速報</span></span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#moments">機能</a></li>
+        <li><a href="#install">インストール</a></li>
+        <li><a href="#releases">リリース履歴</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../../eqalert/" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="../../en/eqalert/" hreflang="en" lang="en">EN</a><a href="./" hreflang="ja" lang="ja" aria-current="page">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}" data-os="mac">ダウンロード</a>
+    <a class="btn btn-ink btn-small" href="{{exeUrl}}" data-os="win">ダウンロード</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>macOS・Windows・最新版 {{version}}</p>
+        <h1 id="hero-title">地震情報を、<br><em>ひと目で。</em></h1>
+        <p class="lede">EQalert は台湾と日本の地震をリアルタイムで表示します。</p>
+        <div class="cta" id="download">
+          <div class="os-switch" role="group" aria-label="お使いのパソコンを選択">
+            <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+            <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+          </div>
+          <div data-os="mac">
+            <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              EQalert {{version}} をダウンロード
+            </a>
+            <p class="cta-meta">
+              <span>macOS 14 以降</span><span>Apple シリコンと Intel</span><span>{{dmgSize}}</span><span>無料</span>
+            </p>
+            <p class="cta-note">初回起動時に macOS にブロックされたら？<a href="#install">インストール方法を見る</a></p>
+          </div>
+          <div data-os="win">
+            <a class="btn btn-ink btn-large" href="{{exeUrl}}">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+              EQalert {{version}} をダウンロード
+            </a>
+            <p class="cta-meta">
+              <span>Windows 10（バージョン 2004）以降</span><span>64 ビット</span><span>{{exeSize}}</span><span>無料</span>
+            </p>
+            <p class="cta-note">「Windows によって PC が保護されました」と表示されたら？<a href="#install">インストール方法を見る</a></p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="hero-visual" data-os="mac">
+        <picture class="shot shot-main">
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../../eqalert/images/mac-main-dark-1280.webp 1280w, ../../eqalert/images/mac-main-dark-2400.webp 2400w"
+            sizes="(min-width: 1120px) 720px, 92vw">
+          <img src="../../eqalert/images/mac-main-1280.webp"
+            srcset="../../eqalert/images/mac-main-1280.webp 1280w, ../../eqalert/images/mac-main-2400.webp 2400w"
+            sizes="(min-width: 1120px) 720px, 92vw"
+            width="1280" height="800" loading="lazy"
+            alt="EQalert のメイン画面：左に最近の地震の一覧、中央に各地の震度を示す地図、右に地震の詳細">
+        </picture>
+        <img class="shot shot-alert" src="../../eqalert/images/mac-eew-1280.webp"
+          srcset="../../eqalert/images/mac-eew-1280.webp 1280w, ../../eqalert/images/mac-eew-2400.webp 2400w"
+          sizes="(min-width: 1120px) 400px, 52vw"
+          width="1280" height="800" loading="lazy"
+          alt="地震速報の画面：揺れが届くまでの 30 秒のカウントダウンを大きく表示">
+        <figcaption class="visually-hidden">EQalert のメイン画面と地震速報の画面</figcaption>
+      </figure>
+      <figure class="hero-visual" data-os="win">
+        <picture class="shot shot-main">
+          <source media="(prefers-color-scheme: dark)" type="image/webp"
+            srcset="../../eqalert/images/win-main-dark-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw">
+          <img src="../../eqalert/images/win-main-1280.webp"
+            srcset="../../eqalert/images/win-main-1280.webp 1280w"
+            sizes="(min-width: 1120px) 720px, 92vw"
+            width="1280" height="760" loading="lazy"
+            alt="EQalert Windows 版のメイン画面：左に状態と地震の一覧、中央に各地の震度を示す地図、右に地震の詳細">
+        </picture>
+        <img class="shot shot-alert" src="../../eqalert/images/win-eew-1280.webp"
+          sizes="(min-width: 1120px) 400px, 52vw"
+          width="1280" height="760" loading="lazy"
+          alt="Windows 版の地震速報の画面：26 秒のカウントダウンと、地図上であなたの位置に向かって広がる P 波・S 波">
+        <figcaption class="visually-hidden">EQalert Windows 版のメイン画面と地震速報の画面</figcaption>
+      </figure>
+    </section>
+
+    <section id="moments" class="moments" aria-labelledby="moments-title">
+      <header class="section-head">
+        <p class="kicker">01</p>
+        <h2 id="moments-title">開けばわかる</h2>
+        <p>地震があったか、どこで、どのくらいの強さだったか。</p>
+      </header>
+      <ol class="moment-list">
+        <li class="moment moment-calm">
+          <p class="moment-tag">ふだん</p>
+          <p class="moment-say">現在、地震速報は出ていません</p>
+          <p class="moment-body">今の状態がひと目でわかります。下には過去 24 時間の地震を記録紙のように表示。とがった線はすべて実際の地震で、地震がなければ平らな線のままです。</p>
+        </li>
+        <li class="moment moment-heads-up">
+          <p class="moment-tag">揺れを感じた</p>
+          <p class="moment-say">11 分前、花蓮県沖、最大震度 4</p>
+          <p class="moment-body">自分で調べる必要はありません。どこで、どのくらいの強さで、あなたからどれだけ離れているか、各地の震度、そして「家屋がはっきり揺れ、不安定な物が落ちることがある」といった、ひと目でわかる説明も表示します。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="features" aria-labelledby="features-title">
+      <header class="section-head">
+        <p class="kicker">02</p>
+        <h2 id="features-title">Mac と Windows のために</h2>
+      </header>
+      <ul class="feature-grid">
+        <li>
+          <h3>気になる地震だけ通知</h3>
+          <p>しきい値はあなたが決めます。あなたの場所の予想震度が何以上、またはマグニチュードが何以上で通知するか。</p>
+        </li>
+        <li>
+          <h3>見える地震波</h3>
+          <p>好きな地震を選んで、P 波と S 波が震源からあなたの場所に届くまでを地図上で再生できます。</p>
+        </li>
+        <li>
+          <h3>各地の震度がひと目で</h3>
+          <p>地震を選ぶと、各地で観測された震度を地図に描きます。日本の震度は気象庁のデータをそのまま使い、公式の発表へのリンクも付けています。</p>
+        </li>
+        <li>
+          <h3>台湾・日本</h3>
+          <p>追跡する地域を選べます。選んでいない地域のデータは一切ダウンロードしません。</p>
+        </li>
+        <li>
+          <h3>メニューバー・システムトレイに常駐</h3>
+          <p>メイン画面を閉じても、Mac のメニューバーや Windows のシステムトレイで監視を続け、新しい地震があればきちんと通知します。</p>
+        </li>
+        <li>
+          <h3>5 つの言語</h3>
+          <p>繁體中文、简体中文、English、日本語、Bahasa Indonesia。画面表示がまるごと切り替わります。</p>
+        </li>
+      </ul>
+      <p class="privacy-note"><strong>位置情報はこのパソコンの外には出ません。</strong>震源までの距離と、あなたの場所の予想震度の計算にだけ使います。位置情報をオンにしたくない場合は、都市を手動で選ぶこともできます。</p>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">03</p>
+        <h2 id="install-title">インストール</h2>
+        <div class="os-switch" role="group" aria-label="インストール手順のプラットフォーム">
+          <button type="button" data-set-os="mac" aria-pressed="true">macOS</button>
+          <button type="button" data-set-os="win" aria-pressed="false">Windows</button>
+        </div>
+      </header>
+      <div data-os="mac">
+        <ol class="steps">
+          <li>
+            <h3>DMG をダウンロードして開く</h3>
+            <p><a href="{{dmgUrl}}">EQalert {{version}} をダウンロード</a>し、<code>EQalert-{{version}}.dmg</code> を開きます。</p>
+          </li>
+          <li>
+            <h3>EQalert を「アプリケーション」にドラッグ</h3>
+            <p>開いたウインドウで、EQalert のアイコンを右側の「Applications」フォルダにドラッグします。</p>
+          </li>
+          <li>
+            <h3>初回起動：実行を許可する</h3>
+            <p>EQalert はまだ Apple の公証を受けていないため、初めて開くときに macOS がブロックします。これは正常な動作です。以下の手順を一度行えば、次からはそのまま開けます。</p>
+            <div class="os-guides">
+              <details open>
+                <summary>macOS 15 以降（Sequoia、Tahoe）</summary>
+                <ol>
+                  <li>「アプリケーション」から EQalert を開き、「Apple は検証できませんでした⋯」と表示されたら<b>「完了」</b>をクリックします。</li>
+                  <li><b>「システム設定」→「プライバシーとセキュリティ」</b>を開き、下の「セキュリティ」までスクロールします。</li>
+                  <li>「EQalert はブロックされました⋯」の横にある<b>「このまま開く」</b>をクリックし、パスワードを入力して、もう一度<b>「このまま開く」</b>をクリックします。</li>
+                </ol>
+              </details>
+              <details>
+                <summary>macOS 14 Sonoma</summary>
+                <ol>
+                  <li>「アプリケーション」で EQalert を右クリック（または Control キーを押しながらクリック）し、<b>「開く」</b>を選びます。</li>
+                  <li>表示されたダイアログで、もう一度<b>「開く」</b>をクリックします。</li>
+                </ol>
+              </details>
+              <details>
+                <summary>ターミナルが使えるなら：1 行で完了</summary>
+                <div class="command">
+                  <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/EQalert.app</code>
+                  <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">コピー</button>
+                </div>
+              </details>
+            </div>
+          </li>
+          <li>
+            <h3>通知と位置情報を許可する</h3>
+            <p>通知は新しい地震のお知らせに、位置情報は震源までの距離とあなたの場所の予想震度の計算に使います。しきい値・音・言語は、あとから「設定」（⌘,）で変更できます。</p>
+          </li>
+        </ol>
+      </div>
+      <div data-os="win">
+        <ol class="steps">
+          <li>
+            <h3>インストーラーをダウンロードして実行</h3>
+            <p><a href="{{exeUrl}}">EQalert {{version}} をダウンロード</a>し、<code>{{exeName}}</code> を実行します。</p>
+          </li>
+          <li>
+            <h3>「Windows によって PC が保護されました」：実行する</h3>
+            <p>EQalert はまだコード署名を受けていないため、初回は Windows がブロックします。これは正常な動作です。<b>「詳細情報」</b>をクリックし、<b>「実行」</b>を押してください。</p>
+          </li>
+          <li>
+            <h3>セットアップウィザードを完了する</h3>
+            <p>標準では今のユーザーにだけインストールされ、管理者権限は不要です。インストール後、EQalert はシステムトレイに常駐し、Windows へのサインイン時に自動で起動します（設定でオフにできます）。</p>
+          </li>
+          <li>
+            <h3>通知と位置情報を許可する</h3>
+            <p>通知は新しい地震のお知らせに使います。位置情報は震源までの距離とあなたの場所の予想震度の計算に使うため、Windows の<b>「設定」→「プライバシーとセキュリティ」→「位置情報」</b>で「デスクトップ アプリが位置情報にアクセスできるようにする」をオンにしてください。位置情報をオンにしたくない場合は、都市を手動で選べます。しきい値・音・言語は、あとから「設定」（Ctrl+,）で変更できます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">04</p>
+        <h2 id="releases-title">リリース履歴</h2>
+        <p>お使いのバージョンは、EQalert の「設定」のいちばん下で確認できます。</p>
+      </header>
+      <div class="release-list">
+{{changelog}}
+      </div>
+      <p class="all-releases"><a href="{{releasesUrl}}">すべてのバージョンと旧版のダウンロード →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-sources">
+      <h2>データ提供元</h2>
+      <p>台湾 中央気象署、ExpTech、気象庁、P2P地震情報。</p>
+    </div>
+    <p class="disclaimer">EQalert は公式の地震速報システムではありません。情報は参考用です。実際の状況は各国の公的機関の発表に従ってください。</p>
+    <p class="disclaimer">このサイトでは閲覧数の集計に Google Analytics を使用しています（Cookie を使用します）。</p>
+    <p class="copyright">© 2026 <a href="../">艾可颯智慧工作室 IksaAI</a>・<a href="../#apps">ほかのアプリ</a></p>
+  </footer>
+</body>
+</html>

@@ -51,6 +51,17 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* 英文、日文首頁換成各自的字體 */
+:root:lang(en) {
+  --font-serif: 'Noto Serif', Georgia, serif;
+  --font-sans: 'Noto Sans', system-ui, -apple-system, sans-serif;
+}
+
+:root:lang(ja) {
+  --font-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #0A0F1D;
@@ -110,10 +121,25 @@ h3 {
   text-wrap: balance;
 }
 
+/* 日文詞之間沒有空格，keep-all 會變成只在標點換行；改按詞組換行（不支援 auto-phrase 的瀏覽器用 normal） */
+:lang(ja) :is(h1, h2, h3, .lede) {
+  word-break: normal;
+  word-break: auto-phrase;
+}
+
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* 可以按的地方一律顯示手指游標（新加的按鈕、展開選單也不會漏掉） */
+a[href],
+button:not(:disabled),
+summary,
+label[for],
+select {
+  cursor: pointer;
 }
 
 a {
@@ -196,6 +222,36 @@ a {
 .site-header nav a:hover {
   color: var(--ink);
   text-decoration: underline;
+}
+
+/* 語言切換：中文・EN・日本語（各 App 頁也有一樣的切換） */
+.site-header .lang-switch {
+  display: flex;
+  align-self: center;
+  gap: 2px;
+  margin-left: 0;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--text-tiny);
+  font-weight: 700;
+}
+
+.lang-switch a {
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.lang-switch a:hover {
+  color: var(--ink);
+}
+
+.lang-switch a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 /* ---------- 宣言 ---------- */
@@ -591,8 +647,18 @@ a {
     grid-column: auto;
   }
 
+  .site-header {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+
   .site-header ul {
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+
+  .site-header li {
+    white-space: nowrap;
   }
 
   .wordmark-zh {

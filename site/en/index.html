@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>IksaAI Studio</title>
+  <meta name="description" content="IksaAI makes apps and online services, each one doing one thing well. Here you'll find each one's introduction, downloads, and release notes.">
+  <meta name="theme-color" content="#F1F3F6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0A0F1D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="IksaAI Studio">
+  <meta property="og:description" content="Software that does one thing well.">
+  <meta property="og:image" content="https://iksaai.github.io/assets/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/en/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;900&family=Noto+Sans:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../assets/studio.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="wrap">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="IksaAI Studio">IksaAI<span class="wordmark-zh">Studio</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="#services">Online services</a></li>
+          <li><a href="{{releasesUrl}}">All releases</a></li>
+        </ul>
+      </nav>
+      <nav class="lang-switch" aria-label="Language"><a href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="./" hreflang="en" lang="en" aria-current="page">EN</a><a href="../ja/" hreflang="ja" lang="ja">日本語</a></nav>
+    </header>
+  </div>
+
+  <main id="main" class="wrap">
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <h1 id="manifesto-title">Software that does<br><em>one thing well.</em></h1>
+      <p class="lede">IksaAI makes apps and online services.</p>
+      <p class="signature"><b>IksaAI Studio</b><span>2026</span></p>
+    </section>
+
+    <section id="apps" class="works" aria-labelledby="apps-title">
+      <header class="works-head">
+        <h2 id="apps-title">Apps</h2>
+        <p>Runs on your computer · {{workCount}} so far</p>
+      </header>
+      <div class="bento">
+{{featured}}
+        <aside class="tile news" aria-labelledby="news-title">
+          <h3 id="news-title" class="label">Latest</h3>
+          <ul>
+{{news}}
+          </ul>
+        </aside>
+        <aside class="tile install" aria-labelledby="install-title">
+          <h3 id="install-title" class="label">Download &amp; install</h3>
+          <p>Installers are on GitHub Releases, with notes for every version. The Mac apps aren't notarized by Apple yet, so you'll need to allow them once the first time you open them. Each app's page walks you through it.</p>
+          <a href="{{releasesUrl}}">See all releases on GitHub →</a>
+        </aside>
+{{works}}
+      </div>
+    </section>
+
+    <section id="services" class="works" aria-labelledby="services-title">
+      <header class="works-head">
+        <h2 id="services-title">Online services</h2>
+        <p>Nothing to install, just go online</p>
+      </header>
+      <div class="bento">
+        <div class="tile soon span-4">
+          <span class="placeholder" aria-hidden="true"></span>
+          <div><p class="label">In the works</p><h3>Our first online service</h3></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="wrap">
+    <footer class="site-footer">
+      <p>© 2026 IksaAI Studio</p>
+      <p>This site uses Google Analytics to count visits (it uses cookies) · <a href="https://github.com/IksaAI">GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
