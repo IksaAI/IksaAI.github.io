@@ -1,0 +1,865 @@
+/* ============================================================
+ * HDInfo 下載頁 — 容量條為主視覺的編輯風
+ * 方向：雜誌編排。暖白紙面、襯線大標，顏色全部來自 App 的類別色，
+ *       主視覺就是一條真的容量條。
+ * 字體：Noto Serif TC（標題）+ Noto Sans TC（內文、數字）；英文頁 Noto Serif + Noto Sans，日文頁 Noto Serif JP + Noto Sans JP
+ * ============================================================ */
+
+:root {
+  color-scheme: light dark;
+
+  --font-sans: 'Noto Sans TC', 'PingFang TC', 'Hiragino Sans', system-ui, sans-serif;
+  --font-display: 'Noto Serif TC', 'Songti TC', serif;
+  --font-num: var(--font-display);
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --paper: #F5F0E6;
+  --surface: #FFFCF6;
+  --sunken: #EAE3D5;
+  --ink: #1B1A17;
+  --ink-2: #4B4740;
+  --ink-3: #6F695F;
+  --line: #DCD3C2;
+  --on-ink: #FFFCF6;
+  --header-bg: color-mix(in srgb, var(--paper) 86%, transparent);
+
+  --accent: #C2410C;
+  --accent-soft: #F8E1D3;
+  --on-accent: #FFFFFF;
+  --focus: #1D4ED8;
+
+  /* App 的類別色 */
+  --cat-files: #3B82F6;
+  --cat-apps: #B44FD6;
+  --cat-ai: #3FB8C6;
+  --cat-video: #E5485F;
+  --cat-dev: #EE8A36;
+  --cat-caches: #E8C13A;
+  --cat-appdata: #A3805F;
+  --cat-system: #8E8E93;
+
+  --shadow-float: 0 2px 6px rgb(60 40 10 / 0.06), 0 24px 50px -28px rgb(60 40 10 / 0.35);
+
+  --text-small: 0.875rem;
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --text-h2: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
+  --text-hero: clamp(2.75rem, 1rem + 7vw, 7.5rem);
+
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --page-max: 76rem;
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --radius-btn: 999px;
+  --radius-panel: 12px;
+
+  --duration-fast: 150ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #15130F;
+    --surface: #1E1B16;
+    --sunken: #2A261F;
+    --ink: #F3EDE2;
+    --ink-2: #C3BBAD;
+    --ink-3: #8F8778;
+    --line: #36312A;
+    --on-ink: #15130F;
+
+    --accent: #FB923C;
+    --accent-soft: #3A2414;
+    --on-accent: #15130F;
+    --focus: #93B4FF;
+
+    --shadow-float: 0 2px 6px rgb(0 0 0 / 0.3), 0 24px 50px -28px rgb(0 0 0 / 0.8);
+  }
+}
+/* ---------- 共用結構（選項 B、C）：顏色、字體由各選項的 token 決定 ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, p, ol, ul, figure {
+  margin: 0;
+}
+
+ol, ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  background: var(--sunken);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  padding: 0.5rem 1rem;
+  background: var(--ink);
+  color: var(--on-ink);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- 按鈕 ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 0;
+  border-radius: var(--radius-btn);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out-expo), background-color var(--duration-fast);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.btn-ink:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-small {
+  padding: 0.4rem 1rem;
+  font-size: var(--text-small);
+}
+
+.btn-large {
+  padding: 1rem 1.75rem;
+  font-size: 1.0625rem;
+}
+
+.btn-quiet {
+  padding: 0.35rem 0.9rem;
+  background: var(--sunken);
+  color: var(--ink);
+  font-size: var(--text-small);
+}
+
+.icon {
+  width: 1.2em;
+  height: 1.2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- 頁首 ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem var(--gutter);
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.studio-link {
+  font-weight: 700;
+  font-size: var(--text-small);
+  text-decoration: none;
+  color: var(--ink-3);
+}
+
+.crumb-sep {
+  color: var(--ink-3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.brand img {
+  border-radius: 9px;
+}
+
+.brand-sub {
+  margin-left: 0.25rem;
+  font-weight: 400;
+  font-size: var(--text-small);
+  color: var(--ink-2);
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.site-nav a,
+.lang-switch a {
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.lang-switch {
+  display: flex;
+  gap: 0.15rem;
+  padding: 3px;
+  border-radius: var(--radius-btn);
+  background: var(--sunken);
+}
+
+.lang-switch a {
+  padding: 2px 9px;
+  border-radius: calc(var(--radius-btn) - 3px);
+}
+
+.lang-switch a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+/* ---------- 版面 ---------- */
+
+main > section,
+.site-footer {
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.cta-meta {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.cta-meta span:not(:last-child)::after {
+  content: '・';
+  margin-inline: 0.15rem;
+}
+
+.cta-note {
+  margin-top: 0.35rem;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.cta-note a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+}
+
+.kicker {
+  font-family: var(--font-num);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.section-head p:not(.kicker) {
+  grid-column: 2;
+  margin-top: 0.5rem;
+  color: var(--ink-2);
+}
+
+.install,
+.releases {
+  padding-block: var(--space-section) 0;
+}
+
+/* ---------- 安裝 ---------- */
+
+.steps {
+  display: grid;
+  gap: 2.5rem;
+  counter-reset: step;
+}
+
+.steps > li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  column-gap: 1rem;
+  counter-increment: step;
+}
+
+.steps > li::before {
+  content: counter(step);
+  grid-row: span 3;
+  font-family: var(--font-num);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.steps h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 0.35rem;
+}
+
+.steps p {
+  max-width: 44em;
+  color: var(--ink-2);
+}
+
+.steps p a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.os-guides {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 44rem;
+  margin-top: 1.25rem;
+}
+
+.os-guides details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+}
+
+.os-guides summary {
+  padding: 0.85rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.os-guides ol {
+  padding: 0 1.25rem 1.1rem 2.75rem;
+  list-style: decimal;
+  color: var(--ink-2);
+}
+
+.os-guides b {
+  color: var(--ink);
+}
+
+.command {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.1rem;
+}
+
+.command code {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 版本紀錄（{{changelog}} 由建置產生） ---------- */
+
+.release-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.release {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 1rem 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.release-meta h3 {
+  font-family: var(--font-num);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.release-meta time {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.release-latest {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0 0.6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.release-notes {
+  display: grid;
+  gap: 0.6rem;
+  color: var(--ink-2);
+}
+
+.release-notes h4 {
+  margin-top: 0.5rem;
+  color: var(--ink);
+}
+
+.release-notes ul {
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.release-notes strong {
+  color: var(--ink);
+}
+
+.release-download {
+  font-size: var(--text-small);
+}
+
+.release-download a {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.all-releases {
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+/* ---------- 頁尾 ---------- */
+
+.site-footer {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: var(--space-section);
+  padding-block: 2.5rem 3.5rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+/* ---------- 響應式（共用部分） ---------- */
+
+@media (max-width: 640px) {
+  .site-nav,
+  .studio-link,
+  .crumb-sep,
+  .brand-sub,
+  .site-header > .btn {
+    display: none;
+  }
+
+  .lang-switch {
+    margin-left: auto;
+  }
+
+  .btn-large {
+    width: 100%;
+  }
+
+  .section-head,
+  .steps > li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .steps > li::before {
+    font-size: 2rem;
+  }
+
+  .release {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* ---------- 選項 B：容量條為主視覺的編輯風 ---------- */
+
+.hero {
+  padding-block: clamp(3rem, 2rem + 5vw, 7rem) var(--space-section);
+}
+
+.eyebrow {
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.hero h1 {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  line-break: strict;
+}
+
+/* 容量條：和 App 一樣的類別顏色；寬度是 1 TB 裡的佔比 */
+.capacity {
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.bar {
+  display: flex;
+  height: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.seg {
+  min-width: 4px;
+  border-radius: 6px;
+  transform-origin: left;
+  animation: grow 1100ms var(--ease-out-expo) both;
+}
+
+.seg-files   { flex: 182; background: var(--cat-files); }
+.seg-apps    { flex: 41;  background: var(--cat-apps);    animation-delay: 60ms; }
+.seg-ai      { flex: 63;  background: var(--cat-ai);      animation-delay: 120ms; }
+.seg-video   { flex: 38;  background: var(--cat-video);   animation-delay: 180ms; }
+.seg-dev     { flex: 54;  background: var(--cat-dev);     animation-delay: 240ms; }
+.seg-caches  { flex: 12;  background: var(--cat-caches);  animation-delay: 300ms; }
+.seg-appdata { flex: 47;  background: var(--cat-appdata); animation-delay: 360ms; }
+.seg-system  { flex: 19;  background: var(--cat-system);  animation-delay: 420ms; }
+.seg-other   { flex: 64;  background: repeating-linear-gradient(-45deg, var(--cat-system) 0 3px, transparent 3px 7px); animation-delay: 480ms; }
+.seg-free    { flex: 474; background: transparent; animation: none; }
+
+@keyframes grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.6rem 1.5rem;
+  margin-top: 1.25rem;
+  font-size: var(--text-small);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.legend b {
+  margin-left: auto;
+  padding-left: 0.5rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 3px;
+  flex: none;
+}
+
+.legend-files .swatch   { background: var(--cat-files); }
+.legend-apps .swatch    { background: var(--cat-apps); }
+.legend-ai .swatch      { background: var(--cat-ai); }
+.legend-video .swatch   { background: var(--cat-video); }
+.legend-dev .swatch     { background: var(--cat-dev); }
+.legend-caches .swatch  { background: var(--cat-caches); }
+.legend-appdata .swatch { background: var(--cat-appdata); }
+.legend-system .swatch  { background: var(--cat-system); }
+.legend-other .swatch   { background: repeating-linear-gradient(-45deg, var(--cat-system) 0 2px, transparent 2px 4px); }
+.legend-free .swatch    { border: 1px solid var(--ink-3); }
+
+.capacity figcaption {
+  margin-top: 1rem;
+  font-size: var(--text-small);
+  color: var(--ink-3);
+}
+
+.hero-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 2rem clamp(2rem, 1rem + 4vw, 5rem);
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4rem);
+}
+
+.lede {
+  font-family: var(--font-display);
+  font-size: var(--text-lede);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* ---------- 章節 ---------- */
+
+.chapters {
+  display: grid;
+  gap: var(--space-section);
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 1.5rem clamp(1.5rem, 1rem + 2vw, 3rem);
+  align-items: start;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--ink);
+}
+
+.chapter-no {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.chapter-text h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.chapter-text p {
+  color: var(--ink-2);
+}
+
+.shot {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-float);
+}
+
+.chapter-flip .chapter-text {
+  order: 3;
+}
+
+.chapter-flip .shot {
+  order: 2;
+}
+
+.ledger {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.ledger div {
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.ledger div + div {
+  background: transparent;
+  border-style: dashed;
+}
+
+.ledger dt {
+  font-weight: 900;
+  margin-bottom: 0.35rem;
+}
+
+.ledger div + div dt {
+  color: var(--accent);
+}
+
+.ledger dd {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+.chapter-pair {
+  grid-template-columns: 5rem minmax(0, 1fr) 5rem minmax(0, 1fr);
+}
+
+.promises {
+  padding: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  border-radius: 18px;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.promises h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+
+.promises ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2.5rem;
+  counter-reset: promise;
+}
+
+.promises li {
+  padding-top: 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--on-ink) 25%, transparent);
+  color: color-mix(in srgb, var(--on-ink) 78%, transparent);
+}
+
+.promises b {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--on-ink);
+}
+
+/* ---------- 響應式 ---------- */
+
+@media (max-width: 1023px) {
+  .legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-foot,
+  .chapter,
+  .chapter-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chapter-flip .chapter-text,
+  .chapter-flip .shot {
+    order: 0;
+  }
+
+  .promises ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* 手機：圖例一欄，類別名稱（「動画編集キャッシュ」這種長的）才不會被折成兩行 */
+@media (max-width: 480px) {
+  .legend {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+}
+
+/* ---------- 英文、日文頁換成各自的字體 ---------- */
+
+:root:lang(en) {
+  --font-sans: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Noto Serif', Georgia, serif;
+  --text-hero: clamp(2.75rem, 0.9rem + 6vw, 6.75rem);
+}
+
+:root:lang(ja) {
+  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
+  --font-display: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --text-hero: clamp(2.5rem, 0.8rem + 5.6vw, 6.5rem);
+}

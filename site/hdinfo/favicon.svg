@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#F7F8FA"/>
+  <g transform="rotate(-90 32 32)" fill="none" stroke-width="6">
+    <circle cx="32" cy="32" r="21" pathLength="100" stroke="#2EB872" stroke-dasharray="64 36"/>
+    <circle cx="32" cy="32" r="21" pathLength="100" stroke="#F5B231" stroke-dasharray="14 86" stroke-dashoffset="-64"/>
+    <circle cx="32" cy="32" r="21" pathLength="100" stroke="#F0812F" stroke-dasharray="11 89" stroke-dashoffset="-78"/>
+    <circle cx="32" cy="32" r="21" pathLength="100" stroke="#E5484D" stroke-dasharray="11 89" stroke-dashoffset="-89"/>
+  </g>
+  <rect x="20" y="26.5" width="24" height="11" rx="3.5" fill="#FFFFFF" stroke="#2B3440" stroke-width="2.6"/>
+  <circle cx="25" cy="32" r="1.6" fill="#2EB872"/>
+  <path d="M29.5 32h9" stroke="#2B3440" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

@@ -15,6 +15,7 @@
 |---|---|---|
 | EQalert 地震速報 | [iksaai.github.io/eqalert](https://iksaai.github.io/eqalert/)（[English](https://iksaai.github.io/en/eqalert/)・[日本語](https://iksaai.github.io/ja/eqalert/)） | macOS 14 以上、Windows 10（2004 版）以上 |
 | PolyComme 多平台留言整合 | [iksaai.github.io/polycomme](https://iksaai.github.io/polycomme/)（[English](https://iksaai.github.io/en/polycomme/)・[日本語](https://iksaai.github.io/ja/polycomme/)） | macOS 14 以上、Windows 10（2004 版）以上 |
+| HDInfo 硬碟健康與空間 | [iksaai.github.io/hdinfo](https://iksaai.github.io/hdinfo/)（[English](https://iksaai.github.io/en/hdinfo/)・[日本語](https://iksaai.github.io/ja/hdinfo/)） | macOS 14 以上 |
 
 ## 安裝 EQalert
 

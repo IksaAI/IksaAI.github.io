@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>HDInfo 硬碟健康與空間｜Mac 版下載</title>
+  <meta name="description" content="給 Mac 的硬碟工具。看硬碟健康、找出空間被誰吃掉，清快取、找重複檔案、移除 App 連同殘留。只移到垃圾桶，零遙測。">
+  <meta name="theme-color" content="#F5F0E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15130F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="HDInfo 硬碟健康與空間｜Mac 版下載">
+  <meta property="og:description" content="你的硬碟，被誰吃掉了？給 Mac 的硬碟工具。">
+  <meta property="og:image" content="https://iksaai.github.io/hdinfo/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/hdinfo/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/hdinfo/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/hdinfo/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/hdinfo/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/hdinfo/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="images/icon-256.png" width="36" height="36" alt="">
+      <span>HDInfo <span class="brand-sub">硬碟健康與空間</span></span>
+    </a>
+    <nav class="site-nav" aria-label="主要導覽">
+      <ul>
+        <li><a href="#features">功能</a></li>
+        <li><a href="#install">安裝</a></li>
+        <li><a href="#releases">版本紀錄</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="./" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">中文</a><a href="../en/hdinfo/" hreflang="en" lang="en">EN</a><a href="../ja/hdinfo/" hreflang="ja" lang="ja">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">下載</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">給 Mac 的硬碟工具・{{version}}</p>
+      <h1 id="hero-title">你的硬碟，<br>被誰吃掉了？</h1>
+      <figure class="capacity" aria-labelledby="capacity-caption">
+        <ol class="bar">
+            <li class="seg seg-files"><span class="visually-hidden">你的檔案 182 GB</span></li>
+            <li class="seg seg-apps"><span class="visually-hidden">應用程式 41 GB</span></li>
+            <li class="seg seg-ai"><span class="visually-hidden">AI 模型 63 GB</span></li>
+            <li class="seg seg-video"><span class="visually-hidden">影音剪輯快取 38 GB</span></li>
+            <li class="seg seg-dev"><span class="visually-hidden">開發工具 54 GB</span></li>
+            <li class="seg seg-caches"><span class="visually-hidden">快取與垃圾桶 12 GB</span></li>
+            <li class="seg seg-appdata"><span class="visually-hidden">App 資料 47 GB</span></li>
+            <li class="seg seg-system"><span class="visually-hidden">系統 19 GB</span></li>
+            <li class="seg seg-other"><span class="visually-hidden">其他 64 GB</span></li>
+            <li class="seg seg-free"><span class="visually-hidden">可用空間 474 GB</span></li>
+        </ol>
+        <ul class="legend" aria-hidden="true">
+          <li class="legend-files"><span class="swatch" aria-hidden="true"></span>你的檔案<b>182 GB</b></li>
+          <li class="legend-apps"><span class="swatch" aria-hidden="true"></span>應用程式<b>41 GB</b></li>
+          <li class="legend-ai"><span class="swatch" aria-hidden="true"></span>AI 模型<b>63 GB</b></li>
+          <li class="legend-video"><span class="swatch" aria-hidden="true"></span>影音剪輯快取<b>38 GB</b></li>
+          <li class="legend-dev"><span class="swatch" aria-hidden="true"></span>開發工具<b>54 GB</b></li>
+          <li class="legend-caches"><span class="swatch" aria-hidden="true"></span>快取與垃圾桶<b>12 GB</b></li>
+          <li class="legend-appdata"><span class="swatch" aria-hidden="true"></span>App 資料<b>47 GB</b></li>
+          <li class="legend-system"><span class="swatch" aria-hidden="true"></span>系統<b>19 GB</b></li>
+          <li class="legend-other"><span class="swatch" aria-hidden="true"></span>其他<b>64 GB</b></li>
+          <li class="legend-free"><span class="swatch" aria-hidden="true"></span>可用空間<b>474 GB</b></li>
+        </ul>
+        <figcaption id="capacity-caption">一台 1 TB 的 Mac，用掉的 520 GB 分成這幾類。HDInfo 每次掃描都替你畫一條。</figcaption>
+      </figure>
+      <div class="hero-foot">
+        <p class="lede">HDInfo 看硬碟的健康，找出空間被誰吃掉，再幫你清快取、找重複檔案、移除 App 連同殘留。每一樣都只移到垃圾桶。</p>
+        <div class="cta" id="download">
+          <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            下載 HDInfo {{version}}
+          </a>
+          <p class="cta-meta"><span>macOS 14 以上</span><span>Apple Silicon 與 Intel</span><span>{{dmgSize}}</span><span>免費</span></p>
+          <p class="cta-note">第一次打開被 macOS 擋下？<a href="#install">看安裝說明</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="chapters" aria-label="功能">
+      <article class="chapter chapter-shot">
+        <p class="chapter-no">01</p>
+        <div class="chapter-text">
+          <h2>空間去哪了</h2>
+          <p>點一類，下面就列出它的內容：照片圖庫多大、Ollama 的模型多大、DaVinci Resolve 的算圖快取多大。常見的大戶直接用名字列出來，不用在一層層的資料夾裡找。另外列出最大的幾個檔案，不算系統和 App 裡面的東西。</p>
+        </div>
+        <picture class="shot">
+          <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="images/space-files-dark-1280.webp">
+          <img src="images/space-files-light-1280.webp" width="1280" height="800" loading="lazy"
+            alt="空間分析：點「你的檔案」，列出照片圖庫 61 GB、影片 74 GB、文件 33 GB，下面是最大的檔案">
+        </picture>
+      </article>
+
+      <article class="chapter chapter-shot chapter-flip">
+        <p class="chapter-no">02</p>
+        <div class="chapter-text">
+          <h2>硬碟還好嗎</h2>
+          <p>讀硬碟自己記錄的健康資料：溫度、壽命用掉多少、備用空間、通電時數、異常斷電次數，整理成「健康・警告・故障中・已故障」四級燈號。溫度超過你設的門檻就提醒你；選單列上看一眼也知道。</p>
+        </div>
+        <picture class="shot">
+          <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="images/health-dark-1280.webp">
+          <img src="images/health-light-1280.webp" width="1280" height="587" loading="lazy"
+            alt="健康頁：溫度 41°C、燈號「健康」、壽命用掉 3%、通電 4,812 小時">
+        </picture>
+      </article>
+
+      <article class="chapter">
+        <p class="chapter-no">03</p>
+        <div class="chapter-text">
+          <h2>清快取，只清快取</h2>
+          <p>每個軟體一列，說清楚是什麼、清了會怎樣。App 開著就不能清；影響比較大的不會預設勾選。</p>
+        </div>
+        <dl class="ledger">
+          <div>
+            <dt>會清</dt>
+            <dd>瀏覽器的快取・VS Code、Discord、Slack 這類 App 的快取・Homebrew、npm、pip 的下載快取・DaVinci Resolve 的算圖快取・LINE 看過的照片、影片、檔案</dd>
+          </div>
+          <div>
+            <dt>不會碰</dt>
+            <dd>LINE 的聊天紀錄與貼圖・瀏覽器的書籤、密碼、網站資料・DaVinci 的專案備份與靜態影像庫・App 本身</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="chapter chapter-pair">
+        <p class="chapter-no">04</p>
+        <div class="chapter-text">
+          <h2>重複檔案</h2>
+          <p>大小、開頭、結尾、完整內容層層比對，只看你的資料。iCloud、Dropbox 還沒下載的檔案，不會因為比對而被下載。</p>
+        </div>
+        <p class="chapter-no">05</p>
+        <div class="chapter-text">
+          <h2>移除 App 連同殘留</h2>
+          <p>連同設定、快取、登入項目一起找出來，逐項勾選。已經刪掉的 App 留下的殘留也找得到。</p>
+        </div>
+      </article>
+
+      <aside class="promises" aria-labelledby="promises-title">
+        <h2 id="promises-title">四件 HDInfo 不做的事</h2>
+        <ol>
+          <li><b>不直接刪除。</b>只移到垃圾桶，而且一定先讓你確認。</li>
+          <li><b>不回報。</b>零遙測，你的檔案清單不會離開這台 Mac。</li>
+          <li><b>不跟著捷徑走。</b>不跟隨符號連結，不會清到別的地方。</li>
+          <li><b>不裝別的東西。</b>只用 macOS 內建的方法，不裝驅動程式、不裝背景服務。</li>
+        </ol>
+      </aside>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">06</p>
+        <h2 id="install-title">安裝</h2>
+      </header>
+      <ol class="steps">
+        <li>
+          <h3>下載並打開 DMG</h3>
+          <p><a href="{{dmgUrl}}">下載 HDInfo {{version}}</a>，打開下載好的 <code>HDInfo-{{version}}.dmg</code>。</p>
+        </li>
+        <li>
+          <h3>把 HDInfo 拖到「應用程式」</h3>
+          <p>在打開的視窗裡，把 HDInfo 圖示拖到右邊的「Applications」資料夾。</p>
+        </li>
+        <li>
+          <h3>第一次打開：允許執行</h3>
+          <p>HDInfo 目前還沒有經過 Apple 公證，所以第一次打開時 macOS 會擋下來。這是正常的，照下面做一次，之後就能直接打開。</p>
+          <div class="os-guides">
+            <details open>
+              <summary>macOS 15 以上（Sequoia、Tahoe）</summary>
+              <ol>
+                <li>在「應用程式」裡打開 HDInfo，出現「Apple 無法驗證⋯」的視窗時按<b>「完成」</b>。</li>
+                <li>打開<b>「系統設定」→「隱私權與安全性」</b>，捲到最下面的「安全性」。</li>
+                <li>在「已阻擋 HDInfo⋯」旁邊按<b>「強制打開」</b>，輸入密碼，再按一次<b>「強制打開」</b>。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>macOS 14 Sonoma</summary>
+              <ol>
+                <li>在「應用程式」裡對 HDInfo 按右鍵（或 Control＋點按），選<b>「打開」</b>。</li>
+                <li>在跳出的視窗裡再按一次<b>「打開」</b>。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>會用終端機的話：一行解決</summary>
+              <div class="command">
+                <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/HDInfo.app</code>
+                <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">複製</button>
+              </div>
+            </details>
+          </div>
+        </li>
+        <li>
+          <h3>允許「完整磁碟取用權限」</h3>
+          <p>空間分析與清理要讀整顆硬碟。第一次用到時，HDInfo 會帶你到<b>「系統設定」→「隱私權與安全性」→「完整磁碟取用權限」</b>打開 HDInfo。不開也能用，只是 macOS 會一個資料夾一個資料夾地問你，算出來的數字也會少。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">07</p>
+        <h2 id="releases-title">版本紀錄</h2>
+        <p>你正在用的版本，在 App 選單的「關於 HDInfo」看得到。</p>
+      </header>
+      <div class="release-list">
+{{changelog}}
+      </div>
+      <p class="all-releases"><a href="{{releasesUrl}}">所有版本與舊版下載 →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">健康資料是硬碟自己回報的數值，僅供參考；重要的資料請定期備份。</p>
+    <p class="disclaimer">本站使用 Google Analytics 統計瀏覽量（會使用 Cookie）。HDInfo 本身不連網回報任何資料。</p>
+    <p class="copyright">© 2026 <a href="../">艾可颯智慧工作室 IksaAI</a>・<a href="../#apps">更多 App</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>HDInfo ディスクの状態と容量｜Mac 版ダウンロード</title>
+  <meta name="description" content="Mac 向けのディスクツール。ディスクの状態を確かめ、容量を何が使っているかを見つけて、キャッシュの削除、重複ファイルの検出、アプリと残留ファイルの削除まで。すべてゴミ箱に入れるだけ、テレメトリなし。">
+  <meta name="theme-color" content="#F5F0E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15130F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../../hdinfo/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../hdinfo/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IksaAI">
+  <meta property="og:title" content="HDInfo ディスクの状態と容量｜Mac 版ダウンロード">
+  <meta property="og:description" content="ディスクの容量、何が使っている？ Mac 向けのディスクツール。">
+  <meta property="og:image" content="https://iksaai.github.io/hdinfo/images/og.jpg">
+  <meta property="og:url" content="https://iksaai.github.io/ja/hdinfo/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" hreflang="zh-Hant" href="https://iksaai.github.io/hdinfo/">
+  <link rel="alternate" hreflang="en" href="https://iksaai.github.io/en/hdinfo/">
+  <link rel="alternate" hreflang="ja" href="https://iksaai.github.io/ja/hdinfo/">
+  <link rel="alternate" hreflang="x-default" href="https://iksaai.github.io/hdinfo/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap">
+  <link rel="stylesheet" href="../../hdinfo/styles.css">
+  <script src="../../hdinfo/main.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5PN5P55LH"></script>
+  <script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">メインコンテンツへ移動</a>
+
+  <header class="site-header">
+    <a class="studio-link" href="../">IksaAI</a>
+    <span class="crumb-sep" aria-hidden="true">/</span>
+    <a class="brand" href="./">
+      <img src="../../hdinfo/images/icon-256.png" width="36" height="36" alt="">
+      <span>HDInfo <span class="brand-sub">ディスクの状態と容量</span></span>
+    </a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#features">機能</a></li>
+        <li><a href="#install">インストール</a></li>
+        <li><a href="#releases">リリース履歴</a></li>
+      </ul>
+    </nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../../hdinfo/" hreflang="zh-Hant" lang="zh-Hant">中文</a><a href="../../en/hdinfo/" hreflang="en" lang="en">EN</a><a href="./" hreflang="ja" lang="ja" aria-current="page">日本語</a></nav>
+    <a class="btn btn-ink btn-small" href="{{dmgUrl}}">ダウンロード</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Mac 向けのディスクツール・{{version}}</p>
+      <h1 id="hero-title">ディスクの容量、<br>何が使っている？</h1>
+      <figure class="capacity" aria-labelledby="capacity-caption">
+        <ol class="bar">
+            <li class="seg seg-files"><span class="visually-hidden">あなたのファイル 182 GB</span></li>
+            <li class="seg seg-apps"><span class="visually-hidden">アプリ 41 GB</span></li>
+            <li class="seg seg-ai"><span class="visually-hidden">AI モデル 63 GB</span></li>
+            <li class="seg seg-video"><span class="visually-hidden">動画編集キャッシュ 38 GB</span></li>
+            <li class="seg seg-dev"><span class="visually-hidden">開発ツール 54 GB</span></li>
+            <li class="seg seg-caches"><span class="visually-hidden">キャッシュとゴミ箱 12 GB</span></li>
+            <li class="seg seg-appdata"><span class="visually-hidden">App のデータ 47 GB</span></li>
+            <li class="seg seg-system"><span class="visually-hidden">システム 19 GB</span></li>
+            <li class="seg seg-other"><span class="visually-hidden">その他 64 GB</span></li>
+            <li class="seg seg-free"><span class="visually-hidden">空き 474 GB</span></li>
+        </ol>
+        <ul class="legend" aria-hidden="true">
+          <li class="legend-files"><span class="swatch" aria-hidden="true"></span>あなたのファイル<b>182 GB</b></li>
+          <li class="legend-apps"><span class="swatch" aria-hidden="true"></span>アプリ<b>41 GB</b></li>
+          <li class="legend-ai"><span class="swatch" aria-hidden="true"></span>AI モデル<b>63 GB</b></li>
+          <li class="legend-video"><span class="swatch" aria-hidden="true"></span>動画編集キャッシュ<b>38 GB</b></li>
+          <li class="legend-dev"><span class="swatch" aria-hidden="true"></span>開発ツール<b>54 GB</b></li>
+          <li class="legend-caches"><span class="swatch" aria-hidden="true"></span>キャッシュとゴミ箱<b>12 GB</b></li>
+          <li class="legend-appdata"><span class="swatch" aria-hidden="true"></span>App のデータ<b>47 GB</b></li>
+          <li class="legend-system"><span class="swatch" aria-hidden="true"></span>システム<b>19 GB</b></li>
+          <li class="legend-other"><span class="swatch" aria-hidden="true"></span>その他<b>64 GB</b></li>
+          <li class="legend-free"><span class="swatch" aria-hidden="true"></span>空き<b>474 GB</b></li>
+        </ul>
+        <figcaption id="capacity-caption">1 TB の Mac で使用中の 520 GB を、種類ごとに分けるとこうなります。HDInfo はスキャンのたびにこのバーを描きます。</figcaption>
+      </figure>
+      <div class="hero-foot">
+        <p class="lede">HDInfo はディスクの状態を確かめ、容量を何が使っているかを見つけます。そのうえでキャッシュの削除、重複ファイルの検出、アプリと残留ファイルの削除まで手伝います。どれもゴミ箱に入れるだけです。</p>
+        <div class="cta" id="download">
+          <a class="btn btn-ink btn-large" href="{{dmgUrl}}">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            HDInfo {{version}} をダウンロード
+          </a>
+          <p class="cta-meta"><span>macOS 14 以降</span><span>Apple シリコンと Intel</span><span>{{dmgSize}}</span><span>無料</span></p>
+          <p class="cta-note">初回起動で macOS にブロックされたら？<a href="#install">インストール手順を見る</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="chapters" aria-label="機能">
+      <article class="chapter chapter-shot">
+        <p class="chapter-no">01</p>
+        <div class="chapter-text">
+          <h2>容量はどこへ消えた？</h2>
+          <p>種類をクリックすると、その中身が下に並びます。写真ライブラリの大きさ、Ollama のモデルの大きさ、DaVinci Resolve のレンダーキャッシュの大きさ。よくある大物は名前でそのまま表示されるので、フォルダを何階層もたどる必要はありません。システムやアプリの中身を除いた、大きなファイルの一覧もあります。</p>
+        </div>
+        <picture class="shot">
+          <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="../../hdinfo/images/space-files-dark-1280.webp">
+          <img src="../../hdinfo/images/space-files-light-1280.webp" width="1280" height="800" loading="lazy"
+            alt="容量の分析：「あなたのファイル」を選ぶと、写真ライブラリ 61 GB、ムービー 74 GB、書類 33 GB と、その下に大きなファイルが並ぶ">
+        </picture>
+      </article>
+
+      <article class="chapter chapter-shot chapter-flip">
+        <p class="chapter-no">02</p>
+        <div class="chapter-text">
+          <h2>ディスクは大丈夫？</h2>
+          <p>ディスク自身が記録している状態のデータを読み取ります。温度、寿命の消費量、予備領域、電源投入時間、異常なシャットダウンの回数。それを「正常・警告・故障の兆候・故障」の 4 段階にまとめます。温度が設定したしきい値を超えると通知し、メニューバーでもひと目で確認できます。</p>
+        </div>
+        <picture class="shot">
+          <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="../../hdinfo/images/health-dark-1280.webp">
+          <img src="../../hdinfo/images/health-light-1280.webp" width="1280" height="587" loading="lazy"
+            alt="状態の画面：温度 41°C、「正常」、寿命の消費 3%、電源投入 4,812 時間">
+        </picture>
+      </article>
+
+      <article class="chapter">
+        <p class="chapter-no">03</p>
+        <div class="chapter-text">
+          <h2>キャッシュだけを、きれいに</h2>
+          <p>ソフトごとに 1 行ずつ、それが何か、消すとどうなるかを表示します。アプリが起動中なら消せません。影響の大きいものは最初からチェックが入りません。</p>
+        </div>
+        <dl class="ledger">
+          <div>
+            <dt>削除するもの</dt>
+            <dd>ブラウザのキャッシュ・VS Code、Discord、Slack などのアプリのキャッシュ・Homebrew、npm、pip のダウンロードキャッシュ・DaVinci Resolve のレンダーキャッシュ・LINE で開いた写真、動画、ファイル</dd>
+          </div>
+          <div>
+            <dt>触れないもの</dt>
+            <dd>LINE のトーク履歴とスタンプ・ブラウザのブックマーク、パスワード、サイトデータ・DaVinci のプロジェクトバックアップとスチルギャラリー・アプリ本体</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="chapter chapter-pair">
+        <p class="chapter-no">04</p>
+        <div class="chapter-text">
+          <h2>重複ファイル</h2>
+          <p>サイズ、先頭、末尾、内容全体と段階的に比較し、対象はあなたのデータだけ。iCloud や Dropbox でまだダウンロードされていないファイルが、比較のためにダウンロードされることはありません。</p>
+        </div>
+        <p class="chapter-no">05</p>
+        <div class="chapter-text">
+          <h2>アプリを残留ファイルごと削除</h2>
+          <p>設定、キャッシュ、ログイン項目までまとめて見つけ、1 つずつチェックして選べます。すでに削除したアプリが残したファイルも見つかります。</p>
+        </div>
+      </article>
+
+      <aside class="promises" aria-labelledby="promises-title">
+        <h2 id="promises-title">HDInfo がしない 4 つのこと</h2>
+        <ol>
+          <li><b>すぐには削除しない。</b>すべてゴミ箱に入れるだけ。必ず先に確認します。</li>
+          <li><b>何も送信しない。</b>テレメトリなし。ファイルの一覧がこの Mac から出ることはありません。</li>
+          <li><b>リンクの先へは行かない。</b>シンボリックリンクはたどらないので、別の場所を消してしまうことはありません。</li>
+          <li><b>余計なものは入れない。</b>macOS に組み込まれた方法だけを使います。ドライバもバックグラウンドサービスも入れません。</li>
+        </ol>
+      </aside>
+    </section>
+
+    <section id="install" class="install" aria-labelledby="install-title">
+      <header class="section-head">
+        <p class="kicker">06</p>
+        <h2 id="install-title">インストール</h2>
+      </header>
+      <ol class="steps">
+        <li>
+          <h3>DMG をダウンロードして開く</h3>
+          <p><a href="{{dmgUrl}}">HDInfo {{version}} をダウンロード</a>し、<code>HDInfo-{{version}}.dmg</code> を開きます。</p>
+        </li>
+        <li>
+          <h3>HDInfo を「アプリケーション」にドラッグ</h3>
+          <p>開いたウインドウで、HDInfo のアイコンを右側の「Applications」フォルダにドラッグします。</p>
+        </li>
+        <li>
+          <h3>初回起動：実行を許可する</h3>
+          <p>HDInfo はまだ Apple の公証を受けていないため、初めて開くときに macOS がブロックします。これは正常な動作です。以下の手順を一度行えば、次からはそのまま開けます。</p>
+          <div class="os-guides">
+            <details open>
+              <summary>macOS 15 以降（Sequoia、Tahoe）</summary>
+              <ol>
+                <li>「アプリケーション」から HDInfo を開き、「Apple は検証できませんでした⋯」と表示されたら<b>「完了」</b>をクリックします。</li>
+                <li><b>「システム設定」→「プライバシーとセキュリティ」</b>を開き、下の「セキュリティ」までスクロールします。</li>
+                <li>「HDInfo はブロックされました⋯」の横にある<b>「このまま開く」</b>をクリックし、パスワードを入力して、もう一度<b>「このまま開く」</b>をクリックします。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>macOS 14 Sonoma</summary>
+              <ol>
+                <li>「アプリケーション」で HDInfo を右クリック（または Control キーを押しながらクリック）し、<b>「開く」</b>を選びます。</li>
+                <li>表示されたダイアログで、もう一度<b>「開く」</b>をクリックします。</li>
+              </ol>
+            </details>
+            <details>
+              <summary>ターミナルが使えるなら：1 行で完了</summary>
+              <div class="command">
+                <code id="xattr-cmd">xattr -dr com.apple.quarantine /Applications/HDInfo.app</code>
+                <button class="btn btn-quiet copy-btn" type="button" data-copy-target="xattr-cmd">コピー</button>
+              </div>
+            </details>
+          </div>
+        </li>
+        <li>
+          <h3>「フルディスクアクセス」を許可する</h3>
+          <p>容量の分析とクリーンアップには、ディスク全体の読み取りが必要です。初めて使うときに HDInfo が<b>「システム設定」→「プライバシーとセキュリティ」→「フルディスクアクセス」</b>へ案内するので、HDInfo をオンにしてください。許可しなくても使えますが、macOS が保護されたフォルダごとに確認を求め、集計される数字も少なくなります。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="releases" class="releases" aria-labelledby="releases-title">
+      <header class="section-head">
+        <p class="kicker">07</p>
+        <h2 id="releases-title">リリース履歴</h2>
+        <p>お使いのバージョンは、アプリメニューの「HDInfo について」で確認できます。</p>
+      </header>
+      <div class="release-list">
+{{changelog}}
+      </div>
+      <p class="all-releases"><a href="{{releasesUrl}}">すべてのバージョンと旧版のダウンロード →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">状態のデータはディスク自身が報告する値で、参考情報です。大切なデータは定期的にバックアップしてください。</p>
+    <p class="disclaimer">このサイトでは閲覧数の集計に Google Analytics を使用しています（Cookie を使用します）。HDInfo 自体がデータを送信することはありません。</p>
+    <p class="copyright">© 2026 <a href="../">艾可颯智慧工作室 IksaAI</a>・<a href="../#apps">ほかのアプリ</a></p>
+  </footer>
+</body>
+</html>
