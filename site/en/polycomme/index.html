@@ -45,6 +45,7 @@
       <ul>
         <li><a href="#features">Features</a></li>
         <li><a href="#obs">OBS setup</a></li>
+        <li><a href="#frame">Live frame</a></li>
         <li><a href="#install">Install</a></li>
         <li><a href="#releases">Releases</a></li>
       </ul>
@@ -189,6 +190,65 @@
           </div>
           <p class="monitor-note">What your viewers see on stream. Styles and comment backgrounds are switched in the app — no changes in OBS.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="frame" class="frame" aria-labelledby="frame-title">
+      <header class="section-head">
+        <p class="kicker">Live frame<span class="pill pill-new">New · Mac</span></p>
+        <h2 id="frame-title">A frame around your game that updates itself</h2>
+        <p>One more OBS browser source: stream title, game, time live, sub goal, death counter, ticker and chat sit around your gameplay, and anything you change in the app shows up instantly. Mac only for now — Windows is on the way.</p>
+      </header>
+      <div class="frame-grid">
+        <div class="monitor">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-pro" checked>
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-glass">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-broadcast">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-arcade">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-paper">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-aurora">
+          <figure class="frame-view">
+            <img class="frame-shot fr-pro" src="../../polycomme/images/frame-pro-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Gaming): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+            <img class="frame-shot fr-glass" src="../../polycomme/images/frame-glass-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Floating cards): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+            <img class="frame-shot fr-broadcast" src="../../polycomme/images/frame-broadcast-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Broadcast): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+            <img class="frame-shot fr-arcade" src="../../polycomme/images/frame-arcade-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Arcade): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+            <img class="frame-shot fr-paper" src="../../polycomme/images/frame-paper-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Magazine): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+            <img class="frame-shot fr-aurora" src="../../polycomme/images/frame-aurora-en.webp" width="1280" height="720" loading="lazy"
+              alt="Live frame (Aurora): title, time live, sub goal, deaths, ticker and chat around the gameplay">
+          </figure>
+          <div class="ov-switch fr-switch" role="group" aria-label="Live frame styles">
+            <label for="fr-pro">Gaming</label>
+            <label for="fr-glass">Floating cards</label>
+            <label for="fr-broadcast">Broadcast</label>
+            <label for="fr-arcade">Arcade</label>
+            <label for="fr-paper">Magazine</label>
+            <label for="fr-aurora">Aurora</label>
+          </div>
+          <p class="monitor-note">Pick a style above. The game area is transparent — your game capture goes underneath the frame in OBS.</p>
+        </div>
+        <ul class="frame-points">
+          <li>
+            <h3>Change it, see it</h3>
+            <p>Edit the title, ticker or death count in the app and the frame updates right away. No OBS refresh.</p>
+          </li>
+          <li>
+            <h3>Numbers fill themselves</h3>
+            <p>Start time, YouTube subscribers, Twitch followers and category come from the platforms — still no API key.</p>
+          </li>
+          <li>
+            <h3>Tap while you play</h3>
+            <p>Death +1/−1 right in the main window, a ticker you build line by line, and a switch to hide any section.</p>
+          </li>
+          <li>
+            <h3>As much game as possible</h3>
+            <p>A 1600×900 game area in 16:9, info together or split top and bottom, and the exact spot for your game capture and VTuber model.</p>
+          </li>
+        </ul>
       </div>
     </section>
 

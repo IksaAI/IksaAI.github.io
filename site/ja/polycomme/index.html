@@ -45,6 +45,7 @@
       <ul>
         <li><a href="#features">機能</a></li>
         <li><a href="#obs">OBS との接続</a></li>
+        <li><a href="#frame">ライブ枠</a></li>
         <li><a href="#install">インストール</a></li>
         <li><a href="#releases">更新履歴</a></li>
       </ul>
@@ -189,6 +190,65 @@
           </div>
           <p class="monitor-note">視聴者が配信画面で見る様子です。スタイルやコメントの背景はアプリで切り替えるので、OBS の設定は変えなくて大丈夫です。</p>
         </div>
+      </div>
+    </section>
+
+    <section id="frame" class="frame" aria-labelledby="frame-title">
+      <header class="section-head">
+        <p class="kicker">ライブ枠<span class="pill pill-new">新機能・Mac 版</span></p>
+        <h2 id="frame-title">ゲーム画面を囲む枠、情報は自動で更新</h2>
+        <p>OBS のブラウザソースがもうひとつ。配信タイトル、ゲーム、配信時間、登録者目標、デス数、テロップ、チャットをゲーム画面のまわりに表示し、アプリで変えるとすぐ画面に出ます。今は Mac 版のみで、Windows 版は準備中です。</p>
+      </header>
+      <div class="frame-grid">
+        <div class="monitor">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-pro" checked>
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-glass">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-broadcast">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-arcade">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-paper">
+          <input class="ov-pick" type="radio" name="frame-style" id="fr-aurora">
+          <figure class="frame-view">
+            <img class="frame-shot fr-pro" src="../../polycomme/images/frame-pro-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（ゲーム専用）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+            <img class="frame-shot fr-glass" src="../../polycomme/images/frame-glass-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（フローティングカード）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+            <img class="frame-shot fr-broadcast" src="../../polycomme/images/frame-broadcast-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（中継）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+            <img class="frame-shot fr-arcade" src="../../polycomme/images/frame-arcade-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（アーケード）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+            <img class="frame-shot fr-paper" src="../../polycomme/images/frame-paper-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（マガジン）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+            <img class="frame-shot fr-aurora" src="../../polycomme/images/frame-aurora-ja.webp" width="1280" height="720" loading="lazy"
+              alt="ライブ枠（オーロラ）：ゲーム画面のまわりにタイトル、配信時間、登録者目標、デス数、テロップ、チャット">
+          </figure>
+          <div class="ov-switch fr-switch" role="group" aria-label="ライブ枠のスタイル">
+            <label for="fr-pro">ゲーム専用</label>
+            <label for="fr-glass">フローティングカード</label>
+            <label for="fr-broadcast">中継</label>
+            <label for="fr-arcade">アーケード</label>
+            <label for="fr-paper">マガジン</label>
+            <label for="fr-aurora">オーロラ</label>
+          </div>
+          <p class="monitor-note">上のボタンでスタイルを切り替えます。ゲーム領域は透明なので、OBS のゲームキャプチャは枠の下に置きます。</p>
+        </div>
+        <ul class="frame-points">
+          <li>
+            <h3>変えたらすぐ反映</h3>
+            <p>タイトル、テロップ、デス数をアプリで変えると枠にすぐ反映。OBS の更新は不要です。</p>
+          </li>
+          <li>
+            <h3>数字は自動で</h3>
+            <p>配信開始時刻、YouTube の登録者数、Twitch のフォロワー数とカテゴリは配信サービスから取得。API キーも不要です。</p>
+          </li>
+          <li>
+            <h3>プレイしながら操作</h3>
+            <p>メインウインドウでデス数を +1／−1。テロップは 1 件ずつ追加でき、表示しない項目はスイッチひとつで隠せます。</p>
+          </li>
+          <li>
+            <h3>ゲーム画面を最大に</h3>
+            <p>16:9 のゲーム領域は 1600×900。情報はまとめても上下に分けても OK。ゲームキャプチャと VTuber モデルの置き場所も設定画面に表示します。</p>
+          </li>
+        </ul>
       </div>
     </section>
 
