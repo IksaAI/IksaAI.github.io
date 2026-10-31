@@ -64,8 +64,9 @@ export function renderNotes(markdown) {
 
 /**
  * 下載按鈕用的最新版本；最新版沒有 DMG 就讓建置失敗，網站維持上一版。
- * 有 Windows 版的 App（apps.json 的 windows: true），最新版也一定要有 Windows 安裝檔（.exe）；
- * 有免安裝版的（portable: true）還一定要有 .zip
+ * 有 Windows 版的 App（apps.json 的 windows: true）用最近一個有 Windows 安裝檔（.exe）的版本，
+ * 所以只更新 Mac 的版本可以單獨發；Windows 下載的版本是 exeVersion，可能比 version 舊。
+ * 有免安裝版的（portable: true），同一個版本還一定要有 .zip
  */
 export function latestDownload(releases, { windows = false, portable = false } = {}) {
   const [latest] = releases
@@ -74,12 +75,19 @@ export function latestDownload(releases, { windows = false, portable = false } =
   if (!dmg) throw new Error(`最新的 release ${latest.tag_name} 沒有 DMG 檔`)
   const download = { version: versionOf(latest), dmgUrl: dmg.browser_download_url, dmgSize: formatSize(dmg.size) }
   if (!windows) return download
-  const exe = exeOf(latest)
-  if (!exe) throw new Error(`最新的 release ${latest.tag_name} 沒有 Windows 安裝檔（.exe）`)
-  const withExe = { ...download, exeUrl: exe.browser_download_url, exeSize: formatSize(exe.size), exeName: exe.name }
+  const windowsRelease = releases.find(exeOf)
+  if (!windowsRelease) throw new Error('所有 release 都沒有 Windows 安裝檔（.exe）')
+  const exe = exeOf(windowsRelease)
+  const withExe = {
+    ...download,
+    exeUrl: exe.browser_download_url,
+    exeSize: formatSize(exe.size),
+    exeName: exe.name,
+    exeVersion: versionOf(windowsRelease),
+  }
   if (!portable) return withExe
-  const zip = zipOf(latest)
-  if (!zip) throw new Error(`最新的 release ${latest.tag_name} 沒有 Windows 免安裝版（.zip）`)
+  const zip = zipOf(windowsRelease)
+  if (!zip) throw new Error(`release ${windowsRelease.tag_name} 有 Windows 安裝檔，但沒有免安裝版（.zip）`)
   return { ...withExe, zipUrl: zip.browser_download_url, zipSize: formatSize(zip.size), zipName: zip.name }
 }
 

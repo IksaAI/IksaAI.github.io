@@ -73,11 +73,28 @@ test('also picks the Windows installer for apps that ship on Windows', () => {
     exeUrl: EXE.browser_download_url,
     exeSize: '63.9 MB',
     exeName: 'EQalert-Setup-0.6.0-x64.exe',
+    exeVersion: '0.6.0',
   })
 })
 
-test('fails when a Windows app has no installer in its newest release, so the old site stays up', () => {
+const macOnly = () =>
+  release({
+    tag_name: 'eqalert-v0.7.0',
+    assets: [{ name: 'EQalert-0.7.0.dmg', size: 2900000, browser_download_url: `${RELEASES_URL}/download/eqalert-v0.7.0/EQalert-0.7.0.dmg` }],
+  })
+
+test('keeps offering the newest Windows installer when a release ships only on Mac', () => {
+  const download = latestDownload([macOnly(), withWindows()], { windows: true })
+  assert.equal(download.version, '0.7.0')
+  assert.equal(download.dmgUrl, `${RELEASES_URL}/download/eqalert-v0.7.0/EQalert-0.7.0.dmg`)
+  assert.equal(download.exeUrl, EXE.browser_download_url)
+  assert.equal(download.exeName, 'EQalert-Setup-0.6.0-x64.exe')
+  assert.equal(download.exeVersion, '0.6.0')
+})
+
+test('fails when a Windows app has no installer in any release, so the old site stays up', () => {
   assert.throws(() => latestDownload([release()], { windows: true }), /Windows/)
+  assert.throws(() => latestDownload([macOnly(), release()], { windows: true }), /Windows/)
 })
 
 test('also picks the portable zip for apps that offer one', () => {
@@ -89,8 +106,14 @@ test('also picks the portable zip for apps that offer one', () => {
   })
 })
 
-test('fails when a portable app has no zip in its newest release, so the old site stays up', () => {
+test('fails when a portable app has no zip beside its newest installer, so the old site stays up', () => {
   assert.throws(() => latestDownload([withWindows()], { windows: true, portable: true }), /\.zip/)
+})
+
+test('takes the portable zip from the same release as the Windows installer', () => {
+  const download = latestDownload([macOnly(), withPortable()], { windows: true, portable: true })
+  assert.equal(download.zipUrl, ZIP.browser_download_url)
+  assert.equal(download.exeVersion, '0.6.0')
 })
 
 test('links the portable zip in the changelog', () => {

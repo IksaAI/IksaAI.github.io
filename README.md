@@ -87,14 +87,14 @@ gh workflow run publish.yml --repo IksaAI/IksaAI.github.io -f tag=eqalert-v<版�
 
 release 說明可以寫三種語言：最前面是繁中，`<!-- lang:en -->`、`<!-- lang:ja -->` 下面各是英文、日文，`<!-- lang:all -->` 下面的內容（例如 SHA-256）每個語言頁都會顯示。這幾行在 GitHub 的 release 頁上看不到；英文、日文頁只顯示自己那段，沒寫就退回繁中。首頁「最新動態」用那個語言那段的第一行。
 
-每個 App 的最新 release 一定要有 DMG；`apps.json` 標了 `"windows": true` 的 App（EQalert），最新 release 也一定要有 Windows 安裝檔（`.exe`）；再標了 `"portable": true` 的（PolyComme）還要有免安裝版（`.zip`）。缺檔時建置會失敗，網站維持上一版。
+每個 App 的最新 release 一定要有 DMG。`apps.json` 標了 `"windows": true` 的 App（EQalert、PolyComme），Windows 下載用**最近一個有 Windows 安裝檔（`.exe`）的 release**，所以只更新 Mac 的版本可以單獨發（只放 DMG），Windows 按鈕會繼續提供上一個 Windows 版，頁面用 `{{exeVersion}}` 顯示它的版本；標了 `"portable": true` 的（PolyComme），那個 release 還要有免安裝版（`.zip`）。缺檔時建置會失敗，網站維持上一版。
 EQalert 的完整步驟（改版號、兩台電腦分別打包、雜湊）寫在 EQalert 原始碼 repo 的 `docs/發版流程.md`。
 
 `publish.yml` 需要 repo secrets `IKSAAI_APP_CLIENT_ID`、`IKSAAI_APP_PRIVATE_KEY`（IksaAI App 的設定：https://github.com/organizations/IksaAI/settings/apps/iksaai ，只授權本 repo）。
 
 ## 新增一個 App
 
-1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的精選大格；截圖用 16:10；有 Windows 版就加 `"windows": true`，頁面可以用 `{{exeUrl}}`、`{{exeSize}}`、`{{exeName}}`；有 Windows 免安裝版再加 `"portable": true`，頁面可以用 `{{zipUrl}}`、`{{zipSize}}`、`{{zipName}}`）
+1. 在 `apps.json` 加一筆（`featured: true` 的會成為首頁的精選大格；截圖用 16:10；有 Windows 版就加 `"windows": true`，頁面可以用 `{{exeUrl}}`、`{{exeSize}}`、`{{exeName}}`、`{{exeVersion}}`（Windows 版的版本，可能比 `{{version}}` 舊）；有 Windows 免安裝版再加 `"portable": true`，頁面可以用 `{{zipUrl}}`、`{{zipSize}}`、`{{zipName}}`）
 2. 新增 `site/<slug>/index.html`（可參考 `site/eqalert/`）。`<head>` 要照抄 EQalert 頁的 CSP 和兩行 GA 載入（`gtag/js` 與 `../assets/analytics.js`），頁尾也要寫明使用 Google Analytics。要英文、日文頁的話放 `site/en/<slug>/`、`site/ja/<slug>/`（可參考 `site/en/eqalert/`：資源路徑是 `../../<slug>/…`，頁首、頁尾連回 `../` 同語言的首頁），並在 `apps.json` 加上 `en`、`ja` 的翻譯
 3. **先發布第一個 release**（`<slug>-v1.0.0`，附上安裝檔），再 push 網站。還沒有 release 的 App 會讓建置失敗，網站會維持上一版。
 
