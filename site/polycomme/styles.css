@@ -238,7 +238,7 @@ details ol { margin: 8px 0 2px; padding-left: 1.2em; font-size: 0.92rem; color: 
 .release-download { margin-top: 10px; font-size: 0.9rem; }
 .release-download a { color: var(--ink); font-weight: 700; }
 
-/* 直播外框（1.1.0，Mac 版）：點樣式名稱切換截圖，做法同上面的 OBS 浮動視窗 */
+/* 直播外框（1.1.0）：點樣式名稱切換截圖，做法同上面的 OBS 浮動視窗 */
 .pill-new { margin-left: 10px; background: var(--accent); color: var(--on-accent); letter-spacing: 0.02em; text-transform: none; vertical-align: 1px; }
 .frame-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 36px; align-items: start; }
 .frame-view { position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #0B0F14;
