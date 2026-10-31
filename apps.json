@@ -59,22 +59,18 @@
     "icon": "hdinfo/images/icon-256.png",
     "screenshot": "hdinfo/images/screenshot-1280.webp",
     "screenshotAlt": "HDInfo 空間分析：一條容量條分成你的檔案、應用程式、AI 模型、影音剪輯快取等類別，下面列出 Hugging Face、Ollama 各佔多少",
-    "overlay": "hdinfo/images/health-light-1280.webp",
-    "overlayAlt": "HDInfo 健康頁：溫度 41°C、燈號「健康」、壽命用掉 3%",
     "featured": true,
     "en": {
       "subtitle": "Disk health & space",
       "tagline": "What's eating your disk? Check your drive's health, find what's taking up space, clear caches, find duplicates, and remove apps with their leftovers.",
       "requirements": "macOS 14 or later",
-      "screenshotAlt": "HDInfo space analysis: one bar split into Your Files, Apps, AI Models, Video Editing Caches and more, with Hugging Face and Ollama listed below",
-      "overlayAlt": "HDInfo health: 41 °C, status “Healthy,” 3% of life used"
+      "screenshotAlt": "HDInfo space analysis: one bar split into Your Files, Apps, AI Models, Video Editing Caches and more, with Hugging Face and Ollama listed below"
     },
     "ja": {
       "subtitle": "ディスクの状態と容量",
       "tagline": "ディスクの容量、何が使っている？ディスクの状態を確かめ、容量を使っているものを見つけて、キャッシュの削除、重複ファイルの検出、アプリと残留ファイルの削除まで。",
       "requirements": "macOS 14 以降",
-      "screenshotAlt": "HDInfo の容量の分析：あなたのファイル、アプリ、AI モデル、動画編集キャッシュなどに分かれたバーと、その下に Hugging Face と Ollama の使用量",
-      "overlayAlt": "HDInfo の状態の画面：温度 41°C、「正常」、寿命の消費 3%"
+      "screenshotAlt": "HDInfo の容量の分析：あなたのファイル、アプリ、AI モデル、動画編集キャッシュなどに分かれたバーと、その下に Hugging Face と Ollama の使用量"
     }
   }
 ]
